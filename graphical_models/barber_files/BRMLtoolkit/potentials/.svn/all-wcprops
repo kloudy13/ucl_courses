@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials
+END
+sumpotGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/sumpotGaussianCanonical.m
+END
+multpotsGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/multpotsGaussianCanonical.m
+END
+multpotsGaussianCanonicalxGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/multpotsGaussianCanonicalxGaussianMoment.m
+END
+numstatesGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/numstatesGaussianMoment.m
+END
+normpotGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/normpotGaussianCanonical.m
+END
+convertGaussianMomentToGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/convertGaussianMomentToGaussianCanonical.m
+END
+convertGaussianCanonicalToGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/convertGaussianCanonicalToGaussianMoment.m
+END
+sumpotGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/sumpotGaussianMoment.m
+END
+multpotsGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/multpotsGaussianMoment.m
+END
+normpotGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/normpotGaussianMoment.m
+END
+unityGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/unityGaussianCanonical.m
+END
+sumGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/sumGaussianMoment.m
+END
+multpotsGaussianCanonical-GaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/multpotsGaussianCanonical-GaussianMoment.m
+END
+unityGaussianMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/unityGaussianMoment.m
+END
+numstatesGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BRMLtoolkit/potentials/numstatesGaussianCanonical.m
+END

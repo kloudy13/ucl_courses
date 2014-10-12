@@ -1,0 +1,1445 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/burakbayramli/kod/!svn/ver/31/trunk/books/Bayesian_Reasoning_Machine_learning_Barber
+END
+HMMsmooth.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMsmooth.m
+END
+singleparenttree.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/singleparenttree.m
+END
+softloss.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/softloss.m
+END
+uniquepots.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/uniquepots.m
+END
+bar3zcolor.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/bar3zcolor.m
+END
+dirrnd.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/dirrnd.m
+END
+numstates.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/numstates.m
+END
+NaiveBayesTrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/NaiveBayesTrain.m
+END
+chi2test.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/chi2test.m
+END
+whichpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/whichpot.m
+END
+condindepPot.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condindepPot.m
+END
+GaussCond.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/GaussCond.m
+END
+maxNpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxNpot.m
+END
+edges.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/edges.m
+END
+mess2fact.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mess2fact.m
+END
+table.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/table.m
+END
+divpots.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/divpots.m
+END
+validgridposition.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/validgridposition.m
+END
+istree.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/istree.m
+END
+absorptionID.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/absorptionID.m
+END
+changevar.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/changevar.m
+END
+FactorGraph.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/FactorGraph.m
+END
+setup.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setup.m
+END
+ancestors.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ancestors.m
+END
+maxNarray.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxNarray.m
+END
+HMMem.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMem.m
+END
+emppot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/emppot.m
+END
+logpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logpot.m
+END
+potsample.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/potsample.m
+END
+field2cell.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/field2cell.m
+END
+maxNprodFG.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxNprodFG.m
+END
+BayesLogRegression.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BayesLogRegression.m
+END
+ancestralorder.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ancestralorder.m
+END
+LDSsubspace.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSsubspace.m
+END
+maxpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxpot.m
+END
+KLdiv.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/KLdiv.m
+END
+drawFG.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/drawFG.m
+END
+cliquedecomp.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/cliquedecomp.m
+END
+blanknames.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/blanknames.m
+END
+betalog.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/betalog.m
+END
+Kmeans.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/Kmeans.m
+END
+SLDSmargGauss.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/SLDSmargGauss.m
+END
+mynchoosek.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mynchoosek.m
+END
+HMMsmoothSAR.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMsmoothSAR.m
+END
+PCorient.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/PCorient.m
+END
+mynanmean.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mynanmean.m
+END
+LoopyBP.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LoopyBP.m
+END
+NaiveBayesTest.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/NaiveBayesTest.m
+END
+drawJTree.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/drawJTree.m
+END
+conjgrad.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/conjgrad.m
+END
+binaryMRFmap.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/binaryMRFmap.m
+END
+squeezepots.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/squeezepots.m
+END
+count.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/count.m
+END
+SLDSforward.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/SLDSforward.m
+END
+FactorConnectingVariable.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/FactorConnectingVariable.m
+END
+sigma.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sigma.m
+END
+plsaCond.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/plsaCond.m
+END
+eyepot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/eyepot.m
+END
+elimtri.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/elimtri.m
+END
+mvrandn.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mvrandn.m
+END
+HMMforward.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMforward.m
+END
+sumlog.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sumlog.m
+END
+LDSforward.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSforward.m
+END
+MIemp.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MIemp.m
+END
+absorb.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/absorb.m
+END
+mixMarkov.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mixMarkov.m
+END
+IPF.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/IPF.m
+END
+logdet.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logdet.m
+END
+mygamrnd.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mygamrnd.m
+END
+lengthcell.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/lengthcell.m
+END
+LDSbackwardUpdate.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSbackwardUpdate.m
+END
+orderpotfields.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/orderpotfields.m
+END
+FA.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/FA.m
+END
+demoLoopyBP.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/31/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/demoLoopyBP.m
+END
+learnBayesNet.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/learnBayesNet.m
+END
+setstate.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setstate.m
+END
+Contents.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/Contents.m
+END
+normpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/normpot.m
+END
+markov.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/markov.m
+END
+nearNeigh.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/nearNeigh.m
+END
+GMMem.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/GMMem.m
+END
+EntropyEmp.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EntropyEmp.m
+END
+condindep.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condindep.m
+END
+GPreg.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/GPreg.m
+END
+getdimind.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/getdimind.m
+END
+empdist.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/empdist.m
+END
+EMTotalBetaMessage.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMTotalBetaMessage.m
+END
+disptable.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/disptable.m
+END
+setminus.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setminus.m
+END
+mostprobablepathmult.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mostprobablepathmult.m
+END
+learnMarkovDecomp.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/learnMarkovDecomp.m
+END
+blankstates.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/blankstates.m
+END
+octave-core
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/31/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/octave-core
+END
+argmin.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/argmin.m
+END
+isoctave.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/isoctave.m
+END
+neighboursize.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/neighboursize.m
+END
+exppot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/exppot.m
+END
+EMbeliefnet.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMbeliefnet.m
+END
+HMMbackward.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMbackward.m
+END
+ungrouppot.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ungrouppot.m
+END
+cca.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/cca.m
+END
+HMMbackwardSAR.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMbackwardSAR.m
+END
+multpots.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/multpots.m
+END
+children.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/children.m
+END
+avsigmaGauss.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/avsigmaGauss.m
+END
+myrand.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/myrand.m
+END
+neigh.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/neigh.m
+END
+VariableConnectingFactor.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/VariableConnectingFactor.m
+END
+ica.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ica.m
+END
+makeThinJT.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/makeThinJT.m
+END
+orderpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/orderpot.m
+END
+condexp.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condexp.m
+END
+rasch.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/rasch.m
+END
+logsigma.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logsigma.m
+END
+cap.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/cap.m
+END
+SVMtrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/SVMtrain.m
+END
+drawNet.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/drawNet.m
+END
+BayesLinReg.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BayesLinReg.m
+END
+EMvalueTable.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMvalueTable.m
+END
+mostprobablepath.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mostprobablepath.m
+END
+mynansum.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mynansum.m
+END
+setevpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setevpot.m
+END
+drawID.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/drawID.m
+END
+LDSforwardUpdate.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSforwardUpdate.m
+END
+myones.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/myones.m
+END
+condMIemp.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condMIemp.m
+END
+placeobject.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/placeobject.m
+END
+replace.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/replace.m
+END
+HMMforwardSAR.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMforwardSAR.m
+END
+randgen.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/randgen.m
+END
+LDSbackward.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSbackward.m
+END
+knapsackMultipleChoice.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/knapsackMultipleChoice.m
+END
+gatherstrings.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/gatherstrings.m
+END
+pointsCov.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/pointsCov.m
+END
+CRFfeature.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/CRFfeature.m
+END
+jtreeID.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/jtreeID.m
+END
+sumpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sumpot.m
+END
+GibbsSample.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/GibbsSample.m
+END
+MIXprodBern.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MIXprodBern.m
+END
+EMminimizeKL.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMminimizeKL.m
+END
+BayesLogRegressionRVM.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BayesLogRegressionRVM.m
+END
+normp.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/normp.m
+END
+PCskeletonOracle.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/PCskeletonOracle.m
+END
+groupstate.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/groupstate.m
+END
+maxsumpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxsumpot.m
+END
+checkFactorGraph.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/checkFactorGraph.m
+END
+majority.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/majority.m
+END
+descendents.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/descendents.m
+END
+plsa.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/plsa.m
+END
+gpl.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/gpl.txt
+END
+condpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condpot.m
+END
+CanonVar.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/CanonVar.m
+END
+deltapot.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/deltapot.m
+END
+parents.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/parents.m
+END
+MaxFlow.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MaxFlow.m
+END
+ancestralsample.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ancestralsample.m
+END
+edgeneigh.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/edgeneigh.m
+END
+JTsample.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/JTsample.m
+END
+absorption.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/absorption.m
+END
+LinReg.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LinReg.m
+END
+BDscore.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BDscore.m
+END
+setfields.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setfields.m
+END
+compat.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/compat.m
+END
+maxarray.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxarray.m
+END
+plotCov.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/plotCov.m
+END
+nonzerovalue.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/nonzerovalue.m
+END
+edges2adj.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/edges2adj.m
+END
+IDvars.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/IDvars.m
+END
+HebbML.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HebbML.m
+END
+logeps.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logeps.m
+END
+dag.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/dag.m
+END
+potvariables.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/potvariables.m
+END
+GPclass.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/GPclass.m
+END
+mix2mix.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mix2mix.m
+END
+knapsackunbounded.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/knapsackunbounded.m
+END
+PCskeletonData.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/PCskeletonData.m
+END
+logZdirichlet.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logZdirichlet.m
+END
+sumpotID.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sumpotID.m
+END
+condindepEmp.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condindepEmp.m
+END
+ARlds.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ARlds.m
+END
+jtassignpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/jtassignpot.m
+END
+MDPemDeterministicPolicy.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MDPemDeterministicPolicy.m
+END
+condMI.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condMI.m
+END
+betaXbiggerY.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/betaXbiggerY.m
+END
+NaiveBayesDirichletTrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/NaiveBayesDirichletTrain.m
+END
+BMpotential.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/BMpotential.m
+END
+LogReg.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LogReg.m
+END
+triangulate.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/triangulate.m
+END
+kernel.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/kernel.m
+END
+spantree.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/spantree.m
+END
+EMqTranMarginal.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMqTranMarginal.m
+END
+HMMgamma.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMgamma.m
+END
+covfnGE.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/covfnGE.m
+END
+MDPsolve.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MDPsolve.m
+END
+mylogsig.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mylogsig.m
+END
+triangulatePorder.m
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/triangulatePorder.m
+END
+subv2ind.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/subv2ind.m
+END
+metropolis.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/metropolis.m
+END
+ungroupstate.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ungroupstate.m
+END
+logp.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logp.m
+END
+potscontainingonly.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/potscontainingonly.m
+END
+mess2var.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/mess2var.m
+END
+condp.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/condp.m
+END
+noselfpath.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/noselfpath.m
+END
+SLDSbackward.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/SLDSbackward.m
+END
+squeezestates.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/squeezestates.m
+END
+setdiff_unsorted.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setdiff_unsorted.m
+END
+sqdist.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sqdist.m
+END
+connectedComponents.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/connectedComponents.m
+END
+MesstoFact.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/MesstoFact.m
+END
+myzeros.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/myzeros.m
+END
+jtree.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/jtree.m
+END
+rbf.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/rbf.m
+END
+svdm.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/svdm.m
+END
+sumpots.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sumpots.m
+END
+LDSsmooth.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSsmooth.m
+END
+NaiveBayesDirichletTest.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/NaiveBayesDirichletTest.m
+END
+setpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/setpot.m
+END
+argmax.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/argmax.m
+END
+grouppot.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/grouppot.m
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/README.txt
+END
+logsumexp.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/logsumexp.m
+END
+bucketelim.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/bucketelim.m
+END
+assign.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/assign.m
+END
+maxprodFG.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/maxprodFG.m
+END
+subsetsum.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/subsetsum.m
+END
+EMqUtilMarginal.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/EMqUtilMarginal.m
+END
+sigmoid.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sigmoid.m
+END
+ind2subv.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ind2subv.m
+END
+hinton.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/hinton.m
+END
+ARtrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/ARtrain.m
+END
+triangulateComponent.m
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/triangulateComponent.m
+END
+pca.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/pca.m
+END
+LDSlearn.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LDSlearn.m
+END
+potistyped.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/potistyped.m
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/LICENSE.txt
+END
+HMMviterbi.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/HMMviterbi.m
+END
+sumprodFG.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/sumprodFG.m
+END
+SARlearn.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/SARlearn.m
+END
+evalpot.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/evalpot.m
+END

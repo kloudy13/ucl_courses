@@ -1,0 +1,641 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises
+END
+demoNaiveBayes.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoNaiveBayes.m
+END
+demoDecPhD.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoDecPhD.m
+END
+demoBayesLogRegRVM.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBayesLogRegRVM.m
+END
+demoDecAsia.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoDecAsia.m
+END
+demoMFBPGibbs.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMFBPGibbs.m
+END
+demoPCdata.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoPCdata.m
+END
+demoBurglar.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBurglar.m
+END
+demoMultGaussianMomentGaussianCanonical.m
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMultGaussianMomentGaussianCanonical.m
+END
+demoHMMlearn.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHMMlearn.m
+END
+demoHMMbigram.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHMMbigram.m
+END
+demoLinearCRF.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLinearCRF.m
+END
+demoLDStracking.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLDStracking.m
+END
+demoSVM.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSVM.m
+END
+softloss.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/softloss.m
+END
+demoJTree.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoJTree.m
+END
+demoHMMinferenceSimple.m
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHMMinferenceSimple.m
+END
+demoEMchestclinic.m
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoEMchestclinic.m
+END
+demoSoftLoss.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSoftLoss.m
+END
+demoMixBernoulliDigits.m
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMixBernoulliDigits.m
+END
+demoMixMarkov.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMixMarkov.m
+END
+linearCRFpotential.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/linearCRFpotential.m
+END
+demoMultnomialpXYgZ.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMultnomialpXYgZ.m
+END
+demoPolya.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoPolya.m
+END
+demoLPMhedge.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLPMhedge.m
+END
+demoHopfield.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHopfield.m
+END
+demoShortestPathMult.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoShortestPathMult.m
+END
+cliquedecomp.c
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/cliquedecomp.c
+END
+HopfieldHiddenNL.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/HopfieldHiddenNL.m
+END
+exerciseInvest.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/exerciseInvest.m
+END
+linearCRFgrad.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/linearCRFgrad.m
+END
+demoHMMinference.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHMMinference.m
+END
+demoHMMburglar.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHMMburglar.m
+END
+demoARtrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoARtrain.m
+END
+demoNearNeigh.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoNearNeigh.m
+END
+demoCondindep.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCondindep.m
+END
+demoPLSAcond.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoPLSAcond.m
+END
+demoBayesLinReg.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBayesLinReg.m
+END
+demoARlds.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoARlds.m
+END
+demoGaussBayes.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGaussBayes.m
+END
+demoGMMclass.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGMMclass.m
+END
+demoBayesLogRegression.m
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBayesLogRegression.m
+END
+demoMostProbablePathMult.m
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMostProbablePathMult.m
+END
+demoCliqueDecomp.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCliqueDecomp.m
+END
+demoJTreeSample.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoJTreeSample.m
+END
+demoCanonVarDigits.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCanonVarDigits.m
+END
+demoSumprodGaussMoment.m
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSumprodGaussMoment.m
+END
+GMMloglik.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/GMMloglik.m
+END
+demoKmeans.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoKmeans.m
+END
+demoSumprodGaussCanonLDS.m
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSumprodGaussCanonLDS.m
+END
+demogrouppot.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demogrouppot.m
+END
+demoBayesErrorAnalysis.m
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBayesErrorAnalysis.m
+END
+demoBucketElim.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBucketElim.m
+END
+demoRobotArm.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoRobotArm.m
+END
+demoCCA.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCCA.m
+END
+demoMRFclean.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMRFclean.m
+END
+demoGibbsSample.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGibbsSample.m
+END
+demoMaxNprod.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMaxNprod.m
+END
+demoGibbsGauss.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGibbsGauss.m
+END
+demoSumprod.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSumprod.m
+END
+demoICA.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoICA.m
+END
+demoMetropolis.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMetropolis.m
+END
+LPMquad.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/LPMquad.m
+END
+demoIPFeff.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoIPFeff.m
+END
+demoLearnThinMNDigit.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLearnThinMNDigit.m
+END
+demoRasch.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoRasch.m
+END
+demoHopfieldLatent.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoHopfieldLatent.m
+END
+demoGMMem.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGMMem.m
+END
+linearCRFloglik.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/linearCRFloglik.m
+END
+demoGPreg.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGPreg.m
+END
+demoSARlearn.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSARlearn.m
+END
+demoLDSsubspace.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLDSsubspace.m
+END
+demoMixBernoulli.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMixBernoulli.m
+END
+demoSumprodGaussCanon.m
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSumprodGaussCanon.m
+END
+demoLogReg.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLogReg.m
+END
+demoClouseau.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoClouseau.m
+END
+demoBDscore.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoBDscore.m
+END
+logGaussGamma.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/logGaussGamma.m
+END
+demoLoopyBP.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLoopyBP.m
+END
+demoLogRegNonLinear.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLogRegNonLinear.m
+END
+demoFA.m
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoFA.m
+END
+demoSVDmissing.m
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSVDmissing.m
+END
+demoLSI.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoLSI.m
+END
+demoChestClinic.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoChestClinic.m
+END
+demoPCoracle.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoPCoracle.m
+END
+demoShortestPath.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoShortestPath.m
+END
+demoCubicPoly.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCubicPoly.m
+END
+HopfieldHiddenLikNL.m
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/HopfieldHiddenLikNL.m
+END
+demoGPclass.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGPclass.m
+END
+LPMcubicpoly.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/LPMcubicpoly.m
+END
+demoPLSA.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoPLSA.m
+END
+demoThinJT.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoThinJT.m
+END
+demoDecPartyFriend.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoDecPartyFriend.m
+END
+demoSARinference.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSARinference.m
+END
+demoSLDStraffic.m
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSLDStraffic.m
+END
+demoCondindepEmp.m
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoCondindepEmp.m
+END
+demoMostProbablePath.m
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMostProbablePath.m
+END
+demoParticleFilter.m
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoParticleFilter.m
+END
+demoMaxprod.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMaxprod.m
+END
+demoDecParty.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoDecParty.m
+END
+LPMlinear.m
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/LPMlinear.m
+END
+LPMregtrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/LPMregtrain.m
+END
+demoMDP.m
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMDP.m
+END
+demoGPclass1D.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoGPclass1D.m
+END
+demoMDPclean.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoMDPclean.m
+END
+demoSampleHMM.m
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/demoSampleHMM.m
+END
+CRFpotential.m
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/burakbayramli/kod/!svn/ver/4/trunk/books/Bayesian_Reasoning_Machine_learning_Barber/DemosExercises/CRFpotential.m
+END
