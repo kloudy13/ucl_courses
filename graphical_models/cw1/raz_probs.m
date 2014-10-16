@@ -1,6 +1,7 @@
 function [] = raz_probs()
 
-prob27()
+prob26()
+%prob313()
 end
 
 function [dec] = cliqueToDec(clique)
@@ -72,28 +73,5 @@ for i=1:count-1
 end
     
 decCliques
-
-
-
-end
-
-
-function [] = prob314()
-
-[A B C]=assign(1:3)
-
-variable(A).name='A'; variable(A).domain = {1,2};
-variable(B).name='B'; variable(B).domain = {1,2,3};
-variable(C).name='C'; variable(C).domain = {1,2};
-
-pot(A) = array;
-pot(A).variables=[1,2];
-pot{A}.table(1) = 1/2;
-pot{A}.table(2) = 1/2;
-
-pot(B).variables=[1 2 3]; % define array below using this variable order
-tmptable(yes, yes)=0.05; tmptable(yes, no)=0.01;  
-tmptable(no,:)=1-tmptable(yes,:); % due to normalisation
-pot(tub).table=tmptable; 
 
 end
