@@ -1,7 +1,12 @@
+function [] = raz_probs()
+
+prob313()
+end
+
 function [dec] = cliqueToDec(clique)
 
 %binarray = zeros(10,1);
-dec = 0
+dec = 0;
 for i=1:10
     if (ismember(i, clique))
         %binarray(i) = 1
@@ -12,7 +17,7 @@ end
 end
 
 %% prob 2.6
-
+function [] = prob26()
 load('WikiAdjSmall.mat');
 
 dist = graphallshortestpaths(A,'Directed',false);
@@ -31,8 +36,11 @@ end
 
 hist(1:20)
 
+end
+
 %% prob 2.7
 
+function [] = prob27()
 C = load('cliques.mat');
 
 C = C.cl;
@@ -58,9 +66,87 @@ count = count - 1;
 
 celldisp(maxCliques(1:count))
 
-decCliques
+decCliques = zeros(count,1);
 for i=1:count-1
-    cliqueToDec(maxCliques{i});
+    decCliques(i) = cliqueToDec(maxCliques{i});
 end
     
+decCliques
 
+end
+
+%% prob 3.13
+
+function [] = prob313(a,b)
+load('ABmatrices.mat');
+findImmoralities(a,b);
+
+findImmoralities(b,a);
+end
+
+function [] = findImmoralities(a,b)
+
+
+undirA = a;
+undirB = b;
+
+[width, height] = size(a);
+
+%graphsAreIsomorphic = graphisomorphism(sparse(a), sparse(b), 'Directed', false)
+
+% build undirected graph
+for i=1:width
+    for j=1:height
+        if (a(i,j) == 1)
+            undirA(j,i) = 1;
+        end
+        if (b(i,j) == 1)
+            undirB(j,i) = 1;
+        end        
+    end
+end
+
+
+% degrees of nodes are the same
+sum(undirA)
+sum(undirB)
+
+
+% adjacency matrices of undirected graphs are the same
+for i=1:width
+    for j=1:height
+        if (undirA(i,j) ~= undirB(i,j))
+            i
+            j
+        end
+    end
+end
+a
+b
+markovEq = 1;
+
+% refactor code below so that all immoralities are obtained in two separate
+% sets for each graph and then are
+for j=1:height
+    %j
+    parentsA = find(a(:,j)); % parents of node j in graph A
+    parentsB = find(b(:,j));
+    for k=1:length(parentsA)
+        for l=k+1:length(parentsA)
+            if (undirA(parentsA(k), parentsA(l)) == 0)
+                % check if other graph has immorality
+                parentsExist = ismember(parentsA(k), parentsB) && ismember(parentsA(l), parentsB);
+            
+                immorality = [j, parentsA(k), parentsA(l)]
+                
+                if (parentsExist && undirB(parentsA(k), parentsA(l)) == 1)
+                    markovEq = 0;
+                    badImmorality = [k, l]
+                end    
+            end
+        end
+    end
+end
+
+markovEq
+end
