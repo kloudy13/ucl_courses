@@ -1,7 +1,8 @@
 function [] = raz_probs()
 
 %prob313()
-prob314()
+%prob314()
+prob322()
 end
 
 function [dec] = cliqueToDec(clique)
@@ -196,8 +197,8 @@ pC32 = [sum(p1C121332(indicesC32(1,:))) sum(p1C121332(indicesC32(2,:)))]
 
 pC232113 = [pC23(1)*pC21(1)*pC13(1) pC23(1)*pC21(1)*pC13(2) pC23(1)*pC21(2)*pC13(1) pC23(1)*pC21(2)*pC13(2) pC23(2)*pC21(1)*pC13(1) pC23(2)*pC21(1)*pC13(2) pC23(2)*pC21(2)*pC13(1) pC23(2)*pC21(2)*pC13(2)]
 
-% calculate the lambda evidence at the parent node        
-p1C232113 = lamC232 .* pC232113;        
+% calculate the lambda evidence at the parent node
+p1C232113 = lamC232 .* pC232113;
 
 % normalise the probability of the joint state
 p1C232113 = p1C232113 ./ sum(p1C232113)
@@ -217,4 +218,69 @@ pC31
 pC21
 
         
+end
+
+function [] = prob322()
+
+data = [1 2 3; 2 5 3; 4 7 10; 6 3 4; 6 8 5; 9 3 7; 10 2 4; 7 1 2; 8 7 2; 8 3 6; 8 6 4; 4 3 9; 5 4 1; 9 5 1; 6 7 8; 4 9 7; 10 8 6; 5 4 3; 6 3 2; 1 4 2];
+
+nrDataPoints = 10;
+nrLevels = 5;
+interest_adv = ones(nrDataPoints, nrLevels) .* 0.2;
+
+pDgABC = zeros(nrLevels, nrLevels, nrLevels);
+
+for sA = 1:nrLevels
+    for sB = 1:nrLevels
+        for sC = 1:nrLevels
+            pDgABC(sA, sB, sC) = exp(sA - max(sB, sC));
+        end
+    end
+end
+
+% calculate the marginal p(sA)
+pSa = zeros(1, nrLevels);
+for sA = 1:nrLevels
+    pSa(sA) = sum(sum(pDgABC(sA, :, :)));
+end
+
+% calculate the marginal p(Sb). Note that p(Sc) = p(Sb)
+pSb = zeros(1, nrLevels);
+for sB = 1:nrLevels
+    pSb(sB) = sum(sum(pDgABC(:, sB, :)));
+end
+
+% normalise the values (not strictly needed though)
+pSa = pSa ./ sum(pSa)
+pSb = pSb ./ sum(pSb)
+
+for i=1:nrDataPoints
+    dataPoint = data(i,:);
+    
+    advA = dataPoint(1);
+    advB = dataPoint(2);
+    advC = dataPoint(3);
+    
+    interest_adv(advA,:) = interest_adv(advA,:) .* pSa;
+    interest_adv(advB,:) = interest_adv(advB,:) .* pSb;
+    interest_adv(advC,:) = interest_adv(advC,:) .* pSb; % using pSb since pSc = pSb
+    
+    interest_adv(advA,:) = interest_adv(advA,:) ./ sum(interest_adv(advA,:));
+    interest_adv(advB,:) = interest_adv(advB,:) ./ sum(interest_adv(advB,:));
+    interest_adv(advC,:) = interest_adv(advC,:) ./ sum(interest_adv(advC,:));
+    % calc prob(sA)
+
+end
+
+% I think it's workin, because adv 3 has a very low interest and this
+% corresponds to the data
+
+interest_adv
+
+expected_values = zeros(nrDataPoints,1);
+for level=1:nrLevels
+    expected_values = expected_values + interest_adv(:,level) * level;
+end
+
+expected_values
 end
