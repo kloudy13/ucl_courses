@@ -2,7 +2,9 @@ function [] = raz_probs()
 
 %prob313()
 %prob314()
-prob322()
+%prob322()
+%prob26()
+extra1()
 end
 
 function [dec] = cliqueToDec(clique)
@@ -22,11 +24,25 @@ end
 function [] = prob26()
 load('WikiAdjSmall.mat');
 
-dist = graphallshortestpaths(A,'Directed',false);
+% checked with david
+%load('ABmatrices.mat');
+
+matrix = A;
 
 hist = zeros(1000,1);
 
-[width, height] = size(A);
+[width, height] = size(matrix);
+
+for i=1:width
+    for j=1:height
+        if (matrix(i,j) == 1 || matrix(j,i) == 1)
+            matrix(i,j) = 1;
+        end
+    end
+end
+
+%dist = graphallshortestpaths(sparse(matrix));
+dist = graphallshortestpaths(matrix,'Directed',false);
 
 for i=1:width
     for j=1:i
@@ -36,8 +52,14 @@ for i=1:width
     end
 end
 
-hist(1:20)
+dist(1:9, 1:9)
 
+hist(1:20)
+bar(hist(1:20))
+
+adjustPicture('Distance', 'Frequency', '', 'Histogram of distance between users')
+axis([0 20 0 60000])
+set(gca,'XTick',1:20);
 end
 
 %% prob 2.7
@@ -94,8 +116,6 @@ undirB = b;
 
 [width, height] = size(a);
 
-%graphsAreIsomorphic = graphisomorphism(sparse(a), sparse(b), 'Directed', false)
-
 % build undirected graph
 for i=1:width
     for j=1:height
@@ -123,8 +143,7 @@ for i=1:width
         end
     end
 end
-a
-b
+
 markovEq = 1;
 
 % refactor code below so that all immoralities are obtained in two separate
@@ -143,7 +162,7 @@ for j=1:height
                 
                 if (parentsExist && undirB(parentsA(k), parentsA(l)) == 1)
                     markovEq = 0;
-                    badImmorality = [k, l]
+                    badImmorality = [k, l];
                 end    
             end
         end
@@ -283,4 +302,80 @@ for level=1:nrLevels
 end
 
 expected_values
+end
+
+function xclean = extra1()
+
+load('noisyface.mat')
+
+%xnoisy = xnoisy(1:100, 1:100);
+
+[h w] = size(xnoisy);
+
+nrPixels = w * h;
+
+xclean = xnoisy;
+
+noChangeTimes = 0;
+iteration = 1;
+module_size = 10000;
+    
+while (noChangeTimes < 5 * nrPixels)
+    valUnchanged = objective_func(xclean, xnoisy);
+
+    nextPixelI = floor(rand * h) + 1;
+    nextPixelJ = floor(rand * w) + 1;
+    
+    %temp = mod(iteration, nrPixels);
+    %nextPixelI = floor(temp/ w) + 1;
+    %nextPixelJ = mod(temp, w) + 1;
+    
+    % clone the image file and flip the pixel
+    flipped_pixel_img = xclean;
+    flipped_pixel_img(nextPixelI, nextPixelJ) = 1 - flipped_pixel_img(nextPixelI, nextPixelJ);
+
+    valFlipped = objective_func(flipped_pixel_img, xnoisy);
+
+    if(valFlipped < valUnchanged)
+       % pixel was flipped 
+       xclean = flipped_pixel_img;
+       noChangeTimes = 0;
+    else
+       % pixel not flipped
+       noChangeTimes = noChangeTimes + 1;
+    end
+
+
+    if(mod(iteration,module_size) == 0)
+        iteration
+        noChangeTimes
+        index =  sprintf('%04d', iteration / module_size)
+        imwrite(xclean,strcat('images_whitebiased/xclean', index,  '.png'));
+    end
+    iteration = iteration + 1;
+    
+end
+
+
+end
+
+function val = objective_func(image, original_noisy)
+
+val = 0;
+neigh_w = 10;
+
+right_slided = image(:,2:end);
+down_slided = image(2:end,:);
+
+right_chopped = image(:,1:end-1);
+down_chopped = image(1:end-1,:);
+
+right_eq = (right_slided - right_chopped) .^ 2;
+down_eq = (down_slided - down_chopped) .^ 2;
+
+val =  val + neigh_w  * 2 * (sum(sum(right_eq)) + sum(sum(down_eq)));
+
+%val = val + 2 * sum(sum(original_noisy .* image));
+val = val + 2 * sum(sum(8*());
+
 end

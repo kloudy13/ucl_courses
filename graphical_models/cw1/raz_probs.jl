@@ -83,11 +83,47 @@ p1C232113 = lamC232 * pC232113
 p1C12 = p1C121323
 
 
+# prob 3.15
+
+low, high, normal = 1,2,3
+E,O,I,R,B = 1,2,3,4,5
+
+pE = PotArray(E, [2//10 8//10])
+pOgE = PotArray([O E], [9//10 5//100; 1//10 95//100])
 
 
+tabIgOE=zeros(2,2,2)
+tabIgOE[low, low, low]=9//10
+tabIgOE[low, low, high]=1//10
+tabIgOE[low, high, low]=1//10
+tabIgOE[low, high, high]=1//100
+
+tabIgOE[high, low, low]=1//10
+tabIgOE[high, low, high]=9//10
+tabIgOE[high, high, low]=9//10
+tabIgOE[high, high, high]=99//100
+
+pIgOE = PotArray([I O E], tabIgOE)
 
 
+tabRgIE=zeros(2,2,2)
+tabRgIE[:, low, low]=[9//10; 1//10]
+tabRgIE[:, low, high]=[1//10; 9//10]
+tabRgIE[:, high, low]=[1//10; 9//10]
+tabRgIE[:, high, high]=[1//100; 99//100]
 
+pRgIE = PotArray([R I E], tabRgIE)
+
+
+pBgO = PotArray([B O], [9//10 1//10; 1//10 4//10; 0//10 5//10])
+
+pAll = pBgO * pRgIE * pIgOE * pOgE * pE
+
+pIRB = sum(pAll, [O E])
+
+pRB = sum(pIBR, I)
+
+pIgRB = pIBR / pRB
 
 
 
