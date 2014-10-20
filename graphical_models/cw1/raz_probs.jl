@@ -27,9 +27,9 @@ println(pAC-pA*pC)
 w,h,inc=1,2,3
 low,high=1,2,3
 
-pInc = PotArray(inc, [0.8 0.2])
-pWgI = PotArray([w inc], [0.7 0.2; 0.3 0.1; 0 0.4; 0 0.3])
-pHgI = PotArray([h inc], [0.2 0; 0.8 0; 0 0.3; 0 0.7])
+pInc = PotArray(inc, [8//10 2//10])
+pWgI = PotArray([w inc], [7//10 2//10; 3//10 1//10; 0 4//10; 0 3//10])
+pHgI = PotArray([h inc], [2//10 0; 8//10 0; 0 3//10; 0 7//10])
 
 pWHI = pWgI * pHgI * pInc
 pWH = sum(pWHI, inc)
@@ -128,8 +128,48 @@ pIgRB = pIBR / pRB
 
 
 
+# 3.4
+
+tr, fa = 1, 2
+A, T, L, B, X, D, E, S = 1,2,3,4,5,6,7,8
+
+pA = PotArray([A], [0.01 0.99])
+
+#pS = PotArray([S], [0.5 0.5])
+pS = PotArray([S], [0 1])
+
+pTgA = PotArray([T A], [0.05 0.01; 0.95 0.99])
+pLgS = PotArray([L S], [0.1 0.01; 0.9 0.99])
+pBgS = PotArray([B S], [0.6 0.3; 0.4 0.7])
+pXgE = PotArray([X E], [0.98 0.05; 0.02 0.95])
+
+tabDgEB = zeros(2,2,2)
+tabDgEB[:, tr, tr] = [0.9; 0.1]
+tabDgEB[:, tr, fa] = [0.7; 0.3]
+tabDgEB[:, fa, tr] = [0.8; 0.2]
+tabDgEB[:, fa, fa] = [0.1; 0.9]
+
+pDgEB = PotArray([D E B ], tabDgEB)
+
+tabEgTL = zeros(2,2,2)
+tabEgTL[:, tr, tr] = [1; 0]
+tabEgTL[:, tr, fa] = [1; 0]
+tabEgTL[:, fa, tr] = [1; 0]
+tabEgTL[:, fa, fa] = [0; 1]
+
+pEgTL = PotArray([E T L], tabEgTL)
+
+pAll = pXgE * pDgEB * pEgTL * pTgA * pLgS * pBgS * pA * pS
 
 
+pT = sum(pAll, [A E L B X S D])
+pL = sum(pAll, [A T E B X S D ])
+pB = sum(pAll, [A T E X S D L])
+pE = sum(pAll, [A T B X S D L])
+pX = sum(pAll, [A T E B S D L])
+pD = sum(pAll, [A T E B X S L])
+
+pLgS = ()
 
 
 

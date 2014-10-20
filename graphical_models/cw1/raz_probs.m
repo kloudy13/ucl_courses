@@ -197,35 +197,35 @@ pC122 = [0 1];
 pC232 = [1 0];
 
 % lambda messages
-lamC122 = pC122 * pC122gC121332
+lamC122 = pC122 * pC122gC121332;
 lamC232 = pC232 * pC232gC232113;
 
 % calculate the lambda evidence at the parent node
-p1C121332 = lamC122 .* pC121332
+p1C121332 = lamC122 .* pC121332;
 
 % normalise the probability of the joint state
-p1C121332 = p1C121332 ./ sum(p1C121332)
+p1C121332 = p1C121332 ./ sum(p1C121332);
 
 indicesC13 = [1,2,5,6; 3,4,7,8];
 indicesC32 = [1,3,5,7; 2,4,6,8];
 
 % calculate the marginals p(C12) p(C13) p(C23)
-pC12 = [sum(p1C121332(1:4)) sum(p1C121332(5:8))]
-pC13 = [sum(p1C121332(indicesC13(1,:))) sum(p1C121332(indicesC13(2,:)))]
-pC32 = [sum(p1C121332(indicesC32(1,:))) sum(p1C121332(indicesC32(2,:)))]
+pC12 = [sum(p1C121332(1:4)) sum(p1C121332(5:8))];
+pC13 = [sum(p1C121332(indicesC13(1,:))) sum(p1C121332(indicesC13(2,:)))];
+pC32 = [sum(p1C121332(indicesC32(1,:))) sum(p1C121332(indicesC32(2,:)))];
 
-pC232113 = [pC23(1)*pC21(1)*pC13(1) pC23(1)*pC21(1)*pC13(2) pC23(1)*pC21(2)*pC13(1) pC23(1)*pC21(2)*pC13(2) pC23(2)*pC21(1)*pC13(1) pC23(2)*pC21(1)*pC13(2) pC23(2)*pC21(2)*pC13(1) pC23(2)*pC21(2)*pC13(2)]
+pC232113 = [pC23(1)*pC21(1)*pC13(1) pC23(1)*pC21(1)*pC13(2) pC23(1)*pC21(2)*pC13(1) pC23(1)*pC21(2)*pC13(2) pC23(2)*pC21(1)*pC13(1) pC23(2)*pC21(1)*pC13(2) pC23(2)*pC21(2)*pC13(1) pC23(2)*pC21(2)*pC13(2)];
 
 % calculate the lambda evidence at the parent node
 p1C232113 = lamC232 .* pC232113;
 
 % normalise the probability of the joint state
-p1C232113 = p1C232113 ./ sum(p1C232113)
+p1C232113 = p1C232113 ./ sum(p1C232113);
      
 % calculate the marginals p(C23) p(C21) p(C13)
-pC23 = [sum(p1C232113(1:4)) sum(p1C232113(5:8))]
-pC21 = [sum(p1C232113(indicesC13(1,:))) sum(p1C232113(indicesC13(2,:)))]
-pC13 = [sum(p1C232113(indicesC32(1,:))) sum(p1C232113(indicesC32(2,:)))]
+pC23 = [sum(p1C232113(1:4)) sum(p1C232113(5:8))];
+pC21 = [sum(p1C232113(indicesC13(1,:))) sum(p1C232113(indicesC13(2,:)))];
+pC13 = [sum(p1C232113(indicesC32(1,:))) sum(p1C232113(indicesC32(2,:)))];
 
 display('--------------------')
 
@@ -270,8 +270,8 @@ for sB = 1:nrLevels
 end
 
 % normalise the values (not strictly needed though)
-pSa = pSa ./ sum(pSa)
-pSb = pSb ./ sum(pSb)
+pSa = pSa ./ sum(pSa);
+pSb = pSb ./ sum(pSb);
 
 for i=1:nrDataPoints
     dataPoint = data(i,:);
@@ -308,8 +308,6 @@ function xclean = extra1()
 
 load('noisyface.mat')
 
-%xnoisy = xnoisy(1:100, 1:100);
-
 [h w] = size(xnoisy);
 
 nrPixels = w * h;
@@ -321,22 +319,21 @@ iteration = 1;
 module_size = 10000;
     
 while (noChangeTimes < 5 * nrPixels)
-    valUnchanged = objective_func(xclean, xnoisy);
 
+    % get me a random pixel to update
     nextPixelI = floor(rand * h) + 1;
     nextPixelJ = floor(rand * w) + 1;
-    
-    %temp = mod(iteration, nrPixels);
-    %nextPixelI = floor(temp/ w) + 1;
-    %nextPixelJ = mod(temp, w) + 1;
-    
+
     % clone the image file and flip the pixel
     flipped_pixel_img = xclean;
     flipped_pixel_img(nextPixelI, nextPixelJ) = 1 - flipped_pixel_img(nextPixelI, nextPixelJ);
 
+    % calculate the objective functions
+    valUnchanged = objective_func(xclean, xnoisy);
     valFlipped = objective_func(flipped_pixel_img, xnoisy);
 
-    if(valFlipped < valUnchanged)
+    % compare the values of the objective function and update if necessary
+    if(valFlipped > valUnchanged)
        % pixel was flipped 
        xclean = flipped_pixel_img;
        noChangeTimes = 0;
@@ -350,7 +347,7 @@ while (noChangeTimes < 5 * nrPixels)
         iteration
         noChangeTimes
         index =  sprintf('%04d', iteration / module_size)
-        imwrite(xclean,strcat('images_whitebiased/xclean', index,  '.png'));
+        imwrite(xclean,strcat('images/xclean', index,  '.png'));
     end
     iteration = iteration + 1;
     
@@ -364,18 +361,21 @@ function val = objective_func(image, original_noisy)
 val = 0;
 neigh_w = 10;
 
+% create copies of the original image slided to the right and down
 right_slided = image(:,2:end);
 down_slided = image(2:end,:);
 
+% chop 1 row/column of the original image and create copies
 right_chopped = image(:,1:end-1);
 down_chopped = image(1:end-1,:);
 
-right_eq = (right_slided - right_chopped) .^ 2;
-down_eq = (down_slided - down_chopped) .^ 2;
+% compate the chopped version with the slided ones
+right_eq = right_slided == right_chopped;
+down_eq = down_slided == down_chopped;
 
+% calculate the value of the objective function
 val =  val + neigh_w  * 2 * (sum(sum(right_eq)) + sum(sum(down_eq)));
+val = val + 2 * sum(sum(original_noisy .* image));
 
-%val = val + 2 * sum(sum(original_noisy .* image));
-val = val + 2 * sum(sum(8*());
 
 end
