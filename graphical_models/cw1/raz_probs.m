@@ -4,7 +4,8 @@ function [] = raz_probs()
 %prob314()
 %prob322()
 %prob26()
-extra1()
+%extra1()
+prob322var2()
 end
 
 function [dec] = cliqueToDec(clique)
@@ -233,9 +234,8 @@ pC12
 pC13
 pC23
 pC32
-pC31
 pC21
-
+pC31
         
 end
 
@@ -245,7 +245,7 @@ data = [1 2 3; 2 5 3; 4 7 10; 6 3 4; 6 8 5; 9 3 7; 10 2 4; 7 1 2; 8 7 2; 8 3 6; 
 
 nrDataPoints = 10;
 nrLevels = 5;
-interest_adv = ones(nrDataPoints, nrLevels) .* 0.2;
+pInterest = ones(nrDataPoints, nrLevels) .* 0.2;
 
 pDgABC = zeros(nrLevels, nrLevels, nrLevels);
 
@@ -280,13 +280,13 @@ for i=1:nrDataPoints
     advB = dataPoint(2);
     advC = dataPoint(3);
     
-    interest_adv(advA,:) = interest_adv(advA,:) .* pSa;
-    interest_adv(advB,:) = interest_adv(advB,:) .* pSb;
-    interest_adv(advC,:) = interest_adv(advC,:) .* pSb; % using pSb since pSc = pSb
+    pInterest(advA,:) = pInterest(advA,:) .* pSa;
+    pInterest(advB,:) = pInterest(advB,:) .* pSb;
+    pInterest(advC,:) = pInterest(advC,:) .* pSb; % using pSb since pSc = pSb
     
-    interest_adv(advA,:) = interest_adv(advA,:) ./ sum(interest_adv(advA,:));
-    interest_adv(advB,:) = interest_adv(advB,:) ./ sum(interest_adv(advB,:));
-    interest_adv(advC,:) = interest_adv(advC,:) ./ sum(interest_adv(advC,:));
+    pInterest(advA,:) = pInterest(advA,:) ./ sum(pInterest(advA,:));
+    pInterest(advB,:) = pInterest(advB,:) ./ sum(pInterest(advB,:));
+    pInterest(advC,:) = pInterest(advC,:) ./ sum(pInterest(advC,:));
     % calc prob(sA)
 
 end
@@ -294,15 +294,77 @@ end
 % I think it's workin, because adv 3 has a very low interest and this
 % corresponds to the data
 
-interest_adv
+pInterest
 
 expected_values = zeros(nrDataPoints,1);
 for level=1:nrLevels
-    expected_values = expected_values + interest_adv(:,level) * level;
+    expected_values = expected_values + pInterest(:,level) * level;
 end
 
 expected_values
 end
+
+function [] = prob322var2()
+
+data = [1 2 3; 2 5 3; 4 7 10; 6 3 4; 6 8 5; 9 3 7; 10 2 4; 7 1 2; 8 7 2; 8 3 6; 8 6 4; 4 3 9; 5 4 1; 9 5 1; 6 7 8; 4 9 7; 10 8 6; 5 4 3; 6 3 2; 1 4 2];
+
+nrDataPoints = 10;
+nrLevels = 5;
+pInterest = ones(nrDataPoints, nrLevels) .* 0.2;
+
+pDgABC = zeros(nrLevels, nrLevels, nrLevels);
+
+% compute the conditional probability table p(d | a b c )
+for sA = 1:nrLevels
+    for sB = 1:nrLevels
+        for sC = 1:nrLevels
+            pDgABC(sA, sB, sC) = exp(sA - max(sB, sC));
+        end
+    end
+end
+
+for i=1:nrDataPoints
+    dataPoint = data(i,:);
+    
+    advA = dataPoint(1);
+    advB = dataPoint(2);
+    advC = dataPoint(3);
+    
+    % calculate the joint distribution p(a,b,c) fom p(a) p(b) p(c)
+    pABC = zeros(nrLevels,nrLevels, nrLevels);
+    for i=1:nrLevels
+        for j=1:nrLevels
+            for k=1:nrLevels
+                pABC(i,j,k) = pInterest(advA,i) * pInterest(advB,j) * pInterest(advC,k);
+            end
+        end
+    end
+    
+    % update the joint distribution and maginalise over all variables in
+    % turn
+    pABC = pABC .* pDgABC;
+    pInterest(advA,:) = sum(sum(pABC(:,:,:),3),2);
+    pInterest(advB,:) = sum(sum(pABC(:,:,:),1),3);
+    pInterest(advC,:) = sum(sum(pABC(:,:,:),1),2);
+    
+    % normalise the evidence to get a probability distribution
+    pInterest(advA,:) = pInterest(advA,:) ./ sum(pInterest(advA,:));
+    pInterest(advB,:) = pInterest(advB,:) ./ sum(pInterest(advB,:));
+    pInterest(advC,:) = pInterest(advC,:) ./ sum(pInterest(advC,:));
+
+end
+
+pInterest
+
+% compute the expected values
+expected_values = zeros(nrDataPoints,1);
+for level=1:nrLevels
+    expected_values = expected_values + pInterest(:,level) * level;
+end
+
+expected_values
+end
+
 
 function xclean = extra1()
 
@@ -346,6 +408,7 @@ while (noChangeTimes < 5 * nrPixels)
     if(mod(iteration,module_size) == 0)
         iteration
         noChangeTimes
+        valUnchanged
         index =  sprintf('%04d', iteration / module_size)
         imwrite(xclean,strcat('images/xclean', index,  '.png'));
     end
