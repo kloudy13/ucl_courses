@@ -99,7 +99,7 @@ inner sep=0]
 }
 
 
-\title{Graphical Models Coursework 1}
+\title{Graphical Models Coursework 2 - Battleships problem}
 \author{
     Razvan Valentin Marinescu\\
     \texttt{razvan.marinescu.14@ucl.ac.uk}
@@ -114,7 +114,9 @@ inner sep=0]
 
 \maketitle{}
 
+\section*{Contributions}
 
+The problem was solved slightly different by both of us, but we get the same answer at the end. The algorithm and pseudo-code given below is Razvan's version.
 
 \section*{Battleships Problem}
 
@@ -125,8 +127,21 @@ Without loss of generality, we can easily transform the given problem into the f
  \item the ships cannot be placed on the blacklisted locations, given in the problem definition: [1, 10; 2, 2;3, 8; etc .. ]
 \end{itemize}
 
-The first two requirements were already given, while the third one was incorporated given the extra information about the 10 unsuccessful misses. We did a brute-force approach by trying to go through every possible “legal” position of each ships on the map. Whenever we managed to find a valid configuration, we incremented a counter for each of the occupied pixels. After all the possible configurations have been analysed and the counters of the respective pixels incremented, we normalise the counter matrix (divide each pixel by the sum of all the pixels in the matrix). However, there must be 10 pixels occupied on the board, so each pixel probability gets multiplied by 10. The final result we get is that pixel at position (5,1) has the highest probability of being occupied, which is 0.2069
+The first two requirements were already given, while the third one was incorporated given the extra information about the 10 unsuccessful misses. We did a brute-force approach by trying to go through every possible “legal” position of each ships on the map. Whenever we managed to find a valid configuration, we incremented a counter for each of the occupied pixels. After all the possible configurations have been analysed and the counters of the respective pixels incremented, we normalise the counter matrix (divide each pixel by the sum of all the pixels in the matrix). However, there must be 10 pixels occupied on the board, so each pixel probability gets multiplied by 10. \textbf{The final result we get is that pixel at position (5,1) has the highest probability of being occupied, which is 0.2069}
 
+For finding all the possible ways to position the boats on the board we do the following:
+\begin{itemize}
+ \item for each legal position of the first boat
+  \begin{itemize}
+  \item for each legal position of the second boat
+      \begin{itemize}
+      \item make sure boats don't collide
+      \item increment counters on the grid of pixels.
+      \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+The MATLAB code that implemented this brute-force approach is given below, with appropriate comments. 
 \begin{lstlisting}
 function prob120()
 
