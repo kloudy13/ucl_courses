@@ -3,3 +3,6 @@
 *.swp
 graphical_models/group_repo
 *.~m
+*.aux
+*.log
+*.out

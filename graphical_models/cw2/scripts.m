@@ -66,11 +66,13 @@ for iH=1:len
     end
 end
 
+
+grid = grid ./ sum(grid(:));
+
+% multiply everything by 10 because there are 10 pixels that are actually
+% occupied on the board (5 pixels for each ship)
+grid = grid .* 10;
 grid
-
-sum(grid(:))
-
-grid = grid ./ sum(grid(:))
 
 max = 0;
 maxI = 1; 
