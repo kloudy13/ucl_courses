@@ -118,18 +118,32 @@ inner sep=0]
 
 \section*{Contributions}
 
-The problem was solved slightly different by both of us, but we get the same answer at the end. The algorithm and pseudo-code given below is Razvan's version.
+The problem was solved slightly different by both of us, but we get the same answer at the end.
 
 \section*{Battleships Problem}
-
-Without loss of generality, we can easily transform the given problem into the following equivalent problem. Find the pixel with the highest probability of containing a ship given the following constraints: 
+Without loss of generality, we can easily transform the given problem into the following equivalent problem. Find the pixel with the highest probability of containing a ship given the following constraints:
 \begin{itemize}
- \item ships cannot collide/overlap on the board
- \item one ship is oriented vertically, the other horizontally
- \item the ships cannot be placed on the blacklisted locations, given in the problem definition: [1, 10; 2, 2;3, 8; etc .. ]
+\item ships cannot collide/overlap on the board
+\item one ship is oriented vertically, the other horizontally
+\item the ships cannot be placed on the blacklisted locations, given in the problem definition: [1, 10; 2, 2;3, 8; etc .. ]
 \end{itemize}
+The first two requirements were already given, while the third one was incorporated given the extra information about the 10 unsuccessful misses. Assuming each pixel is a variable $x_{i,j},i\in \{1,...,10\},j\in \{1,...,10\}$ then if $x_{i,j}=1$ it means that the pixel (i,j) is occupied by a battleship. If $x_{i,j}=0$ then it is water. We want to calculate:\\
 
-The first two requirements were already given, while the third one was incorporated given the extra information about the 10 unsuccessful misses. We did a brute-force approach by trying to go through every possible “legal” position of each ships on the map. Whenever we managed to find a valid configuration, we incremented a counter for each of the occupied pixels. After all the possible configurations have been analysed and the counters of the respective pixels incremented, we normalise the counter matrix (divide each pixel by the sum of all the pixels in the matrix). However, there must be 10 pixels occupied on the board, so each pixel probability gets multiplied by 10. \textbf{The final result we get is that pixel at position (5,1) has the highest probability of being occupied, which is 0.2069}
+\begin{align*}
+argmax_{i,j}p(x_{i,j}=1|x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0)&=\\
+argmax_{i,j}\frac{p(x_{i,j}=1,x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0)}{p(x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0)}&
+\end{align*}
+
+However in the calculation of the above probabilities, when we will sum over the variables which are not considered known, we have two possibilities. Either the restrictions for the placement of the battleships is met and there is a uniform probability(say $k$), or the restrictions are not met and the probability is equal to zero. By summing over all the variables which are not known, we will basically have:
+
+\begin{align*}
+argmax_{i,j}\frac{p(x_{i,j}=1,x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0)}{p(x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0)}&=\\
+argmax_{i,j}\frac{N_{i,j}*K}{N*K}&=\\
+argmax_{i,j}\frac{N_{i,j}}{N}
+\end{align*}
+
+Where $N$ is the number of all the acceptable battleship placements given the restrictions $x_{1,10}=0,x_{2,2}=0,...,x_{9,9}=0$ and $N_{i,j}$ is the number of all the acceptable battleship placements with the additional restriction that $x_{i,j}=1$.\\
+We did a brute-force approach by trying to go through every possible “legal” position of each ship on the map. Whenever we managed to find a valid configuration, we incremented a counter for each of the occupied pixels. After all the possible configurations have been analysed and the counters of the respective pixels incremented, we normalise the counter matrix (divide each pixel by the sum of all the pixels in the matrix). However, there must be 10 pixels occupied on the board, so each pixel probability gets multiplied by 10. \textbf{The final result we get is that pixel at position (5,1) has the highest probability of being occupied, which is 0.2069}
 
 For finding all the possible ways to position the boats on the board we do the following:
 \begin{itemize}
@@ -142,6 +156,7 @@ For finding all the possible ways to position the boats on the board we do the f
       \end{itemize}
   \end{itemize}
 \end{itemize}
+
 
 The MATLAB code that implemented this brute-force approach is given below, with appropriate comments. 
 \begin{lstlisting}
@@ -204,18 +219,20 @@ for iH=1:len
     end
 end
 
-
+% normalise the grid
 grid = grid ./ sum(grid(:));
 
 % multiply everything by 10 because there are 10 pixels that are actually
 % occupied on the board (5 pixels for each ship)
 grid = grid .* 10;
+
 grid
 
 max = 0;
 maxI = 1; 
 maxJ = 1;
 
+% find the highest probability in the grid
 for i=1:len
     for j=1:len
         if(grid(i,j) > max)
