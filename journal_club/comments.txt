@@ -1,0 +1,19 @@
+Automatic classification of MR scans in Alzheimer's disease
+
+limitations: the SVN can only distinguish between two classes. In order to distinguish between more classes a multi-SVN approach needs to be considered
+motion was not considered (Seb). 
+
+
+Seb's comments: 
+1. one of the biggest advantages/selling points about the paper that patients were postmortemly identified as AD (which is why it got accepted into Brain)
+2. paper is fantastic
+3. title should be "ML classification of abnormal scan" (not 100% sure, but abnomal keyword was there, Seb) 
+4. classifying on more classes (other dementias such as schizophrenia) is crucial. If a schizophrenic patient is included in the sample it might be picked up as AD, although it doesn't have AD at all.
+5. the research field evolved since 2008. Now people look into classifying various varieties of AD up to small granularities
+6. At the time the paper was using sophisticated algorithms (the normalisation technique, Ashburner 2007)
+7. biggest point: the first data-driven approach for this
+8. It is remarkable that a methods paper like this got published into Brain(they only take a few methods papers each year)
+9. The normalisation technique is based on Least Squares, which is very sensitive to initial conditions
+10. The modulation step: for having 100% amyloid-beta detection 
+
+
