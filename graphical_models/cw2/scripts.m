@@ -1,9 +1,9 @@
 function scripts()
 
 
+prob57()
 
-
-prob120()
+%prob120()
 
 end
 
@@ -115,4 +115,82 @@ for p=boatPoints
     grid(p(1),p(2)) = grid(p(1),p(2)) + 1;
 end
 
+end
+
+function [] = prob57()
+
+format long
+
+load('banana.mat');
+
+T = length(x);
+
+%DEMOSUMPROD Sum-Product algorithm test :
+import brml.*
+% Variable order is arbitary
+
+xVars=1:T;
+yVars=T+1:2*T;
+hVars=2*T+1:3*T;
+
+xstates=1:4;
+ystates=1:4;
+hstates=1:5;
+
+t = 2;
+xtState = charToInt(x(t-1));
+[xGh htGhtm h1] = assign(1:3);
+
+% maxHt(t, hState, :) stores [max, argmax(ht-1)] at iteration t 
+maxHt = zeros(T, hstates, 2); % the third dimension is two because we store both 
+
+% initialise the potential tables p(x|h), p(ht|ht-1), p(h1) 
+pot{xGh}.variables=[xVars(t-1) hVars(t-1)]; pot{xGh}.table=pxgh;
+pot{htGhtm}.variables=[hVars(t) hVars(t-1)]; pot{htGhtm}.table=phtghtm;
+pot{h1}.variables=[hVars(1)]; pot{h1}.table=ph1;
+
+pot=setpotclass(pot,'array');
+
+% multiply the potentials jointpot = p(x|h) * p(ht|ht-1) * p(h1)
+jointpot = multpots(pot)
+
+%potHtHtmGx = condpot(jointpot, [hVars(t) hVars(t-1)], xVars(t-1) )
+
+%potHtHtm = setpot(potHtHtmGx ,xVars(t-1), xtState)
+% set xt to the observed value and get p(ht, ht-1, x = observed_x)
+potHtHtm = setpot(jointpot, xVars(t-1), xtState)
+
+potHtHtm.table
+
+% for each state of ht calculate the argmax_{ht-1} [ p(ht, ht-1) ]
+for htFixed=hstates
+    % fix state of ht to htState
+    htArray = setpot(potHtHtm, hVars(t), htFixed).table
+    [maxHt(htState), index] = max(htArray);
+     
+end
+
+maxHt
+
+end
+
+function i = charToInt(ch)
+i = 0;
+if ch == 'A'
+    i = 1;
+end
+if ch == 'C'
+    i = 2;
+end
+if ch == 'G'
+    i = 3;
+end
+if ch == 'T'
+    i = 4;
+end
+
+if i == 0
+   throw(Exception);    
+end
+    
 end
