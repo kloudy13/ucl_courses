@@ -1,11 +1,15 @@
 function scripts()
 
 
-prob57()
+%prob57()
 
+
+%prob67()
 %prob120()
+pro610()
 
 end
+
 
 function prob120()
 
@@ -137,42 +141,110 @@ xstates=1:4;
 ystates=1:4;
 hstates=1:5;
 
-t = 2;
-xtState = charToInt(x(t-1));
-[xGh htGhtm h1] = assign(1:3);
+xGh = 1; 
+htGhtm = 2;
+htm = 3;
 
-% maxHt(t, hState, :) stores [max, argmax(ht-1)] at iteration t 
+% maxHt(t, hState, :) stores [max, argmax(ht)] at iteration t 
 maxHt = zeros(T, hstates, 2); % the third dimension is two because we store both 
 
 % initialise the potential tables p(x|h), p(ht|ht-1), p(h1) 
-pot{xGh}.variables=[xVars(t-1) hVars(t-1)]; pot{xGh}.table=pxgh;
-pot{htGhtm}.variables=[hVars(t) hVars(t-1)]; pot{htGhtm}.table=phtghtm;
-pot{h1}.variables=[hVars(1)]; pot{h1}.table=ph1;
+pot{xGh}.table=pxgh;
+pot{htGhtm}.table=phtghtm;
+pot{htm}.table=ph1;
 
-pot=setpotclass(pot,'array');
 
-% multiply the potentials jointpot = p(x|h) * p(ht|ht-1) * p(h1)
-jointpot = multpots(pot)
+
+for t=2:T
+    xtState = charToInt(x(t-1));
+    
+    pot{xGh}.variables=[xVars(t-1) hVars(t-1)];
+    pot{htGhtm}.variables=[hVars(t) hVars(t-1)];
+    pot{htm}.variables=[hVars(t-1)];
+
+    pot=setpotclass(pot,'array');
+    
+    % multiply the potentials jointpot = p(x|h) * p(ht|ht-1) * p(ht)
+    jointpot = multpots(pot);
+
+    %potHtHtmGx = condpot(jointpot, [hVars(t) hVars(t-1)], xVars(t-1) )
+
+    %potHtHtm = setpot(potHtHtmGx ,xVars(t-1), xtState)
+    % set xt to the observed value and get p(ht, ht-1, x = observed_x)
+    potHtHtm = setpot(jointpot, xVars(t-1), xtState);
+
+    %potHtgHtm.table
+
+    % for each state of ht calculate the argmax_{ht-1} [ p(ht, ht-1) ]
+    for htFixed=hstates
+        % fix state of ht to htState
+        htArray = setpot(potHtHtm, hVars(t), htFixed).table;
+        [maxHt(t-1, htFixed, 1), maxHt(t-1, htFixed, 2)] = max(htArray);
+    end
+
+    % make the max a prior on ht and normalise it
+    pHt = maxHt(t-1, :, 1)
+    pHt = pHt ./ sum(pHt)
+    
+    pot{htm}.table=pHt;
+
+end
+
+maxHt
+
+t = T+1;
+
+xtState = charToInt(x(t-1));
+
+pot2{xGh}.variables=[xVars(t-1) hVars(t-1)];
+pot2{htm}.variables=[hVars(t-1)];
+pot2{xGh}.table=pxgh;
+pot2{htm}.table=pHt;
+
+pot2=setpotclass(pot2,'array');
+
+% multiply the potentials jointpot = p(x|h) * p(ht|ht-1) * p(ht)
+jointpot = multpots(pot2);
 
 %potHtHtmGx = condpot(jointpot, [hVars(t) hVars(t-1)], xVars(t-1) )
 
 %potHtHtm = setpot(potHtHtmGx ,xVars(t-1), xtState)
 % set xt to the observed value and get p(ht, ht-1, x = observed_x)
-potHtHtm = setpot(jointpot, xVars(t-1), xtState)
+potHT = setpot(jointpot, xVars(t-1), xtState);
 
-potHtHtm.table
+hStar = zeros(T, 1);
 
-% for each state of ht calculate the argmax_{ht-1} [ p(ht, ht-1) ]
-for htFixed=hstates
-    % fix state of ht to htState
-    htArray = setpot(potHtHtm, hVars(t), htFixed).table
-    [maxHt(htState), index] = max(htArray);
-     
+[~, hStar(T)] = max(potHT.table);
+
+%% now propagate back all the max values
+for i=fliplr(1:T-1)
+    maxHt(i, hStar(i+1), 2)
+    hStar(i) = maxHt(i, hStar(i+1), 2);
 end
 
-maxHt
+hStar
 
+% calc argmax p(y|h*) = [p(y_1|h_1*), p(y_2|h_2*) ... ] proof given in the report 
+yStar = zeros(T,1)
+for t=1:T
+    [~, yStar(t)] = max(pygh(:, hStar(t)));
 end
+
+yStarStr = [];
+
+letterMap = 'ACGT';
+
+for i=1:T
+   yStarStr(i) = letterMap(yStar(i)); 
+end
+
+yStarStr = char(yStarStr)
+
+konstantinYStar = 'CTTGACTTGACTGACTGACTGACTGACCTGATTTTTTGACTGAGACTGACTGTTTTTTTTCTGACTGACTGACTGACTGACTGACTGACTGACTGACTGA';
+
+assert(strcmp(yStarStr, konstantinYStar))
+end
+
 
 function i = charToInt(ch)
 i = 0;
@@ -193,4 +265,47 @@ if i == 0
    throw(Exception);    
 end
     
+end
+
+
+
+function prob67()
+
+n = 10;
+
+
+msgImtI = ones(2^n,1);
+
+
+
+i = 2;
+
+
+end
+
+function msgImtI = prob67aux(msgImtI, iter, n)
+
+
+for xI=1:2^n
+    bigSum = 0;
+    vI = de2bi(xI, n); % binary values of the small xIs as a vector of n elements
+    for xIm=1:2^n
+        vIm = de2bi(xIm, n); 
+        
+        % go vertical
+        prod = 1;
+        for xVert=1:n-1
+           prod = prod * 
+        end
+        
+        % go horizontal
+    end
+end
+
+end
+
+function [] = pro610()
+
+
+
 end
