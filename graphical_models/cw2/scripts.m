@@ -6,7 +6,7 @@ function scripts()
 
 %prob67()
 %prob120()
-pro610()
+pro69()
 
 end
 
@@ -295,7 +295,7 @@ for xI=1:2^n
         % go vertical
         prod = 1;
         for xVert=1:n-1
-           prod = prod * 
+           %prod = prod * 
         end
         
         % go horizontal
@@ -304,7 +304,56 @@ end
 
 end
 
-function [] = pro610()
+function [] = pro69()
+
+import brml.*
+load('diseaseNet')
+
+% code snippets taken from demoJTree.m
+
+pot=str2cell(setpotclass(pot,'array')); % convert to cell array 
+
+[jtpot jtsep infostruct]=jtree(pot); % setup the Junction Tree
+
+[jtpot jtsep logZ]=absorption(jtpot,jtsep,infostruct); % do full round of absorption
+
+%figure; drawNet(dag(pot),variable); title('Belief Net');
+%figure; drawJTree(infostruct,variable); title('Junction Tree (separators not shown)');
+
+% for pot=jtpot
+%     for var=pot.variables
+%        if pS(var) == 0
+%           pS(var) =  
+%        end
+%     end
+% end
+
+
+nrSeps = 40;
+pS = zeros(nrSeps, 1);
+
+for var=1:nrSeps
+    jtpotnum = whichpot(jtpot,var+20,1); % find a single JT potential that contains dys
+    tmpTable=table(sumpot(jtpot(jtpotnum),var+20,0)); % sum over everything but dys
+    pS(var) = double(tmpTable(1));
+end
+
+pS
+
+pS2 = zeros(nrSeps, 1);
+
+
+
+for var=1:nrSeps
+    potVar = pot{var+20};
+    %normpot = potVar ./ sum(potVar(:));
+    %normpot = normp(potVar)
+    tmpTable=table(sumpot(potVar,var+20,0)); % sum over everything but dys
+    pS2(var) = double(tmpTable(1));
+end
+
+pS2 = pS2 ./ 8
+
 
 
 
