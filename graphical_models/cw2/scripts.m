@@ -6,7 +6,9 @@ function scripts()
 
 %prob67()
 %prob120()
-pro69()
+%pro69()
+
+pro69cv2()
 
 end
 
@@ -290,7 +292,7 @@ for xI=1:2^n
     bigSum = 0;
     vI = de2bi(xI, n); % binary values of the small xIs as a vector of n elements
     for xIm=1:2^n
-        vIm = de2bi(xIm, n); 
+        vIm = binary2vector(xIm, n); 
         
         % go vertical
         prod = 1;
@@ -306,12 +308,15 @@ end
 
 function [] = pro69()
 
+format long
 import brml.*
 load('diseaseNet')
 
 % code snippets taken from demoJTree.m
 
 pot=str2cell(setpotclass(pot,'array')); % convert to cell array 
+%pot=setpotclass(pot,'array'); % convert to cell array 
+
 
 [jtpot jtsep infostruct]=jtree(pot); % setup the Junction Tree
 
@@ -328,27 +333,136 @@ end
 
 pS
 
-%    0.441834190079851
-%    0.456675263152281
-%    0.441405071163811
-   
 pS2 = zeros(nrSeps, 1);
-
-
 
 for var=1:nrSeps
     potVar = pot{var+20};
     %normpot = potVar ./ sum(potVar(:));
     %normpot = normp(potVar)
+    parents = pot{var+20}.variables(2:end);
+    jointPot{1}=potVar;
+    jointPot{2}=pot{parents(1)};
+    jointPot{3}=pot{parents(2)};
+    jointPot{4}=pot{parents(3)};
+    potVar = multpots(jointPot);
+%     if(var == 1)
+%        potVar 
+%     end
     tmpTable=table(sumpot(potVar,var+20,0)); % sum over everything but dys
     pS2(var) = double(tmpTable(1));
 end
 
-pS2 = pS2 ./ 8
+pS2
+
+for i=1:length(pS)
+    assert(abs(pS(i) - pS2(i)) < 0.000001)
+end
+
+end
+
+function [] = pro69c()
+
+format long
+import brml.*
+load('diseaseNet')
+
+% code snippets taken from demoJTree.m
+
+symptoms = [1,1,1,1,1,2,2,2,2,2];
+
+pot=str2cell(setpotclass(pot,'array')); % convert to cell array 
+%pot=setpotclass(pot,'array'); % convert to cell array 
+
+nrDiseases = 20;
+pDigS = zeros(nrDiseases, 2);
+
+for i=1:nrDiseases
+   %display(strcat('Iteration ', str(i)))
+   i
+   for di=0:1
+       sum = 0;
+       for d=0:2^(nrDiseases-1) - 1
+          module_size = 100; 
+          if (mod(d, module_size) == 0)
+             fprintf('progress %d\n', d / module_size);
+          end
+          binD = binary2vector(d, nrDiseases-1);
+          binD = [binD(1:i-1), di, binD(i:end)];
+          assert(length(binD) == nrDiseases);
+          prod = 1;
+          for sIndex=1:length(symptoms)
+              parentDiseases = pot{sIndex + 20}.variables(2:end);
+              prod = prod * pot{sIndex + 20}.table(symptoms(sIndex), binD(parentDiseases(1))+1, binD(parentDiseases(2))+1, binD(parentDiseases(3))+1);
+          end
+          for dIndex=1:nrDiseases
+              prod = prod * pot{dIndex}.table(binD(dIndex)+1);
+          end
+          sum = sum + prod;
+
+       end
+       pDigS(i, di+1) = sum;
+   end
+    
+end
+
+pDigS
+
+end
 
 
-%  0.513663265877557
-%    0.446456904239974
-%    0.448617851154861
+function out = binary2vector(data,nBits)
+
+powOf2 = 2.^[0:nBits-1];
+
+%# do a tiny bit of error-checking
+if data > sum(powOf2)
+   error('not enough bits to represent the data')
+end
+
+out = false(1,nBits);
+
+ct = nBits;
+
+while data>0
+if data >= powOf2(ct)
+data = data-powOf2(ct);
+out(ct) = true;
+end
+ct = ct - 1;
+end
+
+end
+
+
+function [] = pro69cv2()
+
+format long
+import brml.*
+load('diseaseNet')
+
+% code snippets taken from demoJTree.m
+
+pot=str2cell(setpotclass(pot,'array')); % convert to cell array 
+%pot=setpotclass(pot,'array'); % convert to cell array 
+
+pot = pot(1:30);
+
+[jtpot jtsep infostruct]=jtree(pot); % setup the Junction Tree
+
+[jtpot jtsep logZ]=absorption(jtpot,jtsep,infostruct); % do full round of absorption
+
+nrDiseases = 20;
+pDgS = zeros(nrDiseases, 2);
+
+for var=1:nrDiseases
+    jtpotnum = whichpot(jtpot,var,1); % find a single JT potential that contains dys
+    tmpTable=table(sumpot(jtpot(jtpotnum),var,0)); % sum over everything but dys
+    pDgS(var,:) = double(tmpTable);
+end
+
+% wrong, need to take the values of the symptoms into account!!!
+
+pDgS
+
 
 end
