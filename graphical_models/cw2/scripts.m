@@ -317,18 +317,6 @@ pot=str2cell(setpotclass(pot,'array')); % convert to cell array
 
 [jtpot jtsep logZ]=absorption(jtpot,jtsep,infostruct); % do full round of absorption
 
-%figure; drawNet(dag(pot),variable); title('Belief Net');
-%figure; drawJTree(infostruct,variable); title('Junction Tree (separators not shown)');
-
-% for pot=jtpot
-%     for var=pot.variables
-%        if pS(var) == 0
-%           pS(var) =  
-%        end
-%     end
-% end
-
-
 nrSeps = 40;
 pS = zeros(nrSeps, 1);
 
@@ -340,6 +328,10 @@ end
 
 pS
 
+%    0.441834190079851
+%    0.456675263152281
+%    0.441405071163811
+   
 pS2 = zeros(nrSeps, 1);
 
 
@@ -355,6 +347,8 @@ end
 pS2 = pS2 ./ 8
 
 
-
+%  0.513663265877557
+%    0.446456904239974
+%    0.448617851154861
 
 end
