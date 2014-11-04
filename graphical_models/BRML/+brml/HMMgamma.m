@@ -1,19 +1,19 @@
-function gamma=HMMgamma(logalpha,phghm)
+function gamma=HMMgamma(alpha,phghm)
 %HMMGAMMA HMM Posterior smoothing using the Rauch-Tung-Striebel correction method
-% gamma=HMMbackward(logalpha,phghm)
+% gamma=HMMbackward(alpha,phghm)
 %
 % Inputs:
-% logalpha : log alpha forward messages (see HMMforward.m)
+% alpha : alpha forward messages (see HMMforward.m)
 % phghm : transition distribution in a matrix
 % 
 % Outputs: gamma(i,t) is p(h(t)=i|v(1:T))
 % See also HMMbackward.m, HMMviterbi.m, demoHMMinference.m
 import brml.*
-T=size(logalpha,2); H=size(phghm,1);
-% gamma recursion using logalpha
-gamma(:,T)=condexp(logalpha(:,T));
+T=size(alpha,2); H=size(phghm,1);
+% gamma recursion using alpha
+gamma(:,T)=alpha(:,T);
 for t=T-1:-1:1
-	phghp = condp(phghm'.*repmat(condexp(logalpha(:,t)),1,H));
+	phghp = condp(phghm'.*repmat(alpha(:,t),1,H));
 	gamma(:,t) = condp(phghp*gamma(:,t+1));
 end
 

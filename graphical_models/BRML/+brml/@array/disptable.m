@@ -48,7 +48,7 @@ if ~isempty(pot.variables)
         if strcmp(class(pot.table(c)),'sym')
             s=sprintf([str '%s'],char(pot.table(c)));
         else
-            s=sprintf([str '%s'],pot.table(c));
+            s=sprintf([str '%d'],pot.table(c));
         end
         
         if nargout==0;disp(s);

@@ -33,6 +33,9 @@ Ngoals = 4; % number of `goal states' (ie states that have non-zero utility)
 r = randperm(S); u(r(1:Ngoals)) = 1; % choose random goal states
 gam = 0.95; % discount factor
 
+figure; imagesc(reshape(u,Gx,Gy)); colorbar; title('utilities'); pause
+
+
 [xt xtm dtm]=assign(1:3); % assign the variables x(t), x(t-1), d(t-1) to some numbers
 
 % define the transition potentials p(x(t)|x(t-1),d(t-1))

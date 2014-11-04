@@ -35,9 +35,11 @@ pot=setpotclass(pot,'array');
 % do inference:
 jointpot = multpots(pot([burglar earthquake alarm radio])); % joint distribution
 
+disptable(jointpot,variable);
 drawNet(dag(pot),variable);
 disp('p(burglar|alarm=yes):')
 disptable(condpot(setpot(jointpot,alarm,yes),burglar),variable);
 
 disp('p(burglar|alarm=yes,radio=yes):')
 disptable(condpot(setpot(jointpot,[alarm radio],[yes yes]),burglar),variable);
+

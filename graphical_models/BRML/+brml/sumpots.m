@@ -1,5 +1,5 @@
 function newpot = sumpots(pots)
-%SUMTPOTS Sum potentials into a single potential
+%SUMPOTS Sum potentials into a single potential
 % newpot = sumpots(pots)
 %
 % pots is a cell vector of potentials

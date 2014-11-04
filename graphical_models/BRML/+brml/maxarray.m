@@ -5,7 +5,7 @@ function [maxval maxstate]=maxarray(x,maxover,varargin)
 % over the dimensions in maxover
 %
 % If called as maxarray(x,maxover,nstates), x can be in linear index form,
-% and nstates decribes the dimensions of the variables in the linear index x
+% and nstates describes the dimensions of the variables in the linear index x
 %
 % One can view this function as returning, for non-optimised joint index,
 % the optimal value of the array, maximised over the maxover indices.

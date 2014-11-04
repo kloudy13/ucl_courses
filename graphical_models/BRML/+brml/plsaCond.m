@@ -1,6 +1,6 @@
-function [tpxgz,tpzgy,tpxgy]=plsaCond(pxgy,Z,opts)
+function [tpxgz,tpzgy,tpxgy,LogLik]=plsaCond(pxgy,Z,opts)
 %PLSACOND Conditional PLSA (Probabilstic Latent Semantic Analysis)
-% [tpxgz,tpzgy,tpxgy]=plsaCond(pxgy,Z,opts)
+% [tpxgz,tpzgy,tpxgy,LogLik]=plsaCond(pxgy,Z,opts)
 %
 % Inputs:
 % pxy : frequency count matrix p(x|y)
@@ -15,6 +15,7 @@ function [tpxgz,tpzgy,tpxgy]=plsaCond(pxgy,Z,opts)
 % tpxgz : approximation of p(x|z)
 % tpzgy : approximation of p(z|y)
 % tpxgy : approximation of p(x|y)
+% LogLik: log likelihood
 %
 % See also plsa.m
 
@@ -22,7 +23,7 @@ function [tpxgz,tpzgy,tpxgy]=plsaCond(pxgy,Z,opts)
 [X Y]=size(pxgy);
 
 if opts.randinit
-	tpz=rand(Z,1); tpz=tpz/sum(tpz);
+	%tpz=rand(Z,1); tpz=tpz/sum(tpz);
 	tpxgz=rand(X,Z); tpxgz=tpxgz./repmat(sum(tpxgz),X,1);
 	tpzgy=rand(Z,Y); tpzgy=tpzgy./repmat(sum(tpzgy),Z,1);
 else
@@ -31,15 +32,15 @@ else
 end
 
 for emloop=1:opts.maxit
-	tpxgy=zeros(X,Y);
+	tpxgy=zeros(X,Y)+realmin;
 	for z=1:Z
 		tpxgy =tpxgy+tpxgz(:,z)*tpzgy(z,:);
 	end
-	L(emloop) =sum(sum(pxgy.*log(tpxgy))); % log `likelihood'
+	L(emloop) =sum(sum(pxgy.*log(tpxgy+realmin))); % log `likelihood'
 	
 	% E-step:
 	for z=1:Z
-		qzgxy(z,:,:)=tpxgz(:,z)*tpzgy(z,:);
+		qzgxy(z,:,:)=tpxgz(:,z)*tpzgy(z,:)+realmin;
 	end
 	for z=1:Z
 		qzgxy(z,:,:)=squeeze(qzgxy(z,:,:))./repmat(sum(sum(qzgxy(z,:,:),3),2),X,Y);
@@ -54,8 +55,9 @@ for emloop=1:opts.maxit
 	tpxgz=tpxgz./repmat(sum(tpxgz),X,1);
 	tpzgy=tpzgy./repmat(sum(tpzgy),Z,1);
 
-	if opts.plotprogress; plot(L); ylabel('log likelihood');drawnow; end
+	if opts.plotprogress; plot(L,'-o'); ylabel('log likelihood');drawnow; end
 	if emloop>1
 		if L(emloop)-L(emloop-1)<opts.tol; break; end
 	end
 end
+LogLik=L(end);

@@ -26,6 +26,6 @@ W=10*W0; % preference for neighbouring pixels to be in same state
 opts.maxit=1; opts.minit=1; opts.xinit=xnoisy(:);
 for loop=1:20
     xrestored = brml.binaryMRFmap(W,b,1,opts);
-    subplot(1,3,3); imagesc(reshape(xrestored,28,28)'); title(['restored ' num2str(loop)]); drawnow
+    subplot(1,3,3); imagesc(reshape(xrestored,28,28)'); title(['restored ' num2str(loop)]); drawnow; pause
     opts.xinit=xrestored;
 end

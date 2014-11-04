@@ -2,8 +2,8 @@ function [w b p10 p11 ul l]=LogReg(x0,x1,varargin)
 %LOGREG  Learning Logistic Linear Regression Using Gradient Ascent (BATCH VERSION)
 % [w b p10 p11]=LogReg(x0,x1,<opts>)
 %
-% maximise sum_n (2*c(n)-1)log sigma(w'*x{n}+b)+lambda*w(:)'*w(:)/length(w)
-% where c(n)=0/1 is the class of the nth trainig input x{n}
+% maximise sum_n (2*c(n)-1)log sigma(w'*x(:,n)+b)+lambda*w(:)'*w(:)/length(w)
+% where c(n)=0/1 is the class of the nth training input x{n}
 %
 % Inputs:
 % x0 : data matrix from class 0. Each column is a datapoint
@@ -11,6 +11,7 @@ function [w b p10 p11 ul l]=LogReg(x0,x1,varargin)
 % opts.lambda : add penalty lambda*sum(w.^2)/length(w) to log likelihood
 % opts.w : initial guess for weight vector w
 % opts.b : initial guess for bias
+% opts.eta : learning rate
 % opts.tol : zero gradient convergence criterion
 % opts.maxit : maximum number of gradient updates
 % opts.plotprogress : show plot of the (penalised) log likelihood

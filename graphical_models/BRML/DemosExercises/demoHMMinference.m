@@ -15,11 +15,11 @@ for t=2:T
     h(t)=randgen(phghm(:,h(t-1)));	v(t)=randgen(pvgh(:,h(t)));
 end
 % Perform Inference tasks:
-[logalpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % forward
-logbeta=HMMbackward(v,phghm,pvgh); % backward
+[alpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % forward
+beta=HMMbackward(v,phghm,pvgh); % backward
 % smoothed posteriors:
-[phtgV1T,phthtpgV1T]=HMMsmooth(logalpha,logbeta,pvgh,phghm,v);
-gamma=HMMgamma(logalpha,phghm); % alternative alpha-gamma (RTS) method
+[phtgV1T,phthtpgV1T]=HMMsmooth(alpha,beta,pvgh,phghm,v);
+gamma=HMMgamma(alpha,phghm); % alternative alpha-gamma (RTS) method
 [viterbimaxstate logprob]=HMMviterbi(v,phghm,ph1,pvgh); % most likely joint state
 
 % Factor graph approach: 
@@ -50,7 +50,7 @@ for t=2:T
     phthtmgV1T(:,:,t) = normp(twotimepot.table);
 end
 
-fprintf(1,'Likelihood from the logalpha recursion = %g\n',loglik);
+fprintf(1,'Likelihood from the alpha recursion = %g\n',loglik);
 fprintf(1,'Likelihood from the Factor Graph= %g\n',FGloglik);
 fprintf(1,'deviation in the smoothed posterior using alpha-beta and Factor Graph is %g\n', ...
     mean(mean(abs(phtgV1T- post))));

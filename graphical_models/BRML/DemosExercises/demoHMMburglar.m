@@ -47,9 +47,9 @@ for t=2:T
 end
 
 % Perform inference based on the observed v:
-[logalpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % filtering
-phtgV1t = condexp(logalpha); % find the filtered distribution based on log(p(h(t)|v(1:t)))
-phtgV1T=HMMgamma(logalpha,phghm); % Smoothed Burglar distribution
+[alpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % filtering
+phtgV1t = alpha; % the filtered distribution based on p(h(t)|v(1:t))
+phtgV1T=HMMgamma(alpha,phghm); % Smoothed Burglar distribution
 maxstate=HMMviterbi(v,phghm,ph1,pvgh); % Most likely Burglar path
 
 figure;

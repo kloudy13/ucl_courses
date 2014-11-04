@@ -8,7 +8,7 @@ There are bugs in the Matlab JIT compiler that may prevent the code
 working correctly. Setup.m will turn off the JIT compiler if it
 detects a bug.
 
-Setup also adds the graphlayout package from A.T. Cemgil to the path.
+Setup also adds Taylan Cemgils' graphlayout package and Mark Schmidt's minFunc package (http://www.di.ens.fr/~mschmidt/Software/minFunc.html) to the path.
 
 See LICENSE.txt for the license.
 

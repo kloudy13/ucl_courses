@@ -12,18 +12,19 @@ function pnew=condp(pin,varargin)
 % r=rand([4 2 3]); p=condp(r,[3 1]);
 % p is now an array of the same size as r, but with sum(sum(p,3),1) equal
 % to 1 for each of the dimensions of the 2nd index.
-% 
+%
 % Note that p=condp(r,0) returns a normalised array p=r./sum(r(:));
 
-m=max(pin(:));
-if m>0 
-    p = pin./m;
-else
-    p=pin+eps;% in case all unnormalised probabilities are zero
-end
+% m=max(pin(:));
+% if m>0
+%     p = pin./m;
+% else
+p=pin+eps;% in case all unnormalised probabilities are zero
+%end
 if nargin==1
- %pnew=p./repmat(sum(p,1),size(p,1),1);
- pnew=bsxfun(@rdivide, p, sum(p));
+    %pnew=p./repmat(sum(p,1),size(p,1),1);
+    
+    pnew=bsxfun(@rdivide, p, sum(p));
 else
     if varargin{1}==0
         pnew=p./sum(p(:));

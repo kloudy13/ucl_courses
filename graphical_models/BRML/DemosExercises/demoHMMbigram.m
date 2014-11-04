@@ -10,7 +10,8 @@ figure(2); imagesc(B); set(gca,'xtick',1:27); set(gca,'xticklabel',l); set(gca,'
 colorbar; colormap hot; title('emission')
 ph1=condp(ones(27,1)); % uniform first hidden state distribution
 
-s = 'kezrninh'; % observed sequence
+%s = 'kezrninh'; Nmax=200; % observed sequence
+s = 'gtiklksnr';  Nmax=1200; % observed sequence (brilliant is the answer)
 v=double(s)-96; v=replace(v,-64,27); % convert to numbers
 
 % find the most likely hidden sequences by defining a Factor Graph:
@@ -25,16 +26,18 @@ for t=2:T
     pot{t} = multpots([setpot(empot,vv(t),v(t)) tranpot]);
 end
 FG = FactorGraph(pot);
-Nmax=200;
+
 [maxstate maxval mess]=maxNprodFG(pot,FG,Nmax);
 for n=1:Nmax
-    maxstatearray(n,:)= horzcat(maxstate(n,1:8).state);
+    maxstatearray(n,:)= horzcat(maxstate(n,1:length(s)).state);
 end
 strs=char(replace(maxstatearray+96,123,32)) % make strings from the decodings
 fid=fopen('brit-a-z.txt','r'); % see http://www.curlewcommunications.co.uk/wordlist.html for Disclaimer and Copyright
 w=textscan(fid,'%s'); w=w{1}; % get the words from the dictionary
 
 % discard those decodings that are not in the dictionary:
+% (An alternative would be to just compute the probability of each word in
+% the dictionary to generate the observed sequence.)
 for t=1:Nmax
     str = strs(t,:); % current string
     spac = strfind(str,' '); % chop the string into words

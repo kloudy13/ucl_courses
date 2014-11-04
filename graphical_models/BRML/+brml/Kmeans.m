@@ -1,4 +1,4 @@
-function [m,mindist,quant]=Kmeans(x,K,opts)
+function [m,mindist,quant,quantIDX]=Kmeans(x,K,opts)
 %KMEANS K-means clustering algorithm
 % [m,mindist,quant]=Kmeans(x,K,opts)
 %
@@ -12,6 +12,7 @@ function [m,mindist,quant]=Kmeans(x,K,opts)
 % m : means (component centres)
 % mindist : mean distance from centres to nearest datapoint
 % quant : the vector quantisation of each point in x (one of the centres)
+% quantIDX : which cluster each datapoint is associated to
 % See also demoKmeans.m
 
 %r = randperm(size(x,2));
@@ -29,8 +30,8 @@ for iteration = 1:opts.maxit % maximum number of iterations
 		end
 	end
 	mdist(iteration)=mean(a);
-	if opts.plotprogress; plot(mdist,'-o'); title('mean square distance to nearest centre');  drawnow; end
+	if opts.plotprogress; plot(mdist,'-o');xlabel('iteration');title('mean square distance to nearest centre');  drawnow; end
 	if mean(sum( (m-mold).^2)) < opts.tol; break; end; mold =m; % termination criterion
 end
 mindist=mdist(end);
-quant=m(:,b);
+quant=m(:,b); quantIDX=b;

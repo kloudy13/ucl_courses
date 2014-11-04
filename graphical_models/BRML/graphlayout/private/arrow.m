@@ -120,7 +120,9 @@ function [h,yy,zz] = arrow(varargin)
 % Permission is granted to Dr. Josef Bigun to distribute ARROW with his
 % software to reproduce the figures in his image analysis text.
 
-if isoctave
+[ver datestr]=version;
+disp('hi')
+if isoctave || datenum(datestr)>datenum('1-August-2014')
     myarrow(varargin{1},varargin{2}); return
 end
 

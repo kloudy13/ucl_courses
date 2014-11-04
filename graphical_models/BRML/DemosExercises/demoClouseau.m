@@ -35,6 +35,6 @@ pot{knife}.table(notused,:,:)=1-pot{knife}.table(used,:,:); % due to normalisati
 
 jointpot = multpots(pot); % joint distribution
 
-%drawNet(dag(pot),variable);
+drawNet(dag(pot),variable);
 disp('p(butler|knife=used):')
 disptable(condpot(setpot(jointpot,knife,used),butler),variable);

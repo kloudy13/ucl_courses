@@ -1,11 +1,11 @@
 function demoHopfieldLatent
 import brml.*
-T = 15; % length of sequence
-V = 10; % number of neurons in at each time
-H = 8; %number of latent variabels at each time
+T = 10; % length of sequence
+V = 5; % number of neurons in at each time
+H = 15; %number of latent variabels at each time
 v = randn(V,T)>0; % random sequence
 
-opts.plotprogress=1; opts.its=200; opts.eta=0.1;
+opts.plotprogress=1; opts.its=150; opts.eta=0.2;
 [A B C D]=brml.HopfieldHiddenNL(v,H,opts);
 
 % reconstruction:

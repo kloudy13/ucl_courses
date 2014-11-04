@@ -46,7 +46,7 @@ for emloop = 1:opts.maxit
 	for n=1:N
 		logl(emloop)= logl(emloop) + logsumexp(logpold(n,:),ones(1,H));
 	end
-	if opts.plotlik; subplot(1,2,2); plot(logl); title('log likelihood');drawnow; end
+	if opts.plotlik; subplot(1,2,2); plot(logl,'-o'); title('log likelihood');drawnow; end
 	if opts.plotsolution
 		subplot(1,2,1); cla;
 		if D==2;% if data is 2 dimensional

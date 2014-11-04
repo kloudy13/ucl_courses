@@ -14,10 +14,9 @@ h(1) = randgen(ph1); v(1)=randgen(pvgh(:,h(1)));
 for t=2:T
 	h(t)=randgen(phghm(:,h(t-1)));	v(t)=randgen(pvgh(:,h(t)));
 end
-h
-v
+
 % Perform Inference tasks:
-[logalpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % forward
+[alpha,loglik]=HMMforward(v,phghm,ph1,pvgh); % forward
 % smoothed posteriors:
-gamma=HMMgamma(logalpha,phghm) % alternative alpha-gamma (RTS) method
+gamma=HMMgamma(alpha,phghm) % alternative alpha-gamma (RTS) method
 [viterbimaxstate logprob]=HMMviterbi(v,phghm,ph1,pvgh) % most likely joint state

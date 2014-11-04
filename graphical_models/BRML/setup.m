@@ -1,10 +1,22 @@
-%function setup
+function setup(varargin)
 %SETUP run me at initialisation -- checks for a major indexing bug in matlab and initialises the paths
+% setup(0) suppresses printout
+
+
+if nargin==0
+    show=1;
+else
+    show=varargin{1};
+end
 
 packages={'brml.*'};
-disp('Importing packages:')
+if show
+    disp('Importing packages:')
+end
 for i=1:length(packages)
-    fprintf(1,'%s\n',packages{i})
+    if show
+        fprintf(1,'%s\n',packages{i})
+    end
     import(packages{i})
 end
 
@@ -23,10 +35,16 @@ end
 t={'','graphlayout','data','DemosExercises'};
 %t={'','data','DemosExercises'};
 
-p=pwd;
-disp('Adding paths:')
+%p=pwd;
+p=which('setup'); p=p(1:end-8);
+if show
+    disp('Adding paths:')
+end
 for i=1:length(t)
     addpath([p,'/' t{i}])
-    disp([p,'\' t{i}]);
+    if show
+        disp([p,'\' t{i}]);
+    end
 end
-clear p s t
+addpath(genpath([p,'/minFunc_2012']))
+%clear p s t

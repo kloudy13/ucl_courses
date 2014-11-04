@@ -9,6 +9,7 @@ import brml.*
 if  length(find(isnan(X)))==0 % no missing data, just do standard SVD
     [U,S,V]=svds(X,M);
     lambda=diag(S);
+    
 else
     if ~isfield(opts,'maxiterations')
         opts.maxiterations=20;
@@ -20,17 +21,17 @@ else
         opts.displayerror=0;
     end
     [D N]=size(X);
-    G=sparse(D,N); G(isnan(X))=1;  % indices of missing data
-
+    G=zeros(D,N); G(isnan(X))=1;  % indices of missing data
     % initialisation for basis:
-    m = mynanmean(X,2)';  % mean of missing data:
+    %m = mynanmean(X,2)';  % mean of missing data:
     XX=X;
-    for n=1:N
-        zr = find(G(:,n)==1);
-        XX(zr,n)=m(zr); % replace missing data by mean
-    end
+%     for n=1:N
+%         zr = find(G(:,n)==1);
+%         XX(zr,n)=m(zr); % replace missing data by mean
+%     end
+     XX(isnan(XX))=nanmean(XX(:));
     [B S V]=svds(XX,M);
-
+    
     old_msqerror=nan;
     for loop=1:opts.maxiterations
         for n=1:N % update W (components)

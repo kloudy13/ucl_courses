@@ -18,8 +18,10 @@ for v=vars
 end
 fact2varmess=[];var2factmess=[];
 for fn=f
-    fact2varmess=full(union(fact2varmess,A(f,vars)));
-    var2factmess=full(union(var2factmess,A(vars,f)));
+    %fact2varmess=full(union(fact2varmess,A(f,vars))); %BUG?
+    %var2factmess=full(union(var2factmess,A(vars,f))); %BUG?
+    fact2varmess=full(union(fact2varmess,A(fn,vars)));
+    var2factmess=full(union(var2factmess,A(vars,fn)));
 end
 V=min(find(A(1,:)))-1; % variables are first in the order
 f=full(f-V);

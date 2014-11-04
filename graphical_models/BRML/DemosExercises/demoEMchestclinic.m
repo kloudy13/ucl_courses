@@ -5,7 +5,7 @@ load chestclinic
 pot=setpotclass(pot,'array');
 pot=str2cell(pot);
 
-x=ancestralsample(pot,50); % draw some samples from the correct distribution
+x=ancestralsample(pot,250); % draw some samples from the correct distribution
 [V N]=size(x);
 % now make some missing data:
 for n=1:N

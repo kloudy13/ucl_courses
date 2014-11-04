@@ -1,4 +1,4 @@
-function demoPCoracle
+%$function demoPCoracle
 %DEMOPCORACLE demo of stucture learning using the PC algorithm
 import brml.*
 figure

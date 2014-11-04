@@ -48,9 +48,8 @@ for count=1:length(mess)
             mess{count}=tmpmess;
         else % factor to variable message:
             tmpmess = multpots([{tmpmess} pot(factor)]);
-            mess{count} = sumpot(tmpmess,FGnodeB,0);         
-        end
-       
+            mess{count} = sumpot(tmpmess,FGnodeB,0);
+        end    
     end
 end
 % Get all the marginals: variable nodes are first in the ordering, so

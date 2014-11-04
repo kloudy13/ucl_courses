@@ -11,7 +11,7 @@ function [F,diagPsi,m,loglik]=FA(X,H,varargin)
 % opts.init.F : initial Factor loading matrix (ignored if opts.init.diagPsi exists)
 % opts.maxit: maximum number of iterations (default is 100)
 % opts.tol : change in log likelihood termination criterion (default is 10e-5)
-% opts.plotprogress: set to 1 to display log likelihood (default is 0)
+% opts.plotprogress: set to 1 to display log likelihood (default is 1)
 %
 % Outputs:
 % F : factor loading matrix
@@ -34,7 +34,7 @@ else
     diagPsi=ones(V,1);
 end
 for loop=1:opts.maxit
-    diagSqrtPsi = sqrt(diagPsi)+10e-10;
+    diagSqrtPsi = sqrt(diagPsi);
     Xtilde = diag(1./diagSqrtPsi)*X/sqrt(N);
     [U,LambdaTilde] = svd(Xtilde,0);
     Uh = U(:,1:H); diagLambda=diag(LambdaTilde).^2;
@@ -46,4 +46,5 @@ for loop=1:opts.maxit
     end
     if opts.plotprogress;    plot(logpV,'-o'); title('Log likelihood'); drawnow; end
     diagPsi=diagS-sum(F.^2,2);
+    diagPsi(diagPsi<=0)=10e-15;
 end
