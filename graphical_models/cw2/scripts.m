@@ -4,12 +4,13 @@ function scripts()
 %prob57()
 
 
-prob67()
+%prob67()
 %prob120()
 %pro69() - checked, gives correct result
 
 %pro69cv2()
 
+prob513()
 end
 
 
@@ -617,9 +618,80 @@ end
 
 function [] = prob513()
 
-load('SimoHurrta')
+clear
+import brml.*
 
+load('SimoHurrta')
+srcPlanet = 1;
+destPlanet = 1725;
 % p(S_{T} | S_{T-1})
-pStgStm = 
+
+n = length(x);
+costMatrixTmT = repmat(inf,n,n);
+for i=1:n
+    for j=1:n
+        if (A(i,j) == 1)
+            % cost of going from planet i to planet j
+            %costMatrixTmT(i,j) = sqrt(sum((x(:,i) - x(:,j)) .^2)) - t(j);
+            costMatrixTmT(i,j) = norm(x(:,i) - x(:,j)) - t(j);
+        end
+    end
+end
+
+[optpath, pathweight]=mostprobablepath(-costMatrixTmT',1,1725)
+
+% msgTmT = costMatrixTmT;
+% cost = zeros(n,1);
+% cost(1) = costMatrixTmT(srcPlanet, destPlanet);
+% for t=2:n
+%     msgTmT = cmpMsg513(msgTmT, costMatrixTmT);
+%     cost(t) = msgTmT(srcPlanet, destPlanet)
+% end
+% 
+% minCost = min(cost)
 
 end
+
+function newMsg = cmpMsg513(msgTmT, costMatrixTmT)
+
+[n,m] = size(costMatrixTmT);
+newMsg = zeros(n,m);
+
+for s1=1:n
+    if(mod(s1,100) == 0)
+        s1
+    end
+    
+    for s3=1:m
+        % find min over s2
+        newMsg(s1,s3) = min(msgTmT(s1,:) .* costMatrixTmT(:,s3)');
+    end
+end
+    
+end    
+    
+
+function newMsg = cmpMsg513Faster(msgTmT, costMatrixTmT)
+
+[n,~] = size(costMatrixTmT);
+newMsg = zeros(n,n);
+tmpMat = zeros(n,n);
+
+for s1=1:n
+    if(mod(s1,100) == 0)
+        s1
+    end
+        
+    % replicate the s1-th row of the old message
+    tmpMat = repmat(msgTmT(s1,:),n,1);
+    
+    % multiply the matrices row-wise
+    tmpMat = tmpMat .* costMatrixTmT';
+    
+    % take min along s2, which is second dimention
+    newMsg(s1,:) = min(tmpMat,[],2);
+    
+end
+    
+end
+
