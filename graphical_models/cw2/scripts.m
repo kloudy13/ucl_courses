@@ -614,3 +614,12 @@ end
 pDgS
 
 end
+
+function [] = prob513()
+
+load('SimoHurrta')
+
+% p(S_{T} | S_{T-1})
+pStgStm = 
+
+end
