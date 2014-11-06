@@ -275,18 +275,28 @@ function prob67()
     n = 10;
 
     msg = ones(2^n,1);
-
-    for iter = 2:10;
+    psyMatrix = buildPsyMatrix(n);
+    psyMatrixFinal = buildPsyMatrixFinal(n);
+        
+    save('69_psy_matrices.mat', 'psyMatrix', 'psyMatrixFinal')
+    %load('69_psy_matrices.mat')
+    
+    for iter = 2:9;
         msg(1:20)
-        msg = prob67aux(msg, iter, n);
+        msg = psyMatrix * msg;
     end
+    
+    msg = psyMatrixFinal * msg;
+    
+    Z = sum(msg(:))
+    logZ = log(Z)
     
 end
 
 function msgImtI = prob67aux(msgImtIm, iter, n)
 
 msgImtI = zeros(2^n,1);
-msgChi= zeros(2^n,1);
+psy= zeros(2^n,1);
 
 for xI=0:2^n-1
     bigSum = 0;
@@ -295,16 +305,50 @@ for xI=0:2^n-1
     for xIm=0:2^n-1
         vIm = binary2vector(xIm, n);
         if (iter<n)
-            msgChi(xIm+1) = exp(sum((vI - vIm) .^2) + sum((vIm(1:n-1) - vIm(2:end)) .^ 2));
+            psy(xIm+1) = exp(sum((vI - vIm) .^2) + sum((vIm(1:n-1) - vIm(2:end)) .^ 2));
         else
-            msgChi(xIm+1) = exp(sum((vIm(1:n-1) - vIm(2:end)) .^ 2));
+            psy(xIm+1) = exp(sum((vIm(1:n-1) - vIm(2:end)) .^ 2));
         end
     end
     
-    msgImtI(xI+1) = sum(msgChi .* msgImtIm);
+    msgImtI(xI+1) = sum(psy .* msgImtIm);
 end
 
 
+end
+
+function psyMatrix = buildPsyMatrix(n)
+
+psyMatrix = zeros(2^n,2^n);
+
+for xI=0:2^n-1
+    vI = binary2vector(xI, n); % binary values of the small xIs as a vector of n elements
+    xI
+    for xIm=0:2^n-1
+        vIm = binary2vector(xIm, n);
+
+        psyMatrix(xI+1, xIm+1) = exp(sum((vI - vIm) .^2) + sum((vIm(1:n-1) - vIm(2:end)) .^ 2));
+
+    end
+   
+end
+end
+
+function psyMatrix = buildPsyMatrixFinal(n)
+
+psyMatrix = zeros(2^n,2^n);
+
+for xI=0:2^n-1
+    vI = binary2vector(xI, n); % binary values of the small xIs as a vector of n elements
+    xI
+    for xIm=0:2^n-1
+        vIm = binary2vector(xIm, n);
+
+        psyMatrix(xI+1, xIm+1) = exp(sum((vI - vIm) .^2) + sum((vIm(1:n-1) - vIm(2:end)) .^ 2) + sum((vI(1:n-1) - vI(2:end)) .^ 2));
+
+    end
+   
+end
 end
 
 function [] = pro69()
