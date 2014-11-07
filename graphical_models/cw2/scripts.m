@@ -6,11 +6,14 @@ function scripts()
 
 %prob67()
 %prob120()
-%pro69() - checked, gives correct result
+%prob69()
+%- checked, gives correct result
 
 %pro69cv2()
 
-prob513()
+%prob513()
+%prob59()
+prob511()
 end
 
 
@@ -352,9 +355,9 @@ for xI=0:2^n-1
 end
 end
 
-function [] = pro69()
+function [] = prob69()
 
-format long
+format short
 import brml.*
 load('diseaseNet')
 
@@ -525,7 +528,7 @@ end
 function [] = pro69cv2()
 
 clear all; clc;
-format long
+format short
 import brml.*
 load('diseaseNet')
 
@@ -612,7 +615,8 @@ pDgS
 for i=1:length(pDgS)
     pDgS(i,:)  = pDgS(i,:) ./ sum(pDgS(i,:));
 end
-pDgS
+
+pDgS(:,1)
 
 end
 
@@ -695,3 +699,140 @@ end
     
 end
 
+function [] = prob59()
+
+grid_size = 50;
+load('drunkproblemX2.mat');
+p_1 = zeros(grid_size,grid_size);
+p_1(3:1:47,3:1:47) = 1/((47-3+1)^2);
+
+% p_2g1 = zeros(50,50,50,50);
+% for x = 3:1:47
+%     for y = 3:1:47
+%         p_2g1(x+2,y+2,x,y) = 1;
+%     end
+% end
+
+
+p_tgtm1 = zeros(grid_size,grid_size,grid_size,grid_size);
+for x = 1:1:grid_size
+    for y = 1:1:grid_size
+        counter = 0;
+        if(x + 2 > grid_size || y + 2 > grid_size)
+            counter = counter + 1;
+        else
+            p_tgtm1(x+2,y+2,x,y) = 1/4;
+        end
+        if(x + 2 > grid_size || y - 2 < 1)
+            counter = counter + 1;
+        else
+            p_tgtm1(x+2,y-2,x,y) = 1/4;
+        end
+        if(x - 2 < 1 || y + 2 > grid_size)
+            counter = counter + 1;
+        else
+            p_tgtm1(x-2,y+2,x,y) = 1/4;
+        end
+        if(x - 2 < 1 || y - 2 < 1)
+            counter = counter + 1;
+        else
+            p_tgtm1(x-2,y-2,x,y) = 1/4;
+        end
+        if(counter > 0)
+            p_tgtm1(3:1:47,3:1:47,x,y) = p_tgtm1(3:1:47,3:1:47,x,y) + counter/(4*((47-3+1)^2));
+        end
+    end
+end
+
+
+T = length(X);
+pt = p_1;
+ptm = zeros(grid_size,grid_size);
+% prev_cells(timestamp, x,y,:) = [prev_x prev_y]
+prev_cells = zeros(T,grid_size,grid_size,2);
+
+
+for t = 1:T 
+    t
+   % update pt based on the evidence in X{t} 
+   pt = X{t} .* pt;
+   % normalise pt
+   pt = pt ./ sum(pt(:));
+   
+   % set ptm = pt for the next iterations
+   ptm = pt;
+   
+   % calculate next pt based on the current one p(t) = \sum_{tm} p(t|tm) * p(tm)
+   pt = zeros(grid_size,grid_size);
+   
+   for t_x=1:grid_size
+       for t_y=1:grid_size
+            % calculate the max probability and the position of the
+            % incoming cell
+            [pt(t_x,t_y) prev_cells(t+1,t_x,t_y,:)] = find_max_drunk(squeeze(p_tgtm1(t_x,t_y,:,:)) .* ptm);
+            
+       end 
+   end
+   pt = pt ./ sum(pt(:));
+   %maxPt = max(pt(:))
+   %minPt = min(pt(:))
+   
+   plotmatrix = zeros(grid_size,grid_size,3);
+   for i=1:grid_size
+       for j=1:grid_size
+           if (pt(i,j) > 1/(47-3+1)^2)
+               plotmatrix(i,j,1) = 1; 
+           end
+       end
+   end
+   
+
+   %plotmatrix(:,:,1) = pt;
+   plotmatrix(true_pos(t,2),true_pos(t,1),:) = [0 1 0];
+   image(plotmatrix); 
+   %colormap(gray); 
+   drawnow;
+   
+end
+
+ptm
+
+
+end
+
+function [max_value max_position] = find_max_drunk(p_tgtm1)
+grid_size = 50;
+
+max_value = 0;
+max_position = [0 0];
+
+for t_x=1:grid_size
+   for t_y=1:grid_size
+        if (max_value < p_tgtm1(t_x,t_y))
+            max_value = p_tgtm1(t_x,t_y);
+            max_position = [t_x t_y];
+        end
+
+   end 
+end
+
+end
+
+function [] = prob511()
+
+cost_a1 = find_min_fuel(4.71)
+cost_a2 = find_min_fuel(-6.97)
+cost_a3 = find_min_fuel(8.59)
+
+total_cost = cost_a1 + cost_a2 + cost_a3
+
+end
+
+function min_fuel = find_min_fuel(x102)
+% scale the x by 100 to cancel delta^2
+x = abs(x102 * 100);
+% solve quadratic equation and take the smallest root
+y_root_min = (-1-sqrt(1+4*(10100-2*x)))/-2;
+% count how many elements there are in the sum
+min_fuel = 102 - ceil(y_root_min);
+end

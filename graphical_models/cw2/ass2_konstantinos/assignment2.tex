@@ -98,6 +98,12 @@ Student Number: 14110861\\
 \belowdisplayshortskip=7pt plus 3pt minus 4pt
 \maketitle{}
 
+\section{Constributions}
+
+Both of us solved all the problems independently (apart from 5.9 and 5.11) and reached the same answers. For 5.9 and 5.11, we helped each other and reached the final conclusions. 
+
+Most of this \LaTeX \: document was typewritten by Konstantinos Georgiadis, with minor additions from Razvan Marinescu.
+
 \section*{Exercise 1.20}
 
 	We sent this one in an e-mail.
@@ -241,11 +247,11 @@ The messages $\mu_t(.)$ will keep growing and their size in memory (and therefor
 
 \section*{Exercise 5.9}
 
-	We attempted to do this exercise, but we could not figure out a way to find a precise solution to the problem, due to the very large number of variables and their domains. We first modeled the joint probability distribution. We decided that every person gets a variable describing their location at every timestep, i.e. $l_t^i$ is the variable for person i at timestep t, where $i \in \{1,...,500\}$ and $t \in \{1,...,100\}$. The domain of those variables are every pixel of the 50x50 board, i.e. $dom(l_t^i)=\{(1,1),(1,2),...,(1,50),(2,1),...,(50,50)\}$. The variable $l_t^1$ refers to the dangerous drunk. These are the hidden variables. We also assumed there are 100 observed variables - the board at every timestep - $O_t$. We modeled the joint distribution in the following way:
+	We first modeled the joint probability distribution. We decided that every person gets a variable describing their location at every timestep, i.e. $l_t^i$ is the variable for person i at timestep t, where $i \in \{1,...,500\}$ and $t \in \{1,...,100\}$. The domain of those variables are every pixel of the 50x50 board, i.e. $dom(l_t^i)=\{(1,1),(1,2),...,(1,50),(2,1),...,(50,50)\}$. The variable $l_t^1$ refers to the dangerous drunk. These are the hidden variables. We also assumed there are 100 observed variables - the board at every timestep - $O_t$. We modeled the joint distribution in the following way:
 	
 	$$p(\mathbf{l,O})=\left( \prod_{i=1}^{500}p(l_1^i) \right) \left( \prod_{i=1}^{500}p(l_2^i|l_1^i) \right) \left( \prod_{t=3}^{100} p(l_t^1|l_{t-1}^1) \left[ \prod_{i=2}^{500}p(l_t^i|l_{t-1}^i,l_{t-2}^i) \right] \right) \left( \prod_{t=1}^{100}p(O_t|l_t^1,...,l_t^{500}) \right)$$
 	
-	This joint distribution follows the code described in drunkmover.m. Specifically we defined every probability with the following code:
+	This joint distribution follows the code described in drunkmover.m. Specifically we can define the probability distributions with the following code:
 
 \begin{lstlisting}
 pl_1 = zeros(50,50);
@@ -287,7 +293,7 @@ for x = 1:1:50
         else
             pl_th1gl_tm1h1(x-2,y+2,x,y) = 1/4;
         end
-        if(x - 2 < 50 || y - 2 < 1)
+        if(x - 2 < 1 || y - 2 < 1)
             counter = counter + 1;
         else
             pl_th1gl_tm1h1(x-2,y-2,x,y) = 1/4;
@@ -342,12 +348,126 @@ p(l_t^1=(x,y)|l_{t-1}^1=(x',y'))&\ is\ pl\_th1gl\_tm1h1(x,y,x',y')\\
 p(l_t^i=(x,y)|l_{t-1}^i=(x_{-1},y_{-1}),l_{t-2}^i=(x_{-2},y_{-2}))&\ is\ pl\_thigl\_tm1hil\_tm2hi(x,y,x_{-1},y_{-1},x_{-2},y_{-2})
 \end{align*}
 
-Regarding the observed variables $p(O_t|l_t^1,...,l_t^{500})=1$ when all the variables $l_t$ are in the positions that are occupied in the grid and also that for every occupied location in the grid, there is at least one $l_t$ variable with the x,y coordinates that describe the location. We are now posed with the following two optimization problems:
+Regarding the observed variables $p(O_t|l_t^1,...,l_t^{500})=1$ when all the variables $l_t$ are in the positions that are occupied in the grid and also that for every occupied location in the grid, there is at least one $l_t$ variable with the x,y coordinates that describe the location. We are now posed with the following optimization problem:
+$$arg\max_{l_1^1,...,l_{100}^1}p(l_1^1,...,l_{100}^1 | O_1,...,O_{100})$$
+Herein lies our problem, as we need to sum over all $l_t^i$ variables $\forall i \neq 1$. This means that at some point we will need to calculate $p(O_t|l_t^1,...,l_t^{500})$. Even with this problem alone, we can simplify it, by only taking into account all the possible permutations (or even just combinations) of $l_t^i$s that make this probability equal to one, but even in that case, there are still a lot of permutations or combinations of these variables that satisfy this. We decided instead to make a simplification of the full HMM, by considering only the variable $l_i^1$ (which from now on we will simply call as $l_i$). Now the problem changes to:
+$$arg\max_{l_1,...,l_{100}}p(l_1,...,l_{100} | O_1,...,O_{100})$$
+However we observe that $l_t$ is conditionally independent of $O_{t-1}$ given $l_{t-1}$. We can therefore rewrite the above problem as:
 \begin{align*}
-&arg\max_{l_T^1}p(l_T^1 | O_1,...,O_T)\\
-&arg\max_{l_1^1,...,l_{100}^1}p(l_1^1,...,l_{100}^1 | O_1,...,O_{100})\\
+&arg\max_{l_1,...,l_{100}}p(l_1,...,l_{100} | O_1,...,O_{100})=\\
+&arg\max_{l_1,...,l_{100}}p(l_1|O_1)\prod_{t=2}^{100}p(l_t|l_{t-1},O_t)\\
 \end{align*}
-Herein lies our problem, as we need to sum over all $l_t^i$ variables $\forall i \neq 1$. This means that at some point we will need to calculate $p(O_t|l_t^1,...,l_t^{500})$. Even with this problem alone, we can simplify it, by only taking into account all the possible permutations (or even just combinations) of $l_t^i$s that make this probability equal to one, but even in that case, there are still a lot of permutations or combinations of these variables that satisfy this. In any case, we were not able to think of an exact solution for these problems. 
+
+Hence our code starts by considering every '1' in the board as a possible starting location for the drunk with uniform probability. Then it starts an iteration, where for every possible location that the drunk might have been at $t-1$ and for every possible location given from the 'AND' of $X\{t\}$ and $p(l_t|l_{t-1})$, we save for each new possible location, the most likely path which lead up to it and the probability related with it. Afterwards we can do the backtracking to find the most likely path of the drunk. Testing our method with some examples from drunkmover.m with the ground truth, we found it finds the correct location for about 80\% of the timesteps. MATLAB code:\\
+
+\begin{lstlisting}
+clear all;clc;
+load('drunkproblemX.mat');
+p_1 = zeros(50,50);
+p_1(3:1:47,3:1:47) = 1/((47-3+1)^2);
+
+p_2g1 = zeros(50,50,50,50);
+for x = 3:1:47
+    for y = 3:1:47
+        p_2g1(x+2,y+2,x,y) = 1;
+    end
+end
+
+p_tgtm1 = zeros(50,50,50,50);
+for x = 1:1:50
+    for y = 1:1:50
+        counter = 0;
+        if(x + 2 > 50 || y + 2 > 50)
+            counter = counter + 1;
+        else
+            p_tgtm1(x+2,y+2,x,y) = 1/4;
+        end
+        if(x + 2 > 50 || y - 2 < 1)
+            counter = counter + 1;
+        else
+            p_tgtm1(x+2,y-2,x,y) = 1/4;
+        end
+        if(x - 2 < 1 || y + 2 > 50)
+            counter = counter + 1;
+        else
+            p_tgtm1(x-2,y+2,x,y) = 1/4;
+        end
+        if(x - 2 < 1 || y - 2 < 1)
+            counter = counter + 1;
+        else
+            p_tgtm1(x-2,y-2,x,y) = 1/4;
+        end
+        if(counter > 0)
+            p_tgtm1(3:1:47,3:1:47,x,y) = p_tgtm1(3:1:47,3:1:47,x,y) + counter/(4*((47-3+1)^2));
+        end
+    end
+end
+
+PrevMatrixX = zeros(50,50,99);
+PrevMatrixY = zeros(50,50,99);
+TotalProbability = p_1.*X{1};
+TotalProbability = TotalProbability / sum(sum(TotalProbability));
+
+for timestep = 2:1:100
+    PrevTotalProbability = TotalProbability;
+    TotalProbability = zeros(50,50);
+    %find possible previous locations of drunk 
+    [AllPreviousX,AllPreviousY] = find(PrevTotalProbability);
+    %And for every previous possible location
+    for possiblepreviouslocation = 1:1:length(AllPreviousY)
+        PreviousX = AllPreviousX(possiblepreviouslocation);
+        PreviousY = AllPreviousY(possiblepreviouslocation);
+        %find all the possible new locations
+        TempProb = p_tgtm1(:,:,PreviousX,PreviousY);
+        if(timestep == 2)
+            TempProb = p_2g1(:,:,PreviousX,PreviousY);
+        end
+        TempProb = TempProb .* X{timestep};
+        if(sum(sum(TempProb)) > 0)
+            TempProb = TempProb / sum(sum(TempProb));
+        end
+        [AllNewX,AllNewY] = find(TempProb);
+        %and for every possible new,given old location
+        for possiblenewlocation = 1:1:length(AllNewY)
+            NewX = AllNewX(possiblenewlocation);
+            NewY = AllNewY(possiblenewlocation);
+            %find for each new location the previous location which
+            %has the maximum probability
+            if(PrevTotalProbability(PreviousX,PreviousY) * TempProb(NewX,NewY) > TotalProbability(NewX,NewY))
+                TotalProbability(NewX,NewY) = PrevTotalProbability(PreviousX,PreviousY) * TempProb(NewX,NewY);
+                PrevMatrixX(NewX,NewY,timestep-1)=PreviousX;
+                PrevMatrixY(NewX,NewY,timestep-1)=PreviousY;
+            end
+        end    
+    end  
+end
+[MostLikelyFinalX,MostLikelyFinalY] = find(TotalProbability == max(max(TotalProbability)));
+path = zeros(2,100);
+path(1,100) = MostLikelyFinalX(1);
+path(2,100) = MostLikelyFinalY(1);
+for i = 99:-1:1
+    path(1,i) = PrevMatrixX(path(1,i+1),path(2,i+1),i);
+    path(2,i) = PrevMatrixY(path(1,i+1),path(2,i+1),i);
+end
+\end{lstlisting}
+
+The path variable at the end gives us the entire path where the first row is the X and the second row the Y, so if for example path(1,43) = 12 and path(2,43) = 36, then that means that we think that the matrix had X\{43\}(12,36) == 2 (according to drunkmover.m the value 2 signified the position of the drunk). The path variable returns to us(first row - first X\{t\} dimension, second row - second X\{t\} dimension):\\
+
+Timesteps 1 through 31\\
+39    41    39    37    39    41    43    45    47    45    47    49    47    45    43    41    39    37    39    37    39    37    39    37    35    37    35    37    39    41    39\\
+28    30    32    30    28    30    32    30    28    26    24    22    24    22    24    22    24    22    24    26    28    26    24    26    24    22    20    22    24    26    24\\
+
+Timesteps 32 through 62\\
+41    43    41    39    37    39    41    43    41    43    45    43    41    39    37    39    41    39    41    39    41    39    41    43    41    39    37    39    41    39    37\\
+26    24    26    28    30    32    30    32    30    32    30    32    34    36    34    32    34    32    30    28    30    32    34    36    38    40    42    44    42    44    42\\
+
+Timesteps 63 through 93\\
+35    33    35    33    31    33    35    37    35    37    35    33    31    33    31    29    31    29    31    33    31    29    27    25    27    25    27    25    27    25    27\\
+40    38    36    34    32    34    36    38    36    38    40    38    36    38    40    42    40    42    40    42    44    46    48    46    48    46    44    46    48    46    48\\
+
+Timesteps 94 through 100\\
+25    23    25    23    21    19    21\\
+46    44    46    44    46    44    46\\% 
 
 \section*{Exercise 5.11}	
 
@@ -385,6 +505,53 @@ And for the third dimension we have:\\
 $a_3(1)=1,a_3(2)=1,a_3(3)=1,a_3(4)=1,a_3(5)=1,a_3(6)=1,a_3(7)=1,a_3(8)=1,a_3(14)=1$ and $a_3(t)=0,\ \forall t\in \{9,...,13,15,...,100\}$\\
 
 Therefore the total minimum amount of fuel needed is $5+8+9=22$.\\
+
+\subsection*{3.}
+
+There exists an algorithm that can calculate the minimum ammount of fuel in constant time. The optimal stategy can be achieved with a greedy approach, where we try to use as much acceleration as possible at the beginning. For each coordinate $i$, we therefore need to find out the smallest number of terms to sum in $100a_i(1)+99a_i(2) + ... + Ya_{i}(100-Y)$ such that $\sum_{k=Y}^{100}ka_{i}(101-k) + Ja_i(101-J) = x(102)$, with $J < Y$ and $a_i = sign(x(102))$, $\forall i \in \{1,2, .. 101-Y, J\}$. We thus solve for $Y$ the following equation:
+
+$$X(102) = 100 + 99 + 98 + .. Y = (100+Y)(100-Y+1)/2$$
+
+$$2X(102) = (100+Y)(100-Y+1) = -Y^2 + Y + 10100$$
+
+$$-Y^2 + Y + (10100 - 2X) = 0$$
+
+The smaller root of the above quadratic equation is equal to:
+
+$$Y_{min} = \frac{-1-\sqrt{1+4(10100-2x)}}{-2}$$
+
+The ceiling($Y_{min}$) is therefore the last term in our sum. The final minimum ammount of fuel is given by $min\_fuel = 101 - floor(Y_{min})$. The following MATLAB code implements the algorithm in constant time O(1):
+
+\begin{lstlisting}
+ function [] = prob511()
+
+cost_a1 = find_min_fuel(4.71)
+cost_a2 = find_min_fuel(-6.97)
+cost_a3 = find_min_fuel(8.59)
+
+total_cost = cost_a1 + cost_a2 + cost_a3
+
+end
+
+function min_fuel = find_min_fuel(x102)
+% scale the x by 100 to cancel delta^2
+x = abs(x102 * 100);
+% solve quadratic equation and take the smallest root
+y_root_min = (-1-sqrt(1+4*(10100-2*x)))/-2;
+% count how many elements there are in the sum
+min_fuel = 102 - ceil(y_root_min);
+end
+\end{lstlisting}
+
+An equivalent implementation in the Haskell programming language:
+
+\begin{lstlisting}
+quad_min a b c = (-b - sqrt(b^2 - 4*a*c))/2*a
+cost x = let x'=abs(100*x) in 102 - ceiling(quad_min (-1) 1 (10100 - 2*x'))
+\end{lstlisting}
+
+
+\subsection*{Extra - having speed zero at timestep 102}
 
 If we also want at the same time to have 0 speed at timestep 102, then we now have two conditions that need to be met (we assumed that we can also accelerate at timestep 101, otherwise we need have reached the coordinated at timestep 101 already and not move at all at timestep 102. Our assumption does not make a huge difference for the solution either way):
 
@@ -660,11 +827,78 @@ p(s_i) &= \sum_{s \SLASH s_i,d_1,...,d_{20}}p(s_1,...,s_40,d_1,...,d_20)\\
 &= \sum_{d_a,d_b,d_c} p(s_i|d_a,d_b,d_c)p(d_a)p(d_b)p(d_c)\\
 \end{align*}
 
+The final probabilities $p(s_i = 1)$ are:
+
+    0.4418
+    0.4567
+    0.4414
+    0.4913
+    0.4939
+    0.6575
+    0.5046
+    0.2687
+    0.6491
+    0.4907
+    0.4226
+    0.4291
+    0.5450
+    0.6330
+    0.4295
+    0.4588
+    0.4276
+    0.4043
+    0.5821
+    0.5896
+    0.7613
+    0.6956
+    0.5087
+    0.4200
+    0.3519
+    0.3896
+    0.3260
+    0.4696
+    0.5229
+    0.7173
+    0.5242
+    0.3537
+    0.5127
+    0.5294
+    0.3858
+    0.4891
+    0.6336
+    0.5896
+    0.4232
+    0.5282
+
 And our MATLAB code outputs the maximum difference between the two methods of calculating the marginals:\\
 
 Maximum Error: 2.731149e-14\\
 
-Lastly, we set the states of $s_1,...,s_{10}$ to their evidence states, then rerun the JTA algorithm and calculate the marginal for every disease. We compare the marginals of the diseases in state 1 without the evidence (1st row) to the marginals of the diseases in state 1 with the evidence (2nd row) in the variable ProbabilityChange. \\
+Lastly, we set the states of $s_1,...,s_{10}$ to their evidence states, then rerun the JTA algorithm and calculate the marginal for every disease. The final probabilities $p(d_i | s_{1:10})$ are:
+
+    0.0298
+    0.3818
+    0.9542
+    0.3966
+    0.4965
+    0.4352
+    0.1875
+    0.7012
+    0.0431
+    0.6103
+    0.2873
+    0.4898
+    0.8996
+    0.6196
+    0.9205
+    0.7061
+    0.2012
+    0.9085
+    0.8650
+    0.8839
+
+
+We compare the marginals of the diseases in state 1 without the evidence (1st row) to the marginals of the diseases in state 1 with the evidence (2nd row) in the variable ProbabilityChange. \\
 
 ProbabilityChange =\\
   Columns 1 through 3\\
@@ -821,7 +1055,8 @@ Therefore we need to calculate a total of $T-2$ messages, each of which has 2 st
 
 	\begin{center} \includegraphics[width=1\textwidth]{c6e12cliques}\end{center}  
 	
-	In this drawing, variables $x_1,...,x_n$ are variables that exist only in clique 1 (and are the ones we sum over). Since clique 1 is a 'leaf' node of the junction tree, this means that indeed those variables exist only in this clique and once we sum over them in clique 1, they have been summed over in the entire joint distribution. Variables $s_1,...,s_m$ are the ones shared by clique 1 and clique d and once again, because clique 1 is a 'leaf' node, this means they only exist in clique 1 and clique d. Variables $y_1,...,y_l$ are the variables that exist in clique d, but not in clique 1 or separator 1. When creating a junction tree, we have to assign potentials to the cliques. In this example, there may have been potentials with variables only in $x$, such as $\phi(x_i,x_j)$. All of these would have been assigned to clique 1. There might also have been potentials with variables only in $s$, which could have been assigned either to clique 1 or clique d and there might have also been potentials with variables in both $x$ and $s$, which would have been assigned to clique 1. By summing over the variables $x$, this means that in the new "joint distribution", if we want to make a junction tree we now need to know where to assign the potentials containing variables $s$. As we said though, these variables existed only in clique 1 and clique d, therefore, all of the potentials containing variables $s$ will have to be assigned to clique d this time. More specifically suppose we had the following case where we assigned all the potentials with variables only in $s$ to clique 1:
+	In this drawing, variables $x_1,...,x_n$ are variables that exist only in clique 1 (and are the ones we sum over). Since clique 1 is a 'leaf' node of the junction tree, this means that indeed those variables exist only in this clique and once we sum over them in clique 1, they have been summed over in the entire joint distribution. Variables $s_1,...,s_m$ are the ones shared by clique 1 and clique d and once again, because clique 1 is a 'leaf' node, this means they only exist in clique 1 and clique d. Variables $y_1,...,y_l$ are the variables that exist in clique d, but not in clique 1 or separator 1. When creating a junction tree, we have to assign potentials to the cliques. In this example, there may have been potentials with variables only in $x$, such as $\phi(x_i,x_j)$. All of these would have been assigned to clique 1. There might also have been potentials with variables only in $s$, which could have been assigned either to clique 1 or clique d and there might have also been potentials with variables 
+in both $x$ and $s$, which would have been assigned to clique 1. By summing over the variables $x$, this means that in the new "joint distribution", if we want to make a junction tree we now need to know where to assign the potentials containing variables $s$. As we said though, these variables existed only in clique 1 and clique d, therefore, all of the potentials containing variables $s$ will have to be assigned to clique d this time. More specifically suppose we had the following case where we assigned all the potentials with variables only in $s$ to clique 1:
 	\begin{align*}
 	clique\ 1&:\phi(X_1) = \phi(x)\phi(x,s)\phi(s)\\
 	separator\ 1&:\phi(S_1) = 1\\
@@ -839,7 +1074,8 @@ Therefore we need to calculate a total of $T-2$ messages, each of which has 2 st
 	
 	2. Since in the original distribution, there is no term $\frac{1}{Z}$, we can assume the global normalization constant has been "integrated" into some potential (this means that after finishing the forward elimination, the resulting potential will not need to be normalized by summing over its states). In any case, as we showed earlier, every time we sum over the variables in a clique corresponding to a leaf node, but only the variables which are not in the separator set, we are basically left with the marginal of the original distribution, but without the variables we summed over. This is all based on the fact that those variables exist only in that specific leaf node clique, otherwise this would not be possible. Therefore, it is clear that in the end we will only be left over with the variables in clique N and it will be $p(X_n)$.
 	
-	3. As we said earlier, at every step of the forward elimination, we are left with a junction tree which represents the marginal over all the variables that still exist in the junction tree. When we only had two cliques left over, the junction tree will represent $p(X_{n-1},X_n)$, which, if we assume the same symbolism as in part 1, where $x$ are the variables existing only in clique n, $s$ are the variables which exist in both clique n and n-1 and $y$ are the variables existing only in clique n-1, then we have $p(X_{n-1},X_n)=p(x,s,y)$. By now reversing the elimination schedule, we are summing over the variables $x$ and therefore we will be left over with the variables $s,y$ which are the variables in $X_{n-1}$ and therefore the clique will now represent the marginal $p(X_{n-1})$. Going another step back when we had still 3 cliques left over, they represented $p(X_n,X_{n-1},X_{n-2})$. We have already summed over the variables $x$, so we are left with $p(X_{n-1},X_{n-2})$. By repeating the process, we are left with $p(X_{n-2})$. Continuing, we can see how we are left with the marginals in every clique.
+	3. As we said earlier, at every step of the forward elimination, we are left with a junction tree which represents the marginal over all the variables that still exist in the junction tree. When we only had two cliques left over, the junction tree will represent $p(X_{n-1},X_n)$, which, if we assume the same symbolism as in part 1, where $x$ are the variables existing only in clique n, $s$ are the variables which exist in both clique n and n-1 and $y$ are the variables existing only in clique n-1, then we have $p(X_{n-1},X_n)=p(x,s,y)$. By now reversing the elimination schedule, we are summing over the variables $x$ and therefore we will be left over with the variables $s,y$ which are the variables in $X_{n-1}$ and therefore the clique will now represent the marginal $p(X_{n-1})$. Going another step back when we had still 3 cliques left over, they represented $p(X_n,X_{n-1},X_{n-2})$. We have already summed over the variables $x$, so we are left with $p(X_{n-1},X_{n-2})$. By repeating the process, we are 
+left with $p(X_{n-2})$. Continuing, we can see how we are left with the marginals in every clique.
 	
 	4. By globally consistent, we mean that if cliques $X_i$ and $X_j$ share the variable $x_k$, then this must be true: $\sum_{X_i \SLASH x_k} \phi''(X_i) = \sum_{X_j \SLASH x_k} \phi''(X_j)$. However this is indeed true, since now $\phi''(X_i)=p(X_i),\phi''(X_j)=p(X_j)$, which means: $\sum_{X_i \SLASH x_k} p(X_i) = \sum_{X_j \SLASH x_k} p(X_j) \rightarrow p(x_k)=p(x_k)$. 
 

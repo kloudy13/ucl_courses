@@ -69,14 +69,14 @@ for t=3:T
     imagesc(X{t}); drawnow;
 end
 
-[x{1}(:) y{1}(:)] % list of the drunk's position
+true_pos = [x{1}(:) y{1}(:)] % list of the drunk's position
 
 Xtrue=X;
 for t=1:T
     X{t}=Xtrue{t}>0;
 end
-if 1==0
-    save drunkproblemX X
-    save drunkproblemXtrue Xtrue
+if 1==1
+    save drunkproblemX2 X true_pos
+    save drunkproblemXtrue2 Xtrue
 end
 
