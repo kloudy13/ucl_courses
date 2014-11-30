@@ -17,7 +17,7 @@ urlcolor=black
 % Nice package for plotting graphs
 % See excellent guide:
 % http://www.tug.org/TUGboat/tb31-1/tb97wright-pgfplots.pdf
-\usetikzlibrary{plotmarks}
+\usetikzlibrary{plotmarks,shapes}
 \usepackage{amsmath,graphicx}
 \usepackage{epstopdf}
 \usepackage{caption}
@@ -98,17 +98,19 @@ Student Number: 14110861\\
 \belowdisplayshortskip=7pt plus 3pt minus 4pt
 \maketitle{}
 
-\section{Constributions}
+\section*{Contributions}
 
-Both of us solved all the problems independently (apart from 5.9 and 5.11) and reached the same answers. For 5.9 and 5.11, we helped each other and reached the final conclusions. 
+Both of us solved all the problems independently (apart from 5.9 and 5.11) and reached the same answers. We solved 5.9 and 5.11 together. 
 
-Most of this \LaTeX \: document was typewritten by Konstantinos Georgiadis, with minor additions from Razvan Marinescu.
+Most of this report was typewritten by Konstantinos Georgiadis, with minor additions from Razvan Marinescu.
 
 \section*{Exercise 1.20}
 
 	We sent this one in an e-mail.
 
 \section*{Exercise 5.7}
+
+\subsection*{1.}
 
 During the first stage we want to calculate:	
 
@@ -155,6 +157,8 @@ arg&\ K\prod_{t=1}^T\max_{y_t}p(y_t|h_t^\ast)
 \end{align*}
 
 Which means that we can separately simply find each optimal $y_t^\ast$ for a given $h_t^\ast$ by maximizing $y_t^\ast=arg\max_{y_t}p(y_t|h_t^\ast)$ and not their product.\\
+
+\subsection*{2.}
 
 MATLAB code:
 \begin{lstlisting}
@@ -229,6 +233,8 @@ AAATCCAATCGAGCAACCCCATATGTGGAGTAGCGGACTAACTTCAACCG\\
 ATGACAAAAAAAGTAATCAACTGACCGATCAACTATTCGATTCAGTAAAC\\\\
 CTTGACTTGACTGACTGACTGACTGACCTGATTTTTTGACTGAGACTGAC\\
 TGTTTTTTTTCTGACTGACTGACTGACTGACTGACTGACTGACTGACTGA\\\\
+
+\subsection*{3.}
 
 There is no computationally efficient way to compute:
 $$arg\max_{y_1,...,y_T}\ p(y_1,...,y_T|x_1,...,x_T)$$
@@ -471,6 +477,7 @@ Timesteps 94 through 100\\
 
 \section*{Exercise 5.11}	
 
+\subsection*{1.}
 Calculating recursively the positions at every timestep:
 \begin{align*}
 x_2 &= x_1 + \delta v_1\\
@@ -496,6 +503,8 @@ x_{102} &= \delta^2 (100a_1+99a_2+...+2a_{99}+a_{100})\\
 859 &= 100a_3(1)+99a_3(2)+...+2a_3(99)+a_3(100)\\
 \end{align*}
 
+\subsection*{2.}
+
 In order to calculate the minimum fuel used, we look at each dimension separately. Basically, we have all the integer numbers between 1 and 100 and we can choose which ones to add up(or subtract), but they need to add up to 471, -697, 859 in each dimension respectively. Thus, it makes sense to do the following. At every iteration, we choose the number available which gets us as close as possible to the one desired. For example with the first dimension, we want to reach 471 at timestep 102, therefore we choose:\\
 100,99,98,97 and 77, which added up equals 471. This means that $a_1(1)=1, a_1(2)=1, a_1(3)=1,a_1(4)=1,a_1(24)=1$ and $a_1(t) = 0,\ \forall t \in \{5,...,23,25,...,100\}$
 More specifically, we first choose $a_1(1) = 1$, because if we subtract that number from 471, it is the one that gets us closest to zero, i.e. $471-100a_1(1) = 471-100=371$. Afterwards we repeat the same for $a_1(2)=1, a_1(3)=1,a_1(4)=1$ and we are left with $471-100a_1(1)-99a_1(2)-98a_1(3)-97a_1(4)=77$ and so we choose $a_1(24)=1$. This is of course, not the only solution to the problem, as we can choose any combination that adds up to 471. For example we could also have chosen the numbers 100,99,98,96,78. However, in order to be sure that we used the minimum fuel needed, our approach will always work.\\
@@ -508,7 +517,7 @@ Therefore the total minimum amount of fuel needed is $5+8+9=22$.\\
 
 \subsection*{3.}
 
-There exists an algorithm that can calculate the minimum ammount of fuel in constant time. The optimal stategy can be achieved with a greedy approach, where we try to use as much acceleration as possible at the beginning. For each coordinate $i$, we therefore need to find out the smallest number of terms to sum in $100a_i(1)+99a_i(2) + ... + Ya_{i}(100-Y)$ such that $\sum_{k=Y}^{100}ka_{i}(101-k) + Ja_i(101-J) = x(102)$, with $J < Y$ and $a_i = sign(x(102))$, $\forall i \in \{1,2, .. 101-Y, J\}$. We thus solve for $Y$ the following equation:
+There exists an algorithm that can calculate the minimum ammount of fuel in O(1) time. The optimal stategy can be achieved with a greedy approach, where we try to use as much acceleration as possible at the beginning. For each coordinate $i$, we therefore need to find out the smallest number of terms to sum in $100a_i(1)+99a_i(2) + ... + Ya_{i}(100-Y)$ such that $\sum_{k=Y}^{100}ka_{i}(101-k) + Ja_i(101-J) = x(102)$, with $J < Y$ and $a_i = sign(x(102))$, $\forall i \in \{1,2, .. 101-Y, J\}$. We thus solve for $Y$ the following equation:
 
 $$X(102) = 100 + 99 + 98 + .. Y = (100+Y)(100-Y+1)/2$$
 
@@ -551,7 +560,7 @@ cost x = let x'=abs(100*x) in 102 - ceiling(quad_min (-1) 1 (10100 - 2*x'))
 \end{lstlisting}
 
 
-\subsection*{Extra - having speed zero at timestep 102}
+\subsection*{Extra - having zero speed at rendevous}
 
 If we also want at the same time to have 0 speed at timestep 102, then we now have two conditions that need to be met (we assumed that we can also accelerate at timestep 101, otherwise we need have reached the coordinated at timestep 101 already and not move at all at timestep 102. Our assumption does not make a huge difference for the solution either way):
 
@@ -601,10 +610,41 @@ The minimum cost of travelling from planet 1 to 1725 is: -209.649903
 
 \section*{Exercise 6.2}
 	
-	The clique graph:
-	\begin{center} \includegraphics[width=0.75\textwidth]{c6e2clique}\end{center}  
-	The separators are the variables in square boxes ($x_2$ and $x_3$).
+\subsection*{1.}
 	
+The clique graph:
+% \begin{center} \includegraphics[width=0.75\textwidth]{c6e2clique}\end{center}  
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.0,auto,swap]
+
+  %           % define the round nodes
+  %           \foreach \pos/\name/\label in {
+  %             {(-2.0,0)/1/1a},
+  %             {(0,0)/2/2a},
+  %             {(2,0)/3/3a}}
+  %             \node[vertex] (\label) at \pos {$\name$} ;
+	      
+	      \node[vertex] (1a) at (-2,0) {$x_1,x_2$} ;
+	      \node[rectangle,thick,draw=black] (2a) at (0,0) {$x_2$} ;
+	      \node[vertex] (3a) at (2,0) {$x_2,x_3$} ;
+	      \node[rectangle,thick,draw=black] (4a) at (4,0) {$x_3$} ;
+	      \node[vertex] (5a) at (6,0) {$x_3,x_4$} ;
+	      %neighbouring graph
+		  
+	    \path[hi, line width=1.0]  (1a)  -- (2a);
+	    \path[hi, line width=1.0]  (2a)  -- (3a);
+	    \path[hi, line width=1.0]  (3a)  -- (4a);
+	    \path[hi, line width=1.0]  (4a)  -- (5a);
+      
+  \end{tikzpicture}
+  \caption{Junction tree}
+\end{figure}
+The separators are the variables in square boxes ($x_2$ and $x_3$).
+
+\subsection*{2.}
+
 \begin{align*}
 p(x_1,x_2,x_3,x_4) &= \frac{\phi(x_1,x_2)\phi(x_2,x_3)\phi(x_3,x_4)}{Z}\\
 Zp(x_1,x_2) &=\phi(x_1,x_2)\sum_{x_3,x_4}\phi(x_2,x_3)\phi(x_3,x_4)\\
@@ -620,8 +660,32 @@ p(x_1,x_2,x_3,x_4) &= \frac{p(x_1,x_2)p(x_2,x_3)p(x_3,x_4)}{p(x_2)p(x_3)}\\
 
 \section*{Exercise 6.3}
 
-After triangulating the markov network graph, we can get the following clique graph/junction tree:
-	\begin{center} \includegraphics[width=0.75\textwidth]{c6e3junction}\end{center}  
+\subsection*{1.}
+
+After triangulating the markov network graph, we can get the following clique graph/junction tree:\\
+	%\begin{center} \includegraphics[width=0.75\textwidth]{c6e3junction}\end{center}  
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.0,auto,swap]
+
+  %           % define the round nodes
+  %           \foreach \pos/\name/\label in {
+  %             {(-2.0,0)/1/1a},
+  %             {(0,0)/2/2a},
+  %             {(2,0)/3/3a}}
+  %             \node[vertex] (\label) at \pos {$\name$} ;
+	      
+	      \node[ellipse,draw, minimum size=25pt] (1a) at (-3,0) {$x_1,x_2,x_3$} ;
+	      \node[rectangle,thick,draw=black] (2a) at (0,0) {$x_1,x_3$} ;
+	      \node[ellipse,draw, minimum size=25pt] (3a) at (3,0) {$x_1,x_3,x_4$} ;
+	    %neighbouring graph
+		  
+	    \path[hi, line width=1.0]  (1a)  -- (2a);
+	    \path[hi, line width=1.0]  (2a)  -- (3a);
+      
+  \end{tikzpicture}
+  \caption{Junction tree}
+\end{figure}
 
 We make the following assignments:
 \begin{align*}
@@ -629,6 +693,8 @@ We make the following assignments:
 \phi(x_1,x_3) &= 1\\
 \phi(x_1,x_3,x_4) &= \phi(x_3,x_4)\phi(x_4,x_1)
 \end{align*}
+
+\subsection*{2.}
 
 First, we perform the absorption $\phi(x_1,x_2,x_3)\rightarrowtail\phi(x_1,x_3,x_4)$:
 \begin{align*}
@@ -718,12 +784,38 @@ Since the elements of the rows are the same, the calculation was done correctly.
 
 We describe below our reasoning with a 3x3 lattice and then find the computational cost for the general case:
 
-	\begin{center} \includegraphics[width=0.25\textwidth]{c6e7temp}\end{center}  
-	
-	In this case $X_1$ consists of $x_1,x_2,x_3$. Likewise, $X_2$ consists of $x_4,x_5,x_6$ and similarly for $X_3$. The junction tree is:
-	
-	\begin{center} \includegraphics[width=0.5\textwidth]{c6e7clique}\end{center}  
+\begin{center} \includegraphics[width=0.25\textwidth]{c6e7temp}\end{center}  
 
+In this case $X_1$ consists of $x_1,x_2,x_3$. Likewise, $X_2$ consists of $x_4,x_5,x_6$ and similarly for $X_3$. The junction tree is:
+
+% \begin{center} \includegraphics[width=0.5\textwidth]{c6e7clique}\end{center}  
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.0,auto,swap]
+
+  %           % define the round nodes
+  %           \foreach \pos/\name/\label in {
+  %             {(-2.0,0)/1/1a},
+  %             {(0,0)/2/2a},
+  %             {(2,0)/3/3a}}
+  %             \node[vertex] (\label) at \pos {$\name$} ;
+	      
+	      \node[vertex] (1a) at (-2,0) {$X_1,X_2$} ;
+	      \node[rectangle,thick,draw=black] (2a) at (0,0) {$X_2$} ;
+	      \node[vertex] (3a) at (2,0) {$X_2,X_3$} ;
+	      %neighbouring graph
+		  
+	    \path[hi, line width=1.0]  (1a)  -- (2a);
+	    \path[hi, line width=1.0]  (2a)  -- (3a);
+
+      
+  \end{tikzpicture}
+  \caption{Junction tree}
+\end{figure}
+	
+	
 Where $\phi(X_1,X_2) = \phi(x_1,x_2,x_3,x_4,x_5,x_6)$ and $\phi(X_2,X_3) = \phi(x_4,x_5,x_6,x_7,x_8,x_9)$. We can now assign each potential to a clique of the junction tree. We chose the following assignment:
 \begin{align*}
 \phi(X_1,X_2) &= \phi(x_1,x_2)\phi(x_2,x_3)\phi(x_1,x_4)\phi(x_2,x_5)\phi(x_3,x_6)\phi(x_4,x_5)\phi(x_5,x_6)\\
@@ -818,6 +910,7 @@ MATLAB outputs:\\\\
 The logarithm of Z is: 186.791621
 
 \section*{Exercise 6.9}
+\subsection*{1 \& 2.}
 
 We used the following code for the three questions. For the first question, after doing a full absorption, we simply find a clique which contains the variable we want to find the marginal for and calculate it. For the second question, we notice that we can do the following calculation instead:
 \begin{align*}
@@ -827,7 +920,7 @@ p(s_i) &= \sum_{s \SLASH s_i,d_1,...,d_{20}}p(s_1,...,s_40,d_1,...,d_20)\\
 &= \sum_{d_a,d_b,d_c} p(s_i|d_a,d_b,d_c)p(d_a)p(d_b)p(d_c)\\
 \end{align*}
 
-The final probabilities $p(s_i = 1)$ are:
+The final probabilities $p(s_i = 1)$ are:\\
 
     0.4418
     0.4567
@@ -868,13 +961,15 @@ The final probabilities $p(s_i = 1)$ are:
     0.6336
     0.5896
     0.4232
-    0.5282
+    0.5282\\
 
 And our MATLAB code outputs the maximum difference between the two methods of calculating the marginals:\\
 
-Maximum Error: 2.731149e-14\\
+Maximum Error: 2.731149e-14
 
-Lastly, we set the states of $s_1,...,s_{10}$ to their evidence states, then rerun the JTA algorithm and calculate the marginal for every disease. The final probabilities $p(d_i | s_{1:10})$ are:
+\subsection*{3.}
+
+Lastly, we set the states of $s_1,...,s_{10}$ to their evidence states, then rerun the JTA algorithm and calculate the marginal for every disease. The final probabilities $p(d_i | s_{1:10})$ are:\\
 
     0.0298
     0.3818
@@ -895,7 +990,7 @@ Lastly, we set the states of $s_1,...,s_{10}$ to their evidence states, then rer
     0.2012
     0.9085
     0.8650
-    0.8839
+    0.8839\\
 
 
 We compare the marginals of the diseases in state 1 without the evidence (1st row) to the marginals of the diseases in state 1 with the evidence (2nd row) in the variable ProbabilityChange. \\
@@ -1036,7 +1131,7 @@ end
 
 \section*{Exercise 6.10}
 
-Due to the moralization step when trying to create a junction tree for this probability distribution, every variable will be connected to every variable. This means there will only be one clique which will include all the variables: $\phi(x_1,...,x_T,y) = p(x_1)\prod_{i=2}^Tp(x_i|x_{i-1})p(y|x_1,...,x_T)$. In order to then calculate $p(x_T)$ we need to sum over all other variables. This means that for each of the two states of $x_T$ we need the sum of $2^T$ numbers (since the total variables are $T+1$), therefore the total computational cost is $2(2^T-1)$ additions.
+Due to the moralization step when trying to create a junction tree for this probability distribution, every variable will be connected to every variable. This means there will only be one clique which will include all the variables: $\phi(x_1,...,x_T,y) = p(x_1)\prod_{i=2}^Tp(x_i|x_{i-1})p(y|x_1,...,x_T)$. In order to then calculate $p(x_T)$ we need to sum over all other variables. This means that for each of the two states of $x_T$ we need the sum of $2^T$ numbers (since the total variables are $T+1$), therefore the total computational cost is $2(2^T-1)$ additions, which gives a $O(2^T)$ time complexity.
 
 By simply using message passing theory from the previous chapter we can:
 \begin{align*}
@@ -1050,12 +1145,32 @@ p(x_T)&=\sum_{x_1,...,x_{T-1},y}p(x_1)\prod_{i=2}^Tp(x_i|x_{i-1})p(y|x_1,...,x_T
 Therefore we need to calculate a total of $T-2$ messages, each of which has 2 states, with each state requiring 2 multiplications and 1 addition. Also at the end, for each of the 2 states of $x_T$ we need again 2 multiplications and 1 addition, therefore the total complexity is: $6(T-1)$, which indeed is linear with regards to $T$.
 
 \section*{Exercise 6.12}
+\subsection*{1.}
 
-1. Let us look at what is happening when we sum over the variables in clique 1 but not in separator 1:
+Let us look at what is happening when we sum over the variables in clique 1 but not in separator 1:
 
-	\begin{center} \includegraphics[width=1\textwidth]{c6e12cliques}\end{center}  
-	
-	In this drawing, variables $x_1,...,x_n$ are variables that exist only in clique 1 (and are the ones we sum over). Since clique 1 is a 'leaf' node of the junction tree, this means that indeed those variables exist only in this clique and once we sum over them in clique 1, they have been summed over in the entire joint distribution. Variables $s_1,...,s_m$ are the ones shared by clique 1 and clique d and once again, because clique 1 is a 'leaf' node, this means they only exist in clique 1 and clique d. Variables $y_1,...,y_l$ are the variables that exist in clique d, but not in clique 1 or separator 1. When creating a junction tree, we have to assign potentials to the cliques. In this example, there may have been potentials with variables only in $x$, such as $\phi(x_i,x_j)$. All of these would have been assigned to clique 1. There might also have been potentials with variables only in $s$, which could have been assigned either to clique 1 or clique d and there might have also been potentials with variables 
+% \begin{center} \includegraphics[width=1\textwidth]{c6e12cliques}\end{center}  
+
+\begin{figure}[H]
+  \hspace*{7.5em}
+  \begin{tikzpicture}[scale=1.0,auto,swap,node distance=2cm]
+
+    \node[draw, ellipse, minimum size=30pt] (1a) at (0,2) {$x_1, ..., x_n,s_1, ..., s_m$} ;
+    \node[rectangle,thick,draw=black] (2a) at (0,0) {$s_1, ..., s_m$} ;
+    \node[ellipse,draw, minimum size=30pt] (3a) at (0,-2) {$y_1, ..., y_l,s_1, ..., s_m$} ;
+
+    \node at (-4,2) {\textbf{clique 1}};
+    \node at (-3,0) {\textbf{separator 1}};
+    \node at (-4,-2) {\textbf{clique d}};
+    
+    
+    \path[hi, line width=1.0]  (1a)  -- (2a);
+    \path[hi, line width=1.0]  (2a)  -- (3a);
+  \end{tikzpicture}
+  \caption{Clique 1, Clique d and their separator}
+\end{figure}
+
+In this drawing, variables $x_1,...,x_n$ are variables that exist only in clique 1 (and are the ones we sum over). Since clique 1 is a 'leaf' node of the junction tree, this means that indeed those variables exist only in this clique and once we sum over them in clique 1, they have been summed over in the entire joint distribution. Variables $s_1,...,s_m$ are the ones shared by clique 1 and clique d and once again, because clique 1 is a 'leaf' node, this means they only exist in clique 1 and clique d. Variables $y_1,...,y_l$ are the variables that exist in clique d, but not in clique 1 or separator 1. When creating a junction tree, we have to assign potentials to the cliques. In this example, there may have been potentials with variables only in $x$, such as $\phi(x_i,x_j)$. All of these would have been assigned to clique 1. There might also have been potentials with variables only in $s$, which could have been assigned either to clique 1 or clique d and there might have also been potentials with variables 
 in both $x$ and $s$, which would have been assigned to clique 1. By summing over the variables $x$, this means that in the new "joint distribution", if we want to make a junction tree we now need to know where to assign the potentials containing variables $s$. As we said though, these variables existed only in clique 1 and clique d, therefore, all of the potentials containing variables $s$ will have to be assigned to clique d this time. More specifically suppose we had the following case where we assigned all the potentials with variables only in $s$ to clique 1:
 	\begin{align*}
 	clique\ 1&:\phi(X_1) = \phi(x)\phi(x,s)\phi(s)\\
@@ -1071,13 +1186,18 @@ in both $x$ and $s$, which would have been assigned to clique 1. By summing over
 	&\phi'(X_d) = \phi(X_d)\frac{\phi'(S_1)}{\phi(S_1)}=\phi(X_d)\frac{\sum_{x}\phi(X_1)}{\phi(S_1)}\\
 	&p(X_2,...,X_n)=\phi'(X_d)\frac{\prod_{c \geq 2,c\neq d}\phi(X_c)}{\prod_{s \geq 2}\phi(X_s)}
 	\end{align*}	
+\subsection*{2.}
+
+Since in the original distribution, there is no term $\frac{1}{Z}$, we can assume the global normalization constant has been "integrated" into some potential (this means that after finishing the forward elimination, the resulting potential will not need to be normalized by summing over its states). In any case, as we showed earlier, every time we sum over the variables in a clique corresponding to a leaf node, but only the variables which are not in the separator set, we are basically left with the marginal of the original distribution, but without the variables we summed over. This is all based on the fact that those variables exist only in that specific leaf node clique, otherwise this would not be possible. Therefore, it is clear that in the end we will only be left over with the variables in clique N and it will be $p(X_n)$.
+
 	
-	2. Since in the original distribution, there is no term $\frac{1}{Z}$, we can assume the global normalization constant has been "integrated" into some potential (this means that after finishing the forward elimination, the resulting potential will not need to be normalized by summing over its states). In any case, as we showed earlier, every time we sum over the variables in a clique corresponding to a leaf node, but only the variables which are not in the separator set, we are basically left with the marginal of the original distribution, but without the variables we summed over. This is all based on the fact that those variables exist only in that specific leaf node clique, otherwise this would not be possible. Therefore, it is clear that in the end we will only be left over with the variables in clique N and it will be $p(X_n)$.
-	
-	3. As we said earlier, at every step of the forward elimination, we are left with a junction tree which represents the marginal over all the variables that still exist in the junction tree. When we only had two cliques left over, the junction tree will represent $p(X_{n-1},X_n)$, which, if we assume the same symbolism as in part 1, where $x$ are the variables existing only in clique n, $s$ are the variables which exist in both clique n and n-1 and $y$ are the variables existing only in clique n-1, then we have $p(X_{n-1},X_n)=p(x,s,y)$. By now reversing the elimination schedule, we are summing over the variables $x$ and therefore we will be left over with the variables $s,y$ which are the variables in $X_{n-1}$ and therefore the clique will now represent the marginal $p(X_{n-1})$. Going another step back when we had still 3 cliques left over, they represented $p(X_n,X_{n-1},X_{n-2})$. We have already summed over the variables $x$, so we are left with $p(X_{n-1},X_{n-2})$. By repeating the process, we are 
+\subsection*{3.}
+As we said earlier, at every step of the forward elimination, we are left with a junction tree which represents the marginal over all the variables that still exist in the junction tree. When we only had two cliques left over, the junction tree will represent $p(X_{n-1},X_n)$, which, if we assume the same symbolism as in part 1, where $x$ are the variables existing only in clique n, $s$ are the variables which exist in both clique n and n-1 and $y$ are the variables existing only in clique n-1, then we have $p(X_{n-1},X_n)=p(x,s,y)$. By now reversing the elimination schedule, we are summing over the variables $x$ and therefore we will be left over with the variables $s,y$ which are the variables in $X_{n-1}$ and therefore the clique will now represent the marginal $p(X_{n-1})$. Going another step back when we had still 3 cliques left over, they represented $p(X_n,X_{n-1},X_{n-2})$. We have already summed over the variables $x$, so we are left with $p(X_{n-1},X_{n-2})$. By repeating the process, we are 
 left with $p(X_{n-2})$. Continuing, we can see how we are left with the marginals in every clique.
-	
-	4. By globally consistent, we mean that if cliques $X_i$ and $X_j$ share the variable $x_k$, then this must be true: $\sum_{X_i \SLASH x_k} \phi''(X_i) = \sum_{X_j \SLASH x_k} \phi''(X_j)$. However this is indeed true, since now $\phi''(X_i)=p(X_i),\phi''(X_j)=p(X_j)$, which means: $\sum_{X_i \SLASH x_k} p(X_i) = \sum_{X_j \SLASH x_k} p(X_j) \rightarrow p(x_k)=p(x_k)$. 
+
+\subsection*{4.}
+
+By globally consistent, we mean that if cliques $X_i$ and $X_j$ share the variable $x_k$, then this must be true: $\sum_{X_i \SLASH x_k} \phi''(X_i) = \sum_{X_j \SLASH x_k} \phi''(X_j)$. However this is indeed true, since now $\phi''(X_i)=p(X_i),\phi''(X_j)=p(X_j)$, which means: $\sum_{X_i \SLASH x_k} p(X_i) = \sum_{X_j \SLASH x_k} p(X_j) \rightarrow p(x_k)=p(x_k)$. 
 
 
 \end{document}

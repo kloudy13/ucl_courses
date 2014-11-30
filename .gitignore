@@ -6,3 +6,4 @@ graphical_models/group_repo
 *.aux
 *.log
 *.out
+*.backup
