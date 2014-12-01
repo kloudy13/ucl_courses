@@ -7,6 +7,7 @@ end
 function [] = prob74()
 
 load('airplane.mat')
+import brml.*
 
 %DEMOMDP demo of solving Markov Decision Process on a grid
 import brml.*
@@ -55,7 +56,7 @@ gam = 0.95; % discount factor
 %figure; imagesc(u); colorbar; title('utilities'); pause
 
 
-[xt xtm dtm]=assign(1:3); % assign the variables x(t), x(t-1), d(t-1) to some numbers
+[xt, xtm, dtm]=assign(1:3); % assign the variables x(t), x(t-1), d(t-1) to some numbers
 
 % define the transition potentials p(x(t)|x(t-1),d(t-1))
 tranpot=array([xt xtm dtm],p);
@@ -75,23 +76,27 @@ for valueloop=1:maxiterations
 	%imagesc(reshape(valpot.table,Gx,Gy)); colorbar; drawnow
 end
 
-valpot.table
 
 curr_pos = [1,13];
-deltas = [[1,0], [0,1],[-1,0],[-1,-1],[0,0]]
+deltas = [1,0; 0,1; -1,0; 0,-1; 0,0];
 
-best_path = []
-while(curr_pos(1) ~= 8 && curr_pos(2) ~= 4)
-    
-    for delta = deltas
+best_path = curr_pos;
+while(curr_pos(1) ~= 8 || curr_pos(2) ~= 4)
+    values = zeros(length(deltas),1);
+    for delta_nr = 1:length(deltas)
+        delta = deltas(delta_nr,:);
         new_pos = curr_pos + delta;
         if validgridposition(new_pos(1),new_pos(2),Gx,Gy)
-            values = [values valpot.table(st(new_pos(1), new_pos(2)))];
+            values(delta_nr) = valpot.table(st(new_pos(1), new_pos(2)));
+        else
+            values(delta_nr) = -inf;
         end
     end
     [~, max_index] = max(values);
-    curr_pos = deltas(max_index) + curr_pos;
-    best_path = [best_path curr_pos];
+    curr_pos = deltas(max_index,:) + curr_pos;
+    best_path = [best_path; curr_pos];
 end
+
+best_path
 
 end
