@@ -15,35 +15,7 @@ import brml.*
 S = Gx*Gy; % number of states on grid
 st = reshape(1:S,Gx,Gy); % assign each grid point a state
 
-A = 5;  % number of action (decision) states
-%[stay up down left right] = assign(1:A); % actions (decisions)
-stay =1;
-up =2;
-down =3;
-left =4;
-right=5;
-p = zeros(S,S,A); % initialise the transition p(xt|xtm,dtm) ie p(x(t)|x(t-1),d(t-1))
-
-% make a deterministic transition matrix on a 2D grid:
-for x = 1:Gx
-	for y = 1:Gy
-		p(st(x,y),st(x,y),stay)=1; % can stay in same state
-		if validgridposition(x+1,y,Gx,Gy)
-			p(st(x+1,y),st(x,y),right)=1;
-		end
-		if validgridposition(x-1,y,Gx,Gy)
-			p(st(x-1,y),st(x,y),left)=1;
-		end
-		if validgridposition(x,y+1,Gx,Gy)
-			p(st(x,y+1),st(x,y),up)=1;
-		end
-		if validgridposition(x,y-1,Gx,Gy)
-			p(st(x,y-1),st(x,y),down)=1;
-		end
-	end
-end
-% define utilities
-
+p = get_transition_matrix_det(Gx, Gy, st);
 u = zeros(S,1);
 for i=1:Gx
     for j=1:Gy
@@ -78,6 +50,49 @@ end
 
 
 curr_pos = [1,13];
+best_path = get_best_path(curr_pos, valpot, Gx, Gy, st)
+
+end
+
+function p = get_transition_matrix_det(Gx, Gy, st)
+import brml.*
+S = Gx*Gy; % number of states on grid
+
+A = 5;  % number of action (decision) states
+%[stay up down left right] = assign(1:A); % actions (decisions)
+stay =1;
+up =2;
+down =3;
+left =4;
+right=5;
+
+p = zeros(S,S,A); % initialise the transition p(xt|xtm,dtm) ie p(x(t)|x(t-1),d(t-1))
+
+% make a deterministic transition matrix on a 2D grid:
+for x = 1:Gx
+	for y = 1:Gy
+		p(st(x,y),st(x,y),stay)=1; % can stay in same state
+		if validgridposition(x+1,y,Gx,Gy)
+			p(st(x+1,y),st(x,y),right)=1;
+		end
+		if validgridposition(x-1,y,Gx,Gy)
+			p(st(x-1,y),st(x,y),left)=1;
+		end
+		if validgridposition(x,y+1,Gx,Gy)
+			p(st(x,y+1),st(x,y),up)=1;
+		end
+		if validgridposition(x,y-1,Gx,Gy)
+			p(st(x,y-1),st(x,y),down)=1;
+		end
+	end
+end
+
+end
+
+function best_path = get_best_path(curr_pos, valpot, Gx, Gy, st)
+
+import brml.*
+
 deltas = [1,0; 0,1; -1,0; 0,-1; 0,0];
 
 best_path = curr_pos;
@@ -98,5 +113,45 @@ while(curr_pos(1) ~= 8 || curr_pos(2) ~= 4)
 end
 
 best_path
+
+end
+
+function p = get_transition_matrix_nondet(Gx, Gy, st)
+import brml.*
+S = Gx*Gy; % number of states on grid
+
+A = 5;  % number of action (decision) states
+%[stay up down left right] = assign(1:A); % actions (decisions)
+stay =1;
+up =2;
+down =3;
+left =4;
+right=5;
+
+p = zeros(S,S,A); % initialise the transition p(xt|xtm,dtm) ie p(x(t)|x(t-1),d(t-1))
+
+% make a deterministic transition matrix on a 2D grid:
+for x = 1:Gx
+	for y = 1:Gy
+		p(st(x,y),st(x,y),stay)=1; % can stay in same state
+		if validgridposition(x+1,y,Gx,Gy)
+            if validgridposition(x,y+1,Gx,Gy)
+                p(st(x+1,y),st(x,y),right)=0.9;
+                p(st(x,y+1),st(x,y),right)=0.1;
+            else
+                p(st(x+1,y),st(x,y),right)=1;
+            end
+		end
+		if validgridposition(x-1,y,Gx,Gy)
+			p(st(x-1,y),st(x,y),left)=1;
+		end
+		if validgridposition(x,y+1,Gx,Gy)
+			p(st(x,y+1),st(x,y),up)=1;
+		end
+		if validgridposition(x,y-1,Gx,Gy)
+			p(st(x,y-1),st(x,y),down)=1;
+		end
+	end
+end
 
 end
