@@ -1,4 +1,4 @@
-function [Atree elimseq weight]=spantree_test(edgelistORmatrix)
+function [Atree elimseq weight]=spantree(edgelistORmatrix)
 %SPANTREE Find a spanning tree from an edge list (Prim's algorithm)
 % [Atree elimseq weight]=spantree(edgelistORmatrix)
 % The spanning tree is returned as an adjacency matrix, along with an elimination sequence and weight of the tree.

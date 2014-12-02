@@ -44,8 +44,3 @@ disp('After absorbing, transform back to original variables')
 jtpot2=changevar(jtpot2,newvars,oldvars);
 disp('All the cliques have the same normalisation, namely p(dys=yes):')
 clear Z; for i=1:length(jtpot2); Z2(i) = table(sumpot(jtpot2{i})); end; Z2
-
-
-
-
-

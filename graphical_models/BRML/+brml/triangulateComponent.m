@@ -1,10 +1,11 @@
-function [Atriangulated cl toowide]=triangulateComponent(A,varargin) % triangulate a single component
+function [Atriangulated cl toowide elimseq]=triangulateComponent(A,varargin) % triangulate a single component
 %TRIANGULATECOMPONENT triangulate a connected component
 %[Atriangulated cl toowide]=triangulateComponent(A,<maxtreedwidth>)
 % Atriangulated : triangulated graph adjacency matrix
 % cl.variables contains the variables in each clique
 % toowide : algorithm terminates abruptly if there is a clique exceeding maxtreewidth
 import brml.*
+elimseq=[];
 maxtreewidth=10e10;
 if nargin==2; maxtreewidth=varargin{1}; end
 Aleft=sparse(logical(A));
@@ -22,11 +23,13 @@ while sum(Aleft(:))>0 && ~done
     else
         cc=cc+1;
         elim=argmin(replace(neighboursize(Aleft),0,N)); % node with least neighbours
+        elimseq=[elimseq elim];
         neighb=neigh(Aleft,elim);% neighbours (not including self)
-        if length(neighb)>maxtreewidth; toowide=1; done=1; end            
+        if length(neighb)>maxtreewidth; toowide=1; done=1; end
         Aleft(elim,:)=0; Aleft(:,elim)=0; % remove elim from graph
         Aleft(neighb,neighb)=1; % add links between neighbours
         Atriangulated([elim neighb],[elim neighb])=1;
         cl(cc).variables=[elim neighb];
     end
 end
+elimseq=[elimseq nodesleft];

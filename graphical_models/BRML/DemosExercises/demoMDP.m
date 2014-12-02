@@ -6,12 +6,7 @@ S = Gx*Gy; % number of states on grid
 st = reshape(1:S,Gx,Gy); % assign each grid point a state
 
 A = 5;  % number of action (decision) states
-%[stay up down left right] = assign(1:A); % actions (decisions)
-stay =1;
-up =2;
-down =3;
-left =4;
-right=5;
+[stay up down left right] = assign(1:A); % actions (decisions)
 p = zeros(S,S,A); % initialise the transition p(xt|xtm,dtm) ie p(x(t)|x(t-1),d(t-1))
 
 % make a deterministic transition matrix on a 2D grid:

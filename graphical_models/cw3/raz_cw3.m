@@ -1,10 +1,11 @@
 function [] = raz_cw3()
 
-prob74()
+prob74a()
+prob74b()
 
 end
 
-function [] = prob74()
+function [] = prob74a()
 
 load('airplane.mat')
 import brml.*
@@ -23,7 +24,7 @@ for i=1:Gx
     end
 end
 
-gam = 0.95; % discount factor
+gam = 1.0; % discount factor
 
 %figure; imagesc(u); colorbar; title('utilities'); pause
 
@@ -47,6 +48,57 @@ for valueloop=1:maxiterations
 	oldvalue = valpot.table;
 	%imagesc(reshape(valpot.table,Gx,Gy)); colorbar; drawnow
 end
+
+
+curr_pos = [1,13];
+best_path = get_best_path(curr_pos, valpot, Gx, Gy, st)
+
+end
+
+function [] = prob74b()
+
+load('airplane.mat')
+import brml.*
+
+%DEMOMDP demo of solving Markov Decision Process on a grid
+import brml.*
+[Gx Gy] = size(U);  % two dimensional grid size
+S = Gx*Gy; % number of states on grid
+st = reshape(1:S,Gx,Gy); % assign each grid point a state
+
+p = get_transition_matrix_nondet(Gx, Gy, st);
+u = zeros(S,1);
+for i=1:Gx
+    for j=1:Gy
+        u(st(i,j)) = U(i,j);
+    end
+end
+
+gam = 1.0; % discount factor
+
+%figure; imagesc(u); colorbar; title('utilities'); pause
+
+
+[xt, xtm, dtm]=assign(1:3); % assign the variables x(t), x(t-1), d(t-1) to some numbers
+
+% define the transition potentials p(x(t)|x(t-1),d(t-1))
+tranpot=array([xt xtm dtm],p);
+% setup the value potential v(x(t))
+valpot=array(xt,ones(S,1)); % initial values
+
+maxiterations=100; tol=0.001; % termination criteria
+
+% Value Iteration:
+oldvalue=valpot.table;
+for valueloop=1:maxiterations
+	valueloop
+	tmppot = maxpot(sumpot(multpots([tranpot valpot]),xt),dtm);
+	valpot.table = u + gam*tmppot.table; % Bellman's recursion
+	if mean(abs(valpot.table-oldvalue))<tol; break; end % stop if converged
+	oldvalue = valpot.table;
+	%imagesc(reshape(valpot.table,Gx,Gy)); colorbar; drawnow
+end
+figure; bar3zcolor(reshape(valpot.table,Gx,Gy));
 
 
 curr_pos = [1,13];
@@ -153,5 +205,32 @@ for x = 1:Gx
 		end
 	end
 end
+
+end
+
+function best_path = get_best_path_nondet(curr_pos, valpot, Gx, Gy, st, p)
+
+import brml.*
+
+deltas = [1,0; 0,1; -1,0; 0,-1; 0,0];
+
+best_path = curr_pos;
+while(curr_pos(1) ~= 8 || curr_pos(2) ~= 4)
+    values = zeros(length(deltas),1);
+    for delta_nr = 1:length(deltas)
+        delta = deltas(delta_nr,:);
+        new_pos = curr_pos + delta;
+        if validgridposition(new_pos(1),new_pos(2),Gx,Gy)
+            values(delta_nr) = valpot.table(st(new_pos(1), new_pos(2)));
+        else
+            values(delta_nr) = -inf;
+        end
+    end
+    [~, max_index] = max(values);
+    curr_pos = deltas(max_index,:) + curr_pos;
+    best_path = [best_path; curr_pos];
+end
+
+best_path
 
 end

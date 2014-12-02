@@ -121,7 +121,7 @@ function [h,yy,zz] = arrow(varargin)
 % software to reproduce the figures in his image analysis text.
 
 [ver datestr]=version;
-disp('hi')
+
 if isoctave || datenum(datestr)>datenum('1-August-2014')
     myarrow(varargin{1},varargin{2}); return
 end
