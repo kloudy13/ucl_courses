@@ -1,7 +1,7 @@
 function [] = raz_cw3()
 
 prob74a()
-prob74b()
+%prob74b()
 
 end
 

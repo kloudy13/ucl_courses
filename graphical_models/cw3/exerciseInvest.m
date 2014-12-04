@@ -29,27 +29,85 @@ desired=1.5;
 [dec val]=optdec(epsilonA(1),epsilonB(1),desired,T,w(1),pars);
 fprintf('optimally place %f of wealth in asset A, giving expected wealth at time %d of %f\n',pars.DecisionValue(dec),T,val)
 
+end
+
 function [d1 val] = optdec(epsilonA1, epsilonB1, desired, T,w1,pars)
+
+import brml.*
 
 sizeW = length(pars.WealthValue);
 sizeEpsA = length(pars.epsilonAval);    
 sizeEpsB = length(pars.epsilonBval);    
 sizeD = length(pars.DecisionValue);  
-    
-pWtgWtmEpsD = zeros(sizeW, sizeW, sizeEpsA, sizeEpsB, sizeD);
+  
+maxW = max(pars.WealthValue);
+minW = min(pars.WealthValue);
 
-for wTm=1:sizeW
-   for epsAt=1:sizeEpsA
-       for epsBt=1:sizeEpsB
-            for decisionT=1:sizeD
-                wt = wtm*(decisionT*(1+epsAt)+(1-decisionT)*(1+epsBt));
-                pWtgWtmEpsD(wt, wtm, )
+% construct array p(wT | Wtm epsAt epsBt dTm)
+p = zeros(sizeW, sizeW, sizeEpsA, sizeEpsB, sizeD);
+
+
+for wTmI=1:sizeW
+   for epsAtI=1:sizeEpsA
+       for epsBtI=1:sizeEpsB
+            for dTmI=1:sizeD
+                %wT = pars.DecisionValue(dTi);
+                epsAt = pars.epsilonAval(epsAtI);
+                epsBt = pars.epsilonBval(epsBtI);
+                decT = pars.DecisionValue(dTmI);
+                wT = pars.WealthValue(wTmI)*(decT*(1+epsAt)+(1-decT)*(1+epsBt));
+                % find the index of wT in the array and round to the
+                % nearest square
+                wTI = round(wT * 5) + 1;
+                % truncate the value of wTI if it exceeds the max or min
+                % values
+                if(wT > maxW)
+                    wTI = 26;
+                end
+                if (wT < minW)
+                    wTI = 1;    
+                end
+                
+                p(wTI, wTmI, epsAtI, epsBtI, dTmI) = 1;
             end
        end
-
    end
-    
+end
+size(p)
+
+
+[epsAt, epsAtm, epsBt, epsBtm, wT, wTm, dTm] = assign(1:7);
+
+% construct arrays p(epsAT | epsATm) and p(epsBT | epsBTm)
+pEAgEA = array([epsAt epsAtm],pars.epsilonAtran);
+pEBgEB = array([epsBt epsBtm],pars.epsilonBtran);
+pWtgWtmEpsD = array([wT, wTm, epsAt, epsBt, dTm], p);
+
+gamEAtEBtWt = zeros(sizeEpsA, sizeEpsB, sizeW);
+for wI=1:sizeW
+   if(pars.WealthValue(wI) > desired* w1) 
+      gamEAtEBtWt(:,:,wI) = 10000 * ones(sizeEpsA, sizeEpsB);
+   end
 end
 
+% gamma message at time t
+gamEAtEBtWt = array([epsAt, epsBt, wT], gamEAtEBtWt);
+
+% potential of p(epsAT | epsATm) * p(epsBT | epsBTm) * p(wT | Wtm epsAt epsBt dTm)
+prodPot3 = multpots([pEAgEA, pEBgEB, pWtgWtmEpsD]);
+
+for t=1:T
+    [gamEAtEBtWt, maxStates] = maxpot (sumpot(multpots([prodPot3, gamEAtEBtWt]), [epsAt, epsBt, wT]), dTm);
+
+    % change labels from epsAtm, epsBtm, wTm --> epsAt, epsBtm wT
+    gamEAtEBtWt = array([epsAt, epsBt, wT], gamEAtEBtWt.table);
+end
+
+maxStates = reshape(maxStates,sizeEpsA, sizeEpsB, sizeW);
+
+w1I = round(w1 * 5) + 1;
+
+d1 = maxStates(epsilonA1, epsilonB1, w1I);
+val = gamEAtEBtWt.table(epsilonA1, epsilonB1, w1I);
 
 end
