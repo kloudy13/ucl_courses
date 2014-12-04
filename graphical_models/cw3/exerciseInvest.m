@@ -29,7 +29,27 @@ desired=1.5;
 [dec val]=optdec(epsilonA(1),epsilonB(1),desired,T,w(1),pars);
 fprintf('optimally place %f of wealth in asset A, giving expected wealth at time %d of %f\n',pars.DecisionValue(dec),T,val)
 
-function [d1 val] = optdec(epsilonA(1), epsilonB(1), desired, T,w1,pars)
+function [d1 val] = optdec(epsilonA1, epsilonB1, desired, T,w1,pars)
 
+sizeW = length(pars.WealthValue);
+sizeEpsA = length(pars.epsilonAval);    
+sizeEpsB = length(pars.epsilonBval);    
+sizeD = length(pars.DecisionValue);  
     
+pWtgWtmEpsD = zeros(sizeW, sizeW, sizeEpsA, sizeEpsB, sizeD);
+
+for wTm=1:sizeW
+   for epsAt=1:sizeEpsA
+       for epsBt=1:sizeEpsB
+            for decisionT=1:sizeD
+                wt = wtm*(decisionT*(1+epsAt)+(1-decisionT)*(1+epsBt));
+                pWtgWtmEpsD(wt, wtm, )
+            end
+       end
+
+   end
+    
+end
+
+
 end
