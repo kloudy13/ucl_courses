@@ -11,7 +11,7 @@ x = x-ones(nr_nodes, nr_visits);
 
 pots = cell(nr_nodes,1);
 
-
+% define the dependencies for each node.
 deps = cell(nr_nodes,1);
 deps{fuse} = [];
 deps{drum} = [];
@@ -28,7 +28,6 @@ for node=1:nr_nodes
     % filter x 
     parents = deps{node};
     nr_parents = length(parents);
-    new_x = x;
     if nr_parents > 0
         potTable = zeros(2 * ones(1,nr_parents+1));
         for state=0:2^nr_parents - 1
@@ -38,19 +37,21 @@ for node=1:nr_nodes
                 parent = parents(pI);
                 indicesToKeep = indicesToKeep .* (x(parent,:) == binState(pI));
             end 
-            new_x = x(:,indicesToKeep);
+            % convert from binary to decimal and filter non-zero values
+            indicesToKeep = indicesToKeep .* [1:nr_visits];
+            new_x = x(:,indicesToKeep(indicesToKeep > 0));
             
             if(nr_parents == 1)
-                potTable(:,binState(1)) = new_x;
+                potTable(:,binState(1)+1) = getPot(new_x, node)';
             end
             if(nr_parents == 2)
-                potTable(:,binState(1),binState(2)) = new_x;
+                potTable(:,binState(1)+1,binState(2)+1) = getPot(new_x, node);
             end
             if(nr_parents == 3)
-                potTable(:,binState(1),binState(2),binState(3)) = new_x;
+                potTable(:,binState(1)+1,binState(2)+1,binState(3)+1) = getPot(new_x, node);
             end
         end
-        pots{node} = array([node parents], getPot(potTable, node)); 
+        pots{node} = array([node parents], potTable); 
     end
     
     if nr_parents == 0
@@ -58,13 +59,35 @@ for node=1:nr_nodes
     end
 end
 
+% compute joint probability
+joint = pots{1};
+for node=2:nr_nodes
+    joint = multpots([joint pots{node}]);
+end
 
+% compute the posterior of the problems on the faults
+joint
+
+jointFuse = sumpot(joint, [drum toner paper roller])
+
+posterior = condpot(joint, [fuse], [burn quality wrinkled mult jam])
+
+no = 1;
+yes = 2;
+fuseState = yes;
+burnState = yes;
+qualityState = no; 
+wrinkledState = no;
+multState = no;
+jamState = yes;
+
+posterior.table(fuseState, burnState, qualityState, wrinkledState, multState, jamState)
 
 end
 
 function pot = getPot(x, node)
-[nr_nodes, nr_visits] = size(x);
-pot = [sum(x(node,:)) nr_visits - sum(x(node,:))];
+[~, nr_visits_filtered] = size(x);
+pot = [nr_visits_filtered - sum(x(node,:)) sum(x(node,:))];
 pot = pot ./ sum(pot);
 end
 

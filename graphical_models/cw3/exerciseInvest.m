@@ -98,7 +98,7 @@ prodPot3 = multpots([pEAgEA, pEBgEB, pWtgWtmEpsD]);
 
 for t=1:T
     [gamEAtEBtWt, maxStates] = maxpot (sumpot(multpots([prodPot3, gamEAtEBtWt]), [epsAt, epsBt, wT]), dTm);
-
+    gamEAtEBtWt.table
     % change labels from epsAtm, epsBtm, wTm --> epsAt, epsBtm wT
     gamEAtEBtWt = array([epsAt, epsBt, wT], gamEAtEBtWt.table);
 end
