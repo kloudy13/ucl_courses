@@ -33,17 +33,29 @@ for node=1:nr_nodes
         potTable = zeros(2 * ones(1,nr_parents+1));
         for state=0:2^nr_parents - 1
             binState = binary2vector(state,nr_parents);
-            indicesToKeep = ones()
+            indicesToKeep = ones(1, nr_visits);
             for pI=1:nr_parents
                 parent = parents(pI);
                 indicesToKeep = indicesToKeep .* (x(parent,:) == binState(pI));
             end 
             new_x = x(:,indicesToKeep);
-            potTable(:,binState)
+            
+            if(nr_parents == 1)
+                potTable(:,binState(1)) = new_x;
+            end
+            if(nr_parents == 2)
+                potTable(:,binState(1),binState(2)) = new_x;
+            end
+            if(nr_parents == 3)
+                potTable(:,binState(1),binState(2),binState(3)) = new_x;
+            end
         end
+        pots{node} = array([node parents], getPot(potTable, node)); 
     end
     
-    pots{node} = getPot(x, node)
+    if nr_parents == 0
+        pots{node} = array([node], getPot(x, node));
+    end
 end
 
 
@@ -51,8 +63,9 @@ end
 end
 
 function pot = getPot(x, node)
+[nr_nodes, nr_visits] = size(x);
 pot = [sum(x(node,:)) nr_visits - sum(x(node,:))];
-pot = array([node], pot ./ sum(pot));
+pot = pot ./ sum(pot);
 end
 
 function out = binary2vector(data,nBits)
