@@ -154,6 +154,30 @@ inner sep=0]
   \theta_{24} \\
   \theta_{34}
  \end{pmatrix}
- $$
+ $$\\
+ 
+ \begin{tabular}{ c | c | c | c | c }
+ \hline
+ \multicolumn{2}{c|}{Registration} &  \multicolumn{3}{|c}{Ranking}\\
+ \hline
+ $A$ & $B$ & $A < B$ & $A = B$ & $A > B$\\
+  \hline
+ Rigid & No registration & 78\% & 22\% & -\\
+   \hline
+ Affine & No registration & 84\% & 16\% & -\\
+   \hline
+ Affine + FFD & No registration & 94\% & 6\% & -\\
+   \hline
+ Affine & Rigid & 13\% & 78\% & 9\%\\
+   \hline
+ Affine + FFD & Rigid & 94\% & 6\% & -\\
+   \hline
+ Affine + FFD & Affine & 94\% & 6\% & -\\
+   \hline
+\end{tabular}
+
+
+
+
  
 \end{document}

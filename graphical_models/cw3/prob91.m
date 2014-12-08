@@ -50,7 +50,7 @@ for node=1:nr_nodes
             if(nr_parents == 3)
                 potTable(:,binState(1)+1,binState(2)+1,binState(3)+1) = getPot(new_x, node);
             end
-        end
+            endq
         pots{node} = array([node parents], potTable); 
     end
     
