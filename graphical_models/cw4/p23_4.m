@@ -1,13 +1,9 @@
-function demoHMMbigram
+function p23_4()
 %DEMOHMMBIGRAM demo of HHM for the bigram typing scenario
 import brml.*
 load freq % http://www.data-compression.com/english.shtml
 l = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' '};
 load typing % get the A transition and B emission matrices
-%figure(1); imagesc(A); set(gca,'xtick',1:27); set(gca,'xticklabel',l); set(gca,'ytick',1:27); set(gca,'yticklabel',l)
-%colorbar; colormap hot; title('transition')
-%figure(2); imagesc(B); set(gca,'xtick',1:27); set(gca,'xticklabel',l); set(gca,'ytick',1:27); set(gca,'yticklabel',l)
-%colorbar; colormap hot; title('emission')
 ph1=condp(ones(27,1)); % uniform first hidden state distribution
 
 %s = 'kezrninh'; Nmax=200; % observed sequence
@@ -52,5 +48,25 @@ for t=1:Nmax
             val=0; break
         end
     end
-    if val; disp([num2str(t) ':' str]);end
+    if val; 
+        disp([num2str(t) ':' str]);
+        maxH = maxstatearray(t,:);
+        logPHV = log(cell2mat(maxval.table(t)))
+    end
+end
+
+pHH = A
+pVH = B
+pH = ph1
+%logp(pHH, pVH, pH, v, maxH)
+
+
+
+end
+
+% calculates log p(h1:27 | v1:27)
+function logp(pHH, pVH, pH, v, maxH)
+
+
+
 end
