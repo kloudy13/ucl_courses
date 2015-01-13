@@ -21,7 +21,6 @@ urlcolor=black
 \usepackage{amsmath,graphicx}
 \usepackage{epstopdf}
 \usepackage{caption}
-% \usepackage{bbm}
 \usepackage{subcaption}
 % highlight - useful for TODOs and similar
 \usepackage{color}
@@ -100,7 +99,13 @@ Student Number: 14110861\\
 \belowdisplayshortskip=7pt plus 3pt minus 4pt
 \maketitle{}
 
+\section*{Contributions}
+
+Both of us solved all the problems on our own and compared the final answers. The solutions (apart from last question) were written in \LaTeX $\;$by Konstantinos with minor additions/brush-up by Razvan. 
+
 \section*{Exercise 12.2}
+
+\subsection*{1.}
 
 We want to solve the following optimization problem:
 
@@ -126,10 +131,39 @@ We rewrite the optimization problem in the following way:
 \mathbf{w}^\ast&=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
 \end{align*}
 
+\subsection*{2.}
+
 The hierarchical belief network is the following:
 
-	\begin{center} \includegraphics[width=0.5\textwidth]{c12e2beliefnetwork}\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=1.5,auto,swap]
 
+  \node[vertex,minimum size=33 pt] (m) at (-1,1) {$M$};      
+  \node[vertex,minimum size=33 pt] (w) at (-1,-1) {$\textbf{w}$};   
+  \node[vertex,minimum size=33 pt] (y) at (1,-1) {$\textbf{y}_{t+1}$};      
+  \node[vertex,minimum size=33 pt] (x) at (1,1) {$\textbf{x}_t$}; 
+  
+%   % define the round nodes
+%   \node[vertex,blue] (1a) at (-3.75877048314363,0) {$1$};
+%   
+%   \node[ellipse,draw, minimum size=25pt] (1a) at (-3,0) {$x_1,x_2,x_3$} ;
+%   \node[rectangle,thick,draw=black] (2a) at (0,0) {$x_1,x_3$} ;
+%   \node[ellipse,draw, minimum size=25pt] (3a) at (3,0) {$x_1,x_3,x_4$} ;
+
+
+  
+  %neighbouring graph
+        
+  \draw[->, line width=1]  (m)  -> (w);
+  \draw[->, line width=1]  (w)  -> (y);
+  \draw[->, line width=1]  (x)  -> (y);
+  
+  \draw (0,-1.5) -- (2,-1.5) -- (2,1.5) -- (0,1.5) -- (0,-1.5);
+  \node at (1.7,-1.35) {1:T-1};  
+ 
+\end{tikzpicture}
+\end{center}
+	
 We initially start with equation 12.4.5:
 
 $$p(M|\mathbf{x}_{1:T-1},\mathbf{y}_{2:T})=\frac{p(\mathbf{x}_{1:T-1},\mathbf{y}_{2:T}|M)p(M)}{p(\mathbf{x}_{1:T-1},\mathbf{y}_{2:T})}$$
@@ -157,6 +191,8 @@ $$\mathbf{A}=\mathbf{I}+\sum_{t=1}^{T-1}\frac{1}{\sigma_{t+1}^2}\mathbf{x}_t\mat
 We also note that the first term is not affected by the model choice and therefore is not required in the computation. Therefore, we only need to calculate for each model the following and then find the maximum value:
 
 $$\mathbf{b}^\top\mathbf{A}^{-1}\mathbf{b}-\log \det (\mathbf{A})$$
+
+\subsection*{3.}
 
 The MATLAB code used:
 
@@ -188,13 +224,18 @@ ans =
 
 \section*{Exercise 12.3}
 
+\subsection*{1.}
 We want to show that:
 
-$$\frac{1}{(2\pi \alpha^{-1})^{K/2}}e^{-\frac{\alpha}{2}\mathbf{w}^\top \mathbf{w}}\frac{1}{(2\pi \sigma^{2})^{N/2}}e^{-\frac{1}{2\sigma^2}\sum_n (y^n-\mathbf{w}^\top \phi(x^n))^2}=\frac{1}{(2\pi \alpha^{-1})^{K/2}}\frac{1}{(2\pi \sigma^{2})^{N/2}}e^{-\frac{1}{2\sigma^2}\sum_n(y^n)^2}e^{-\frac{1}{2}\mathbf{w}^\top\mathbf{A}\mathbf{w}+\mathbf{b}^\top\mathbf{w}}$$
+\begin{align*}\frac{1}{(2\pi \alpha^{-1})^{K/2}}e^{-\frac{\alpha}{2}\mathbf{w}^\top \mathbf{w}}\frac{1}{(2\pi \sigma^{2})^{N/2}}e^{-\frac{1}{2\sigma^2}\sum_n (y^n-\mathbf{w}^\top \phi(x^n))^2} =
+\frac{1}{(2\pi \alpha^{-1})^{K/2}}\frac{1}{(2\pi \sigma^{2})^{N/2}}e^{-\frac{1}{2\sigma^2}\sum_n(y^n)^2}e^{-\frac{1}{2}\mathbf{w}^\top\mathbf{A}\mathbf{w}+\mathbf{b}^\top\mathbf{w}}
+\end{align*}
 
-By continual equivalences we have:
-\fontsize{10pt}{10pt}\selectfont
-\begin{align*}
+We prove this using the following equivalences:
+
+
+\fontsize{11pt}{11pt}\selectfont
+\hspace*{-2cm}\vbox{\begin{align*}
 \text{Removing the fractions:}&\\
 e^{-\frac{\alpha}{2}\mathbf{w}^\top \mathbf{w}}e^{-\frac{1}{2\sigma^2}\sum_n (y^n-\mathbf{w}^\top \phi(x^n))^2}&=e^{-\frac{1}{2\sigma^2}\sum_n(y^n)^2}e^{-\frac{1}{2}\mathbf{w}^\top\mathbf{A}\mathbf{w}+\mathbf{b}^\top\mathbf{w}}\\
 \text{Taking the logarithm:}&\\
@@ -209,8 +250,9 @@ e^{-\frac{\alpha}{2}\mathbf{w}^\top \mathbf{w}}e^{-\frac{1}{2\sigma^2}\sum_n (y^
 -\frac{1}{2}\mathbf{w}^\top\left(\alpha \mathbf{I} + \frac{1}{\sigma^2}\sum_n\phi(x^n)\phi(x^n)^\top \right) \mathbf{w}+\mathbf{w}^\top\mathbf{b}&=-\frac{1}{2}\mathbf{w}^\top\mathbf{A}\mathbf{w}+\mathbf{b}^\top\mathbf{w}\\
 \text{Substituting with the definition of A and rearranging:}&\\
 -\frac{1}{2}\mathbf{w}^\top\mathbf{A} \mathbf{w}+\mathbf{w}^\top\mathbf{b}&=-\frac{1}{2}\mathbf{w}^\top\mathbf{A}\mathbf{w}+\mathbf{w}^\top\mathbf{b}\\
-\end{align*}
+\end{align*}}
 
+\subsection*{2.}
 We now want to find out the expression for $2\log p(y^1,...,y^N|x^1,...,x^N,K)$:
 \fontsize{12pt}{12pt}\selectfont
 \begin{align*}
@@ -226,7 +268,9 @@ We now want to find out the expression for $2\log p(y^1,...,y^N|x^1,...,x^N,K)$:
 K\log(\alpha) -N\log (2\pi \sigma^{2}) -\frac{1}{\sigma^2}\sum_n(y^n)^2 -\log(\det(\mathbf{A})) + \mathbf{b}^\top\mathbf{A}^{-1}\mathbf{b} &\\
 \end{align*}
 
+\subsection*{3.}
 
+We didn't understand what we were meant to do for this point.
 
 \section*{Exercise 23.4}
 
@@ -354,16 +398,24 @@ We have:
 \int_{-\inf}^{+\inf} \log \frac{e^{-\frac{1}{2\sigma_p^2}\mathbf{x'}^\top\mathbf{x'}}}{e^{-\frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x}}}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}'&=\\
 \int_{-\inf}^{+\inf} \left(-\frac{1}{2\sigma_p^2}\mathbf{x'}^\top\mathbf{x'}+\frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x}\right)\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}'&=\\
 \int_{-\inf}^{+\inf} -\frac{1}{2\sigma_p^2}\mathbf{x'}^\top\mathbf{x'}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}' + \int_{-\inf}^{+\inf}\frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} \mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}'&=\\
--\frac{1}{2\sigma_p^2}\int_{-\inf}^{+\inf} \mathbf{x'}^\top\mathbf{x'}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}' + \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} \int_{-\inf}^{+\inf} \mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}'&=\\
-\text{However, we know that }\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})\text{ is a distribution, therefore}:&\\
--\frac{1}{2\sigma_p^2}\int_{-\inf}^{+\inf} \mathbf{x'}^\top\mathbf{x'}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}' + \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} &=\\
-\text{Lastly, based on the result 8.5, with }\mathbf{A}=\mathbf{I},\mathbf{\mu}=\mathbf{x},\mathbf{\Sigma}=\sigma_q^2\mathbf{I} \text{ we have}:&\\
+-\frac{1}{2\sigma_p^2}\int_{-\inf}^{+\inf} \mathbf{x'}^\top\mathbf{x'}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}' + \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} \int_{-\inf}^{+\inf} \mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}'
+\end{align*}
+
+However, we know that $\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})$ is a distribution, therefore we get:
+
+\begin{align*}
+-\frac{1}{2\sigma_p^2}\int_{-\inf}^{+\inf} \mathbf{x'}^\top\mathbf{x'}\mathcal{N}(\mathbf{x}'|\mathbf{x},\sigma_q^2\mathbf{I})d\mathbf{x}' + \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x}
+\end{align*}
+
+Lastly, based on the result 8.5, with $\mathbf{A}=\mathbf{I},\mathbf{\mu}=\mathbf{x},\mathbf{\Sigma}=\sigma_q^2\mathbf{I}$ we have:
+
+\begin{align*}
 -\frac{1}{2\sigma_p^2} \left( \mathbf{x}^\top\mathbf{I}\mathbf{x}+ trace(\mathbf{I}\sigma_q^2\mathbf{I}) \right)+ \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} &=\\
 -\frac{1}{2\sigma_p^2} \left( \mathbf{x}^\top\mathbf{x}+ N\sigma_q^2 \right)+ \frac{1}{2\sigma_p^2}\mathbf{x}^\top\mathbf{x} &=\\
 -\frac{N\sigma_q^2}{2\sigma_p^2} &\\
 \end{align*}
 
-
+This value shows us the mean log difference in probability between the samples and the real probability with regards to the sampler distribution. Ideally we would want $p(x')=p(x)$ which means we would want this value to be as close to 0 as possible. We have no control over $\sigma_p$ and as the dimensions increase, so does $N$, which means that we need to decrease $\sigma_q$, in order to keep the sampler a good approximation of the real distribution, however, this limits the searching of the space to be very slow, since now one can take smaller steps. This means that we now have a trade off between speed and accuracy.
 
 \section*{Exercise 27.6}
 
@@ -432,11 +484,15 @@ fprintf('Mean absolute errors in the marginal estimate for:\nlambda = 0.1: %f\nl
 \end{lstlisting}
 
 And MATLAB outputs:\\\\
-Mean absolute errors in the marginal estimate for:\\
-lambda = 0.1: 0.035778\\
-lambda = 1: \ 0.035945\\
-lambda = 10: 0.173067\\
-lambda = 20: 0.149106\\\\
+Mean absolute errors in the marginal estimate for:\\\\
+\begin{tabular}{ c | c }                   
+  lambda & Mean absolute error \\
+  \hline  
+  0.1 & 0.035778\\
+  1 & 0.035945\\
+  10 & 0.173067\\
+  20 & 0.149106\\\\
+\end{tabular}\\\\
 
 We can see that with the higher lambda values, the error has increased by a fair amount. This is due to an extreme case of what appears in figure 27.7(b) of the book. When the transition matrix is near deterministic, it is extremely overpowering and has the effect of 'locking' into a state. For example, with the transition matrix:
 
@@ -446,7 +502,163 @@ where e is a very small value, the trend will be that it might lock to either al
 
 \section*{Exercise 27.9}
 
+\subsection*{1.}
 
+For solving part 1 we try to find the probabilities of each player having a particular ability (+2, ..., -2). We denote $Aces\ beats\ Bruisers$ by variable $Aces$. Therefore, we need to calculate
+
+\begin{equation}
+ p(\textbf{a},\textbf{b}|\textbf{t}^a, \textbf{t}^b,Aces)\propto p(\textbf{a},\textbf{b}, \textbf{t}^a, \textbf{t}^b, Aces) = p(Aces| \textbf{t}^a, \textbf{t}^b, \textbf{a}, \textbf{b})p(\textbf{t}^a, \textbf{t}^b,\textbf{a},\textbf{b})
+\end{equation}
+
+We assume that $\textbf{t}^a$,$\textbf{t}^b$, $\textbf{a}$, $\textbf{b}$ are independent and we also assume flat priors for $\textbf{t}^a$ and $\textbf{t}^a$. This gives:
+
+\begin{equation}
+ p(\textbf{a},\textbf{b}|\textbf{t}^a, \textbf{t}^b,Aces)\propto p(Aces| \textbf{t}^a, \textbf{t}^b, \textbf{a}, \textbf{b}) p(\textbf{a}) p(\textbf{b})
+\end{equation}
+
+This equation suggests the update rule on p($\textbf{a}$, $\textbf{b}$ ) given the data entry $(\textbf{t}^a, \textbf{t}^b,Aces)$. However, since representing p($\textbf{a}$,$\textbf{b}$), is computationally intractable, we only update the ability of one player at a time, having the probabilities of abilities of the other players set. This gives the following update rule:
+
+\begin{equation}
+  p(\textbf{a}_i | \textbf{a}_{\setminus i}, \textbf{b}, \textbf{t}^a, \textbf{t}^b,Aces) \propto p(Aces| \textbf{t}^a, \textbf{t}^b, \textbf{a}, \textbf{b}) p(\textbf{a}_i)
+\end{equation}
+
+A similar update rule is applied for $p(\textbf{b}_i)$. For each player, we update its ability using the data entries from all the games he played, ignoring the games which he didn't play in. We then move on to update the next player, and so on. We iterate this framework 200 times in order for the probabilities to converge. At the end, we compute the final ability of each player $i$ by calculating the expected value of $\textbf{a}_i$ using the scoring system. The 10 best players for Acers and Bruisers and the expected values of their scores are:
+
+
+\begin{tabular}{ c | c || c | c }
+%   \hline                       
+  Aces Players & Score  & Bruisers Players & Score \\
+  \hline  
+   11 &    2.00 &  13 &    2.00\\
+   10 &   2.00 &   7 &  1.99\\
+    2 &   2.00 &  16 &  1.00\\
+   12 &   2.00 &  12 &  1.00\\
+    7 &   1.98 &   5 &  0.99\\
+   13 &   1.00 &   2 &  0.00\\
+   20 &   1.00 &   9 &  0.00\\
+    1 &   0.99 &  19 &   0.00\\
+   16 &   0.00 &  20 &  0.00\\
+   19 &   0.00 &   1 &  0.00\\
+%   \hline  
+\end{tabular}\\\\
+
+
+The following code in Matlab computes the final probabilities and outputs the 10 best players for Acers:
+
+\begin{lstlisting}
+function p27_9()
+  load('soccer.mat')
+  games = game; % rename variable to games
+  
+  [~, G] = size(game); % nr of games
+  P=20; % nr of players
+  L=5; % nr of levels
+  pA=ones(P,L) .* 1/L;
+  pB=ones(P,L) .* 1/L;
+    
+  iterations = 200;
+  
+  for i=1:iterations
+    i
+    % for each player go through all the games in which he took part and update
+    % p(a_i)
+    for playerA=1:P
+      for g=1:G % for each game
+        if (ismember(playerA, game(g).teamAces))
+          pA(playerA,:) = pA(playerA,:) .* calcAbilityLik(games(g), playerA, pA, pB, 'A');
+        end
+      end
+      % normalise pA
+      pA(playerA,:) = pA(playerA,:) ./ sum(pA(playerA,:));
+    end
+    % do the same for players in team B
+    for playerB=1:P
+      for g=1:G  % for each game
+        if (ismember(playerB, game(g).teamBruisers))
+          pB(playerB,:) = pB(playerB,:) .* calcAbilityLik(games(g), playerB, pA, pB, 'B');
+        end
+      end
+      % normalise pB
+      pB(playerB,:) = pB(playerB,:) ./ sum(pB(playerB,:));
+    end
+  end
+  
+abScores = [2,1,0,-1,-2]';
+% expected ability for each player
+expAbilA = pA * abScores;
+expAbilB = pB * abScores;
+
+[bestScoresA, bestPlayersA] = sort(expAbilA, 'descend');
+[bestScoresB, bestPlayersB] = sort(expAbilB, 'descend');
+
+best10PlayersA = bestPlayersA(1:10)
+best10PlayersB = bestPlayersB(1:10)
+
+end
+
+% calculates ability likelihood p(a_i | Aces, a_{\i}, b, t^a, t^b)
+function abilLike =  calcAbilityLik(game, player, pA, pB, team)
+abScores = [2,1,0,-1,-2]';
+[P,L] = size(pA);
+abilLike = zeros(1,L);
+if strcmp(team, 'A')
+  for l=1:L
+    sum = 0;
+    pA2 = pA;
+    pA2(player,:) = zeros(1,L);
+    pA2(player,l) = 1;
+    for i=1:10
+      sum = sum + (pA2(game.teamAces(i),:) - pB(game.teamBruisers(i),:)) * abScores;
+    end
+    if(game.AcesWin == 1)
+      abilLike(l) = 1/(1+exp(-sum));
+    else
+      % Aces lost
+      abilLike(l) = 1 - 1/(1+exp(-sum));
+    end
+  end
+end
+
+if strcmp(team, 'B')
+  for l=1:L
+    sum = 0;
+    pB2 = pB;
+    pB2(player,:) = zeros(1,L);
+    pB2(player,l) = 1;
+    for i=1:10
+      sum = sum + (pA(game.teamAces(i),:) - pB2(game.teamBruisers(i),:)) * abScores;
+    end
+    if(game.AcesWin == 1)
+      abilLike(l) = 1/(1+exp(-sum));
+    else
+      % Aces lost
+      abilLike(l) = 1 - 1/(1+exp(-sum));
+    end
+  end
+end
+
+  
+end
+\end{lstlisting}
+
+\subsection*{2.}
+
+Regardless of what players the Bruisers field, the best strategy for Aces is to field their 10 best players in order to maximise their chances of winning, according to the current model. This is because:
+
+\begin{align}
+  \argmax_{\textbf{a}} p(Aces\ beats\ Bruisers | \textbf{t}^a, \textbf{t}^b, \textbf{a}, \textbf{b}) &=\\
+  \argmax_{\textbf{a}} \sigma \left( \sum_{i=1}^{10}\left( a_{t_i^a}-b_{t_i^b} \right) \right)
+\end{align}
+
+However, the sigmoid is an increasing function, so maximising it is the same as maximising it's argument:
+
+\begin{align}
+ \argmax_{\textbf{a}} \sum_{i=1}^{10}\left( a_{t_i^a}-b_{t_i^b} \right) &=\\
+  \argmax_{\textbf{a}} \sum_{i=1}^{10} a_{t_i^a} -  \sum_{i=1}^{10}b_{t_i^b} &=\\
+  \argmax_{\textbf{a}}  \sum_{i=1}^{10} a_{t_i^a}
+\end{align}
+
+So maximising the chances of Acer winning is the same as maximising the sum of the abilities of the 10 players. This suggests that the best strategy is to choose the 10 best players we found in part 1.
 
 \end{document}
 
