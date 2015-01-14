@@ -1,4 +1,4 @@
-function [sumRes, resJ] = BallStickSSD(x, Avox, bvals, qhat)
+function [sumRes, S] = BallStickSSD(x, Avox, bvals, qhat)
 
 % Extract the parameters
 S0 = x(1);
@@ -16,9 +16,5 @@ S = S0*(f*exp(-bvals * diff .* (fibDotGrad .^2)) + (1-f)*exp(-bvals*diff));
 
 % Compute the sum of squared differences
 sumRes = sum((Avox - S').^2);
-
-
-
-
 
 end
