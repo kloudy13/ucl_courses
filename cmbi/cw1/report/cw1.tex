@@ -95,10 +95,10 @@ Student Number: 14060166\\
 \maketitle{}
 
 \section*{Q1.1.1}
-\begin{float}
+\begin{figure}
 \includegraphics[scale=0.5]{figures/q111.eps}
-\caption{Data points for the }
-\end{float}
+\caption{Data points for the voxel at position $(52,62,25)$}
+\end{figure}
 
 
 %Think about the quality of the fit you obtain above.  First, eyeball the fit 
@@ -118,13 +118,13 @@ The final value of RESNORM (1.2242e+12) is clearly above the kind of value we wo
 %typical value of RESNORM to be?  
 
 The expected value of RESNORM would be given by the formula:
-$$E\left[\sum_{i=1}^{33} (X_i - \bar{X}_i)\right] = E\left[\sum_{i=1}^{33} \sigma_i^2\right] = 33 * \sigma^2 $$
+$$E\left[\sum_{i=1}^{33} (X_i - \bar{X}_i)^2\right] = E\left[\sum_{i=1}^{33} \sigma_i^2\right] = 33 * \sigma^2 $$
 Since sigma is between 5000-6000 this means that $ 8.25*10^8 < RESNORM < 1.188 * 10^9$.
 
 %Are the parameter values sensible given the 
 %quantities they represent?	
 
-Some of the parameter values we obtain are not sensible. For example, the value of $f$ is negative, meaning that we give too much weight to the $S_E$ component of the model.
+Some of the parameter values we obtain are not sensible. For example, the value of $f$ is negative, meaning that we give too much weight to the $S_E$ component of the model, extrapolating outside the intended $(0,1)$ range. The value of S0 is also really high, when in fact it should be around $1.1 * 10^5$. 
 
 \end{document}
 

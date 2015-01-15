@@ -1,4 +1,7 @@
-function main()
+function q1()
+end
+
+function q111()
 
 fid = fopen('dwi.Bfloat','r','b');
 dwis = fread(fid, 'float');
