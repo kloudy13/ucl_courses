@@ -8,8 +8,8 @@ H = 112;
 [dwis, qhat, bvals] = preprocessing(NR_IMAGES, W,H);
 
 %q111(dwis, qhat, bvals);
-%q112(dwis, qhat, bvals);
-q113(dwis, qhat, bvals);
+q112(dwis, qhat, bvals);
+%q113(dwis, qhat, bvals);
 %q116(dwis, qhat, bvals);
 end
 
@@ -68,7 +68,7 @@ function q112(dwis, qhat, bvals)
 Avox = dwis(:,52,62,25);
 
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) tan(pi*(2.5e-01 - 0.5)) 0 0];
+startx = [sqrt(7.5e+05) sqrt(3e-03) q1TransInv(2.5e-01) 0 0];
 
 % Define various options for the non-linear fitting algorithm
 h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
@@ -82,7 +82,7 @@ RESNOM
 
 % apply the transformations
 [S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
-parameter_hat = [ S0^2 d^2 atan(f)/pi+0.5 theta phi]
+parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi]
 
 h = eyeball(Avox, parameter_hat, bvals, qhat);
 
@@ -93,7 +93,7 @@ function q113(dwis, qhat, bvals)
 
 Avox = dwis(:,52,62,25);
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) tan(pi*(2.5e-01 - 0.5)) 0 0];
+startx = [sqrt(7.5e+05) sqrt(3e-03) q1TransInv(2.5e-01) 0 0];
 
 NR_ITERATIONS = 100;
 
@@ -146,7 +146,7 @@ end
 parameter_hat = minParHat;
 % apply the transformations
 [S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
-parameter_hat = [ S0^2 d^2 atan(f)/pi+0.5 theta phi]
+parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi]
 
 h = eyeball(Avox, parameter_hat, bvals, qhat);
 
@@ -171,4 +171,12 @@ ub = [inf, inf, 1,  inf, inf ];
 [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], h, Avox, bvals, qhat)
 
 
+end
+
+function y = q1Trans(x)
+    y = 1/(1+exp(-x));
+end
+
+function x = q1TransInv(y)
+    x = -log(1/y - 1)
 end
