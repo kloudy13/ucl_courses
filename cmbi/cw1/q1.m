@@ -9,6 +9,7 @@ H = 112;
 
 %q111(dwis, qhat, bvals);
 q112(dwis, qhat, bvals);
+%q113(dwis, qhat, bvals);
 %q116(dwis, qhat, bvals);
 end
 
@@ -67,7 +68,7 @@ function q112(dwis, qhat, bvals)
 Avox = dwis(:,52,62,25);
 
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) tan(2.5e-01) 0 0];
+startx = [sqrt(7.5e+05) sqrt(3e-03) tan(pi*(2.5e-01 - 0.5)) 0 0];
 
 % Define various options for the non-linear fitting algorithm
 h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
@@ -91,25 +92,60 @@ end
 function q113(dwis, qhat, bvals)
 
 Avox = dwis(:,52,62,25);
-
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) tan(2.5e-01) 0 0];
+startx = [sqrt(7.5e+05) sqrt(3e-03) tan(pi*(2.5e-01 - 0.5)) 0 0];
 
-% Define various options for the non-linear fitting algorithm
-h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
-    'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'iter');
+NR_ITERATIONS = 1000;
+
+minSSD = inf;
+minCounter = 0;
+tol = 1e-8;
+for i=1:NR_ITERATIONS
+    i
+    sigma = eye(5);
+    sigma(1,1) = sqrt(7.5e+05);
+    sigma(2,2) = sqrt(3e-03);
+    sigma(3,3) = 2^20; % needs a high number since atan transformation is then used
+    sigma(4,4) = 2*pi;
+    sigma(5,5) = 2*pi;
+
+    deltaX = mvnrnd(zeros(1,5),sigma);
+    newStartX = startx + deltaX;
+    
+    % Define various options for the non-linear fitting algorithm
+    h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
+        'TolX', 1e-10, 'TolFun', 1e-10);
 
 
-% Now run the fitting
-% RESNOM is the value of the function at the solution found (parameter_hat)
-[parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', startx, h, Avox, bvals, qhat);
-RESNOM
+    % Now run the fitting
+    % RESNOM is the value of the function at the solution found (parameter_hat)
+    [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', newStartX, h, Avox, bvals, qhat);
+    %RESNOM
 
-% apply the transformations
-[S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
-parameter_hat = [ S0^2 d^2 atan(f) theta phi]
+    % apply the transformations
+    [S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
+    parameter_hat = [ S0^2 d^2 atan(f) theta phi];
+ 
+    if(abs(minSSD - RESNOM) < tol)
+       % found a previous minimum
+       minSSD
+       minCounter = minCounter + 1; 
+    end
+    
+    if (abs(minSSD - RESNOM) > tol && minSSD > RESNOM)
+        % found a new global minimum
+       minSSD = RESNOM;
+       minSSD
+       minCounter = 0;
+       minParHat = parameter_hat;
+    end
+    
 
-h = eyeball(Avox, parameter_hat, bvals, qhat);
+    
+end
+
+h = eyeball(Avox, minParHat, bvals, qhat);
+
 
 end
 

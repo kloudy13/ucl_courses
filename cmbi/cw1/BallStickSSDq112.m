@@ -8,7 +8,7 @@ S0 = x(1)^2;
 diff = x(2)^2;
 
 % f must be between 0,1 .. so apply the inverse tangent function
-f = atan(x(3));
+f = atan(x(3))/pi+0.5;
 %f = x(3);
 
 % leave theta and phi unconstrained
