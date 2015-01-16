@@ -140,7 +140,7 @@ We did the following transformations to ensure the parameters stayed within the 
  \item $d \to d^2$
  \item $f \to atan(f)$
 \end{itemize}
-
+\hilight{wrong results .. update}
 We apply the inverse transformation at the beginning in order to maintain the starting point. This time the algorithm converges to the following parameters: $S0 = 113204, d=21521 f=-1.51, \theta=-12.89,  \phi=-47.31$ with a RESNORM of 9.48e+10. There is an 11-fold improvement from the unconstrained version and by eyeballing the data we find that the value for $S0$ is what we expected. However, the $d$ parameter is too large while $f$ is really close to zero, suggesting that the whole brain is mostly made of balls, with almost no sticks. The improvement in the SSD value is because of the fact that parameters were constrained to physically realistic bounds. However, the expected RESNORM (around $10^9$) is still much lower that out current value, suggesting that the algorithm again got stuck in a local minima.
 
 \section*{Q1.1.3}

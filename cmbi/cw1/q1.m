@@ -8,8 +8,8 @@ H = 112;
 [dwis, qhat, bvals] = preprocessing(NR_IMAGES, W,H);
 
 %q111(dwis, qhat, bvals);
-q112(dwis, qhat, bvals);
-%q113(dwis, qhat, bvals);
+%q112(dwis, qhat, bvals);
+q113(dwis, qhat, bvals);
 %q116(dwis, qhat, bvals);
 end
 
@@ -82,7 +82,7 @@ RESNOM
 
 % apply the transformations
 [S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
-parameter_hat = [ S0^2 d^2 atan(f) theta phi]
+parameter_hat = [ S0^2 d^2 atan(f)/pi+0.5 theta phi]
 
 h = eyeball(Avox, parameter_hat, bvals, qhat);
 
@@ -95,7 +95,7 @@ Avox = dwis(:,52,62,25);
 % apply the inverse tranformations: sqrt and tangent
 startx = [sqrt(7.5e+05) sqrt(3e-03) tan(pi*(2.5e-01 - 0.5)) 0 0];
 
-NR_ITERATIONS = 1000;
+NR_ITERATIONS = 100;
 
 minSSD = inf;
 minCounter = 0;
@@ -105,7 +105,7 @@ for i=1:NR_ITERATIONS
     sigma = eye(5);
     sigma(1,1) = sqrt(7.5e+05);
     sigma(2,2) = sqrt(3e-03);
-    sigma(3,3) = 2^20; % needs a high number since atan transformation is then used
+    sigma(3,3) = 5;
     sigma(4,4) = 2*pi;
     sigma(5,5) = 2*pi;
 
@@ -143,8 +143,12 @@ for i=1:NR_ITERATIONS
 
     
 end
+parameter_hat = minParHat;
+% apply the transformations
+[S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
+parameter_hat = [ S0^2 d^2 atan(f)/pi+0.5 theta phi]
 
-h = eyeball(Avox, minParHat, bvals, qhat);
+h = eyeball(Avox, parameter_hat, bvals, qhat);
 
 
 end
