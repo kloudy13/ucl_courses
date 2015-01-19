@@ -95,24 +95,23 @@ function q113(dwis, qhat, bvals)
 %Avox = dwis(:,52,62,25); given voxel
 %Avox = dwis(:,23,40,18);
 Avox = dwis(:,70,64,14);
+nr_iterations = 100;
 
-[parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals);
+[parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations)
 
 h = eyeball(Avox, parameter_hat, bvals, qhat);
 
 end
 
-function [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals)
+function [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations)
 
 % apply the inverse tranformations: sqrt and tangent
 startx = [sqrt(7.5e+05) sqrt(3e-03) q1TransInv(2.5e-01) 0 0];
 
-NR_ITERATIONS = 10;
-
 minSSD = inf;
 minCounter = 0;
 globTol = 0.1;
-for i=1:NR_ITERATIONS
+for i=1:nr_iterations
     
     sigma = eye(5);
     sigma(1,1) = sqrt(7.5e+05);
@@ -137,14 +136,14 @@ for i=1:NR_ITERATIONS
     parameter_hat(4:5) = mod(parameter_hat(4:5),2*pi);
     if(abs(minSSD - RESNOM) < globTol && sum(abs(parameter_hat - minParHat)) < globTol )
        % found a previous minimum
-       minSSD
+       %minSSD
        minCounter = minCounter + 1; 
     end
     
     if (abs(minSSD - RESNOM) > globTol && minSSD > RESNOM)
         % found a new global minimum
        minSSD = RESNOM;
-       minSSD
+       %minSSD
        minCounter = 0;
        minParHat = parameter_hat;
     end
@@ -170,11 +169,13 @@ mapD = zeros(W,H);
 mapF = zeros(W,H);
 mapRESNORM = zeros(W,H);
 
+nr_iterations = 1;
+
 for w=1:W
     w
     for h=1:H   
         vox = dwis(:,w,h,SLICE_NR);
-        [parameter_hat, mapRESNORM(w,h)] = fitVoxGlob1(vox, qhat, bvals);
+        [parameter_hat, mapRESNORM(w,h)] = fitVoxGlob1(vox, qhat, bvals, nr_iterations);
         [mapS0(w,h), mapD(w,h), mapF(w,h), theta, phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
         
     end
