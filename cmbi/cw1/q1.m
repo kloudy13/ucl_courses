@@ -9,8 +9,8 @@ H = 112;
 
 %q111(dwis, qhat, bvals);
 %q112(dwis, qhat, bvals);
-%q113(dwis, qhat, bvals);
-q114(dwis, qhat, bvals);
+q113(dwis, qhat, bvals);
+%q114(dwis, qhat, bvals);
 %q116(dwis, qhat, bvals);
 end
 
@@ -92,7 +92,7 @@ end
 
 function q113(dwis, qhat, bvals)
 
-%Avox = dwis(:,52,62,25); given voxel
+%Avox = dwis(:,52,62,25); %given voxel
 %Avox = dwis(:,23,40,18);
 Avox = dwis(:,70,64,14);
 nr_iterations = 100;
@@ -104,21 +104,25 @@ h = eyeball(Avox, parameter_hat, bvals, qhat);
 end
 
 function [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations)
+% for use in q111-q114, uses a predefined starting point
 
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) q1TransInv(2.5e-01) 0 0];
+startx = [1.1e+05 2e-03 0.5 0 0];
+startx = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)) startx(4) startx(5)];
 
 minSSD = inf;
 minCounter = 0;
-globTol = 0.1;
+globTol = 0.01;
+bigSSDCount = 0;
+minParHat = zeros(1,5);
 for i=1:nr_iterations
     
     sigma = eye(5);
-    sigma(1,1) = sqrt(7.5e+05);
-    sigma(2,2) = sqrt(3e-03);
-    sigma(3,3) = 5;
-    sigma(4,4) = pi;
-    sigma(5,5) = pi;
+    sigma(1,1) = 10*sqrt(7.5e+05);
+    sigma(2,2) = 10*sqrt(3e-03);
+    sigma(3,3) = 10*5;
+    sigma(4,4) = 2*pi;
+    sigma(5,5) = 2*pi;
 
     deltaX = mvnrnd(zeros(1,5),sigma);
     newStartX = startx + deltaX;
@@ -133,8 +137,15 @@ for i=1:nr_iterations
     [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', newStartX, h, Avox, bvals, qhat);
     %RESNOM
 
+       
     parameter_hat(4:5) = mod(parameter_hat(4:5),2*pi);
-    if(abs(minSSD - RESNOM) < globTol && sum(abs(parameter_hat - minParHat)) < globTol )
+    if (abs(minSSD - RESNOM) > globTol)
+        abs(minSSD - RESNOM)
+        bigSSDCount = bigSSDCount+1;
+        sum(abs(parameter_hat - minParHat))
+    end
+    
+    if(abs(minSSD - RESNOM) <= globTol)
        % found a previous minimum
        %minSSD
        minCounter = minCounter + 1; 
