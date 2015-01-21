@@ -9,8 +9,8 @@ H = 112;
 
 %q111(dwis, qhat, bvals);
 %q112(dwis, qhat, bvals);
-q113(dwis, qhat, bvals);
-%q114(dwis, qhat, bvals);
+%q113(dwis, qhat, bvals);
+q114(dwis, qhat, bvals);
 %q116(dwis, qhat, bvals);
 end
 
@@ -93,8 +93,11 @@ end
 function q113(dwis, qhat, bvals)
 
 %Avox = dwis(:,52,62,25); %given voxel
-%Avox = dwis(:,23,40,18);
-Avox = dwis(:,70,64,14);
+Avox = dwis(:,23,40,18);
+%Avox = dwis(:,70,64,14);
+%Avox = dwis(:,111,111,14);
+
+
 nr_iterations = 100;
 
 [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations)
@@ -112,17 +115,19 @@ startx = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)) startx(4) startx
 
 minSSD = inf;
 minCounter = 0;
-globTol = 0.01;
+globTol = 0.1; % 0.1 recommended
 bigSSDCount = 0;
 minParHat = zeros(1,5);
+sigAngleScale = 2; % 2 recommended
+sigmaScale = 10; % 10 recommended
 for i=1:nr_iterations
     
     sigma = eye(5);
-    sigma(1,1) = 10*sqrt(7.5e+05);
-    sigma(2,2) = 10*sqrt(3e-03);
-    sigma(3,3) = 10*5;
-    sigma(4,4) = 2*pi;
-    sigma(5,5) = 2*pi;
+    sigma(1,1) = sigmaScale*sqrt(7.5e+05);
+    sigma(2,2) = sigmaScale*sqrt(3e-03);
+    sigma(3,3) = sigmaScale*5;
+    sigma(4,4) = sigAngleScale *pi;
+    sigma(5,5) = sigAngleScale *pi;
 
     deltaX = mvnrnd(zeros(1,5),sigma);
     newStartX = startx + deltaX;
@@ -175,22 +180,29 @@ SLICE_NR=25;
 
 [NR_IMAGES,W,H,~] = size(dwis);
 
+W = 5;
+H = 5;
+
 mapS0 = zeros(W,H);
 mapD = zeros(W,H);
 mapF = zeros(W,H);
 mapRESNORM = zeros(W,H);
+mapTheta = zeros(W,H);
+mapPhi = zeros(W,H);
 
-nr_iterations = 1;
+nr_iterations = 1; % 2 recommended p(global_min) = 0.87
 
 for w=1:W
     w
     for h=1:H   
         vox = dwis(:,w,h,SLICE_NR);
         [parameter_hat, mapRESNORM(w,h)] = fitVoxGlob1(vox, qhat, bvals, nr_iterations);
-        [mapS0(w,h), mapD(w,h), mapF(w,h), theta, phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
+        [mapS0(w,h), mapD(w,h), mapF(w,h), mapTheta(w,h), mapPhi(w,h)] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
         
     end
 end
+
+
 
 
 
