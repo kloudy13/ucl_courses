@@ -92,11 +92,12 @@ end
 
 function q113(dwis, qhat, bvals)
 
-%Avox = dwis(:,52,62,25); %given voxel
-Avox = dwis(:,23,40,18);
+Avox = dwis(:,52,62,25); %given voxel
+%Avox = dwis(:,63,40,18);
 %Avox = dwis(:,70,64,14);
 %Avox = dwis(:,111,111,14);
-
+%Avox = dwis(:,99,63,25);
+%Avox = dwis(:,32,15,25);
 
 nr_iterations = 100;
 
@@ -112,6 +113,16 @@ function [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations)
 % apply the inverse tranformations: sqrt and tangent
 startx = [1.1e+05 2e-03 0.5 0 0];
 startx = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)) startx(4) startx(5)];
+
+    
+% Define various options for the non-linear fitting algorithm
+%options = optimset('MaxFunEvals', 20000, 'Algorithm', 'quasi-newton',...
+%    'TolX', 1e-10, 'TolFun', 1e-10);
+
+%options = optimset('MaxFunEvals', 20000, 'Algorithm', 'active-set');
+
+% tried tol of 1e-08 to se if we still get errors
+options = optimoptions(@fminunc,'Algorithm','quasi-newton', 'MaxFunEvals', 20000,'TolX', 1e-8, 'TolFun', 1e-8); 
 
 minSSD = inf;
 minCounter = 0;
@@ -131,21 +142,15 @@ for i=1:nr_iterations
 
     deltaX = mvnrnd(zeros(1,5),sigma);
     newStartX = startx + deltaX;
-    
-    % Define various options for the non-linear fitting algorithm
-    h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
-        'TolX', 1e-10, 'TolFun', 1e-10);
-
 
     % Now run the fitting
     % RESNOM is the value of the function at the solution found (parameter_hat)
-    [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', newStartX, h, Avox, bvals, qhat);
+    [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', newStartX, options, Avox, bvals, qhat);
     %RESNOM
 
-       
     parameter_hat(4:5) = mod(parameter_hat(4:5),2*pi);
     if (abs(minSSD - RESNOM) > globTol)
-        abs(minSSD - RESNOM)
+        %abs(minSSD - RESNOM)
         bigSSDCount = bigSSDCount+1;
         sum(abs(parameter_hat - minParHat))
     end
@@ -169,10 +174,12 @@ for i=1:nr_iterations
 end
 parameter_hat = minParHat;
 % apply the transformations
-[S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
+[S0, d, f, theta, phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
 parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi];
-
+%minSSD
+%minCounter
 end
+
 
 function q114(dwis, qhat, bvals)
 
@@ -192,7 +199,7 @@ mapPhi = zeros(W,H);
 
 nr_iterations = 2; % 2 recommended p(global_min) = 0.87
 
-for w=1:W
+for w=1:W % errors on w=99 h=63
     w
     for h=1:H   
         vox = dwis(:,w,h,SLICE_NR);
@@ -211,6 +218,19 @@ function q115(dwis, qhat, bvals)
 
 
 end
+
+function [parameter_hat, minSSD] = fitVoxLin(voxSig, qhat, bvals)
+
+N = size(voxSig);
+
+[qX, qY, qZ] = deal(qhat(1,:),qhat(2,:),qhat(3,:));
+
+Y = [ones(N,1), -bvals .* qX.^2, -2*bvals.*qX.*qY, -2*bvals.*qX.*qZ, -bvals.*qY.^2, -2*bvals.*qY.*qZ, -bvals.*qZ.^2];
+
+X = Y\log(voxSig);
+
+end
+
 
 function q116(dwis, qhat, bvals)
 
