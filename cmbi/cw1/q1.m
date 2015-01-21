@@ -180,8 +180,8 @@ SLICE_NR=25;
 
 [NR_IMAGES,W,H,~] = size(dwis);
 
-W = 5;
-H = 5;
+%W = 5;
+%H = 5;
 
 mapS0 = zeros(W,H);
 mapD = zeros(W,H);
@@ -190,7 +190,7 @@ mapRESNORM = zeros(W,H);
 mapTheta = zeros(W,H);
 mapPhi = zeros(W,H);
 
-nr_iterations = 1; % 2 recommended p(global_min) = 0.87
+nr_iterations = 2; % 2 recommended p(global_min) = 0.87
 
 for w=1:W
     w
@@ -202,7 +202,11 @@ for w=1:W
     end
 end
 
+save('q114', 'mapS0', 'mapD', 'mapF', 'mapRESNORM', 'mapTheta', 'mapPhi');
 
+end
+
+function q115(dwis, qhat, bvals)
 
 
 
