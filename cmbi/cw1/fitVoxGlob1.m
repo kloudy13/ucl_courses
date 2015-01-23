@@ -1,4 +1,4 @@
-function [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations, startx)
+function [parameter_hat, minSSD, minCounter] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations, startx)
 % for use in q111-q114, uses a predefined starting point
 
 % apply the inverse tranformations: sqrt and tangent
@@ -13,7 +13,7 @@ startx = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)) startx(4) startx
 %options = optimset('MaxFunEvals', 20000, 'Algorithm', 'active-set');
 
 % tried tol of 1e-08 to se if we still get errors
-options = optimoptions(@fminunc,'Algorithm','quasi-newton', 'MaxFunEvals', 20000,'TolX', 1e-10, 'TolFun', 1e-10); 
+options = optimoptions(@fminunc,'Algorithm','quasi-newton', 'MaxFunEvals', 20000,'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'off'); 
 
 minSSD = inf;
 minCounter = 0;
@@ -40,7 +40,7 @@ for i=1:nr_iterations
       try
         % Now run the fitting ... if the gradient method fails because of
         % approximation errors on the Hessian, try again. Happends very rarely
-        [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSDq112', newStartX, options, Avox, bvals, qhat);
+        [parameter_hat, RESNOM, ~, ~] = fminunc('BallStickSSDq112', newStartX, options, Avox, bvals, qhat);
         succeeded = true;
       catch
       end

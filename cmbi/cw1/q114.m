@@ -23,15 +23,7 @@ for w=1:W % errors on w=99 h=63
     w
     for h=1:H   
         vox = dwis(:,w,h,SLICE_NR);
-        succeeded = false;
-        while ~succeeded
-          try
-
-            [parameter_hat, mapRESNORM(w,h)] = fitVoxGlob1(vox, qhat, bvals, nr_iterations, startx);
-            succeeded = true;
-          catch
-          end
-        end
+        [parameter_hat, mapRESNORM(w,h)] = fitVoxGlob1(vox, qhat, bvals, nr_iterations, startx);
         [mapS0(w,h), mapD(w,h), mapF(w,h), mapTheta(w,h), mapPhi(w,h)] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
         
     end

@@ -20,12 +20,13 @@ EigVals = diag(EigVals);
 
 principalDir = EigVect(:,maxEigPos);
 
-theta = acos(principalDir(3));
-phi = acos(principalDir(1)/sin(theta));
+%theta = acos(principalDir(3));
+%phi = acos(principalDir(1)/sin(theta));
 
+[phi, theta]= cart2sph(principalDir(1),principalDir(2),principalDir(3))
 S0 = exp(logS0);
 
-d = sum(D(:));
+d = mean(D(:));
 
 EigValsScaled = EigVals/ sum(EigVals);
 
