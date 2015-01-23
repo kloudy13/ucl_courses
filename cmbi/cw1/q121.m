@@ -19,14 +19,38 @@ startx = [1.1e+05 2e-03 0.5 0 0];
 [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations, startx)
 predicted = BallStick(parameter_hat, bvals, qhat);
 
-T = 10;
-sigma = sum((Avox - predicted).^2)/(NR_IMAGES-length(predicted));
+T = 100;
+NR_PARAMS = length(parameter_hat);
+sigma = sqrt(sum((Avox - predicted').^2)/(NR_IMAGES-NR_PARAMS));
+options = optimoptions(@fminunc,'Algorithm','quasi-newton', 'MaxFunEvals', 20000,'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'off'); 
+
 
 parameter_sample = zeros(T,5);
 for t=1:T
   Ahat = predicted + normrnd(0, sigma, size(predicted));
-  parameter_sample(t,:) = %use fminunc directly (Ahat, qhat, bvals, nr_iterations, startx);
+  need to apply tranformations before calling fminunc
+  parameter_sample(t,:) = fminunc('BallStickSSDq112', startx, options, Ahat', bvals, qhat);
+  h = eyeball(Ahat, parameter_sample(t,:), bvals, qhat);
 end
 
-std(parameter_sample)
+for p=1:NR_PARAMS
+    calcUncertainty(parameter_sample(:,p));    
+end
+
+end
+
+function calcUncertainty(parameter_sample)
+% input is a 1D parameter vector, respresenting samples for one of the 5
+% parameters
+
+mx = mean(parameter_sample);
+sx = std(parameter_sample);
+N = length(parameter_sample);
+
+% Approximative
+upper_limit=mx+1.66*sx;
+lower_limit=mx-1.66*sx;
+%plot(1:N,parameter_sample,'o',1:N,upper_limit,1:N,lower_limit)
+
+hist(parameter_sample, 20)
 end

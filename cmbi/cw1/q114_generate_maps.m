@@ -17,7 +17,7 @@ mapS0 = mapS0 .* mask;
 figure('name','Fafter');
 imshow(mapF, [min(mapF(:)), max(mapF(:))])
 
-fibDirXMap = mapF .* cos(mapPhi) .* sin(mapTheta); 
+fibDirXMap = mapF .* cos(mapPhi) .* sin(mapTheta);
 fibDirYMap = mapF .* sin(mapPhi) .* sin(mapTheta);
 fibDirXMap = fibDirXMap .* mask;
 fibDirYMap = fibDirYMap .* mask;
