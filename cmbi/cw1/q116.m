@@ -1,5 +1,7 @@
 function q116(dwis, qhat, bvals)
 
+[dwis, qhat, bvals] = q1Preprocessing();
+
 Avox = dwis(:,52,62,25);
 
 % Define a starting point for the non-linear fit
@@ -13,7 +15,9 @@ lb = [0  , 0  , 0, -inf, -inf];
 ub = [inf, inf, 1,  inf,  inf]; 
 % Now run the fitting
 % RESNOM is the value of the function at the solution found (parameter_hat)
+tic
 [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], h, Avox, bvals, qhat)
-
+toc
+% plots the computation time
 
 end

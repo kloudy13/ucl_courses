@@ -22,22 +22,26 @@ fibDirYMap = mapF .* sin(mapPhi) .* sin(mapTheta);
 fibDirXMap = fibDirXMap .* mask;
 fibDirYMap = fibDirYMap .* mask;
 
-figure('name','S0');
+h = figure('name','S0');
 imshow(mapS0, [min(mapS0(:)), max(mapS0(:))])
-figure('name','D');
+hgexport(h, 'report/figures/q1/q114-S0.eps');
+
+h = figure('name','D');
 imshow(mapD, [min(mapD(:)), max(mapD(:))])
-figure('name','F');
+hgexport(h, 'report/figures/q1/q114-D.eps');
+
+h = figure('name','F');
 imshow(mapF, [min(mapF(:)), max(mapF(:))])
-figure('name','RESNORM');
+hgexport(h, 'report/figures/q1/q114-F.eps');
+
+h = figure('name','RESNORM');
 imshow(mapRESNORM, [maskThreshMin, 300*maskThreshMin])
+hgexport(h, 'report/figures/q1/q114-RESNORM.eps');
 
 
-
-figure('name','fbDir');
+h = figure('name','fbDir');
 quiver(fibDirXMap, fibDirYMap);
-
-
-
+hgexport(h, 'report/figures/q1/q114-fbDir.eps');
 
 
 end
