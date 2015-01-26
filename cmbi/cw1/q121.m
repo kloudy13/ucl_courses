@@ -17,7 +17,7 @@ two_sigma = zeros(NR_PARAMS, 2);
 conf95 = zeros(NR_PARAMS, 2);
 
 for p=1:NR_PARAMS
-    [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(parameter_sample(:,p));
+    [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(parameter_sample(:,p), 1);
     filename = sprintf('report/figures/q2/q121-p%d.eps', p);
     hgexport(h, filename);
 end
