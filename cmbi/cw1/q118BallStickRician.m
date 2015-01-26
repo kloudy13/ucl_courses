@@ -16,7 +16,8 @@ S = S0*(f*exp(-bvals * diff .* (fibDotGrad .^2)) + (1-f)*exp(-bvals*diff));
 
 % Compute the Riccian noise model
 
-I0 = log(besselj(0,(A .* S)/sigma));
-sumRes = sum(-(Avox.^2 + S.^2)/(2*sigma^2)) + sum(I0);
+I0 = log(besselj(0,(Avox' .* S)/sigma^2));
+sumRes = sum(-(Avox'.^2 + S.^2)/(2*sigma^2)) + sum(I0);
 
+sumRes = abs(sumRes);
 end

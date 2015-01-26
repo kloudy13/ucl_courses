@@ -1,4 +1,4 @@
-function q121(dwis, qhat, bvals)
+function [two_sigma, conf95] = q121()
 
 [dwis, qhat, bvals] = q1Preprocessing();
 
@@ -13,9 +13,11 @@ Avox = dwis(:,52,62,25); %given voxel
 %sample_data(dwis, qhat, bvals, Avox);
 
 load('q121.mat');
+two_sigma = zeros(NR_PARAMS, 2);
+conf95 = zeros(NR_PARAMS, 2);
 
 for p=1:NR_PARAMS
-    h = q12calcUncertainty(parameter_sample(:,p));
+    [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(parameter_sample(:,p));
     filename = sprintf('report/figures/q2/q121-p%d.eps', p);
     hgexport(h, filename);
 end

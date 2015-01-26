@@ -1,4 +1,4 @@
-function h = q12calcUncertainty(parameter_sample)
+function [h, twoSigma, conf95] = q12calcUncertainty(parameter_sample)
 % input is a 1D parameter vector, respresenting samples for one of the 5
 % parameters
 
@@ -15,14 +15,18 @@ lower_limit=mx-1.96*sx/sqrt(N);
 sorted_samples = sort(parameter_sample);
 [lower_limit, upper_limit] = deal(sorted_samples(floor(0.025*N)),sorted_samples(ceil(0.975*N)));  
 
-[lower_limit, upper_limit]
+twoSigma = [mx - sx, mx + sx];
+conf95 = [lower_limit, upper_limit];
+
 h = figure
 hist(parameter_sample, 20)
 maxY = ylim;
 hold on
-plot([lower_limit, upper_limit], 1.05*[maxY(2), maxY(2)],'k--o')
+plot(conf95, 1.05*[maxY(2), maxY(2)],'k--o')
 %plot([lower_limit, upper_limit], [70,70],'k--o')
 hold on
-plot([mx - sx, mx + sx], 1.1*[maxY(2), maxY(2)], 'r--o')
+plot(twoSigma, 1.1*[maxY(2), maxY(2)], 'r--o')
 legend('p(x|A)','95% range','2 sigma range');
+
+
 end

@@ -1,11 +1,11 @@
-function q122()
+function [two_sigma, conf95] = q122()
 
 [dwis, qhat, bvals] = q1Preprocessing();
 
 Avox = dwis(:,52,62,25);
 
 NR_PARAMS = 3;
-NR_SAMPLES = 200;
+NR_SAMPLES = 100000;
 sigmaQ = [10^3, 0.0001 0.1];
 
 params = [1.1e+05 2e-03 0.5 0 0];
@@ -16,8 +16,12 @@ for p=1:NR_PARAMS
   acc_rate
 end
 
+save('q122.mat', 'samples');
+
+two_sigma = zeros(NR_PARAMS, 2);
+conf95 = zeros(NR_PARAMS, 2);
 for p=1:NR_PARAMS
-    h = q12calcUncertainty(samples(p,:));  
+    [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(samples(p,:));  
     filename = sprintf('report/figures/q2/q122-p%d.eps', p);
     hgexport(h, filename);
 end
