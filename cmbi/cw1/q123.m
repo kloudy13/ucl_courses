@@ -12,7 +12,7 @@ nr_iterations = 20;
 [two_sigmaParBoot, conf95ParBoot] = q121Conf();
 [two_sigmaMCMC, conf95MCMC] = q122Conf();
 
-for p=2:2 %1:NR_PARAMS
+for p=1:NR_PARAMS
     h = figure
     %plot(twoSigmaLap(:,p), [1,1]);
     %hold on
