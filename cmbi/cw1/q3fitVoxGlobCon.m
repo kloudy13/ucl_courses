@@ -15,27 +15,32 @@ ub = [inf, inf, 1,  inf,  inf];
 options = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
     'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'iter');
 
-minSSD = inf;
+[~, minSSD] = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], options, Avox, bvals, qhat);
+
 minCounter = 0;
 globTol = 0.1; % 0.1 recommended
 bigSSDCount = 0;
-minParHat = zeros(1,5);
+minParHat = startx;
 sigAngleScale = 2; % 2 recommended
 sigmaScale = 10; % 10 recommended
 
 for i=1:nr_iterations
     
     sigma = eye(5);
-    sigma(1,1) = 1000;
-    sigma(2,2) = 0.001;
-    sigma(3,3) = 1;
+    sigma(1,1) = 0.15;
+    sigma(2,2) = 1e-09;
+    sigma(3,3) = 0.15;
     sigma(4,4) = pi;
     sigma(5,5) = pi;
 
-    deltaX = mvnrnd(zeros(1,5),sigma);
+    deltaX = mvnrnd(zeros(1,5),sigma.^2);
     newStartX = startx + deltaX;
+    startingSSD = BallStickSSD(newStartX, Avox, bvals, qhat)
 
-
+    if(newStartX(1) < 0 || newStartX(2) < 0 || abs(newStartX(3) - 0.5) > 0.5)
+       display('newStartX out of bounds'); 
+    end
+    
     succeeded = false;
     while ~succeeded
       try
