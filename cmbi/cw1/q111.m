@@ -16,6 +16,7 @@ h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
 % RESNOM is the value of the function at the solution found (parameter_hat)
 [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSD', startx, h, Avox, bvals, qhat)
 
-eyeball(Avox, parameter_hat, bvals, qhat);
+predicted = BallStick(parameter_hat, bvals, qhat);
+eyeball(Avox, predicted, bvals, qhat);
 
 end

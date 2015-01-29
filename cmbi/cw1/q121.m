@@ -51,8 +51,6 @@ for t=1:T
   Ahat = predicted + normrnd(0, sigma, size(predicted));
   % Now run the fitting
   parameter_sample(t,:) = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], options, Ahat', bvals, qhat);
- 
-  %h = eyeball(Ahat, parameter_sample(t,:), bvals, qhat);
 end
 
 save('q121.mat', 'parameter_sample');

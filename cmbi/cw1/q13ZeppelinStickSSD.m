@@ -1,4 +1,4 @@
-function [sumRes, S] = ZeppelinStickSSD(x, Avox, bvals, qhat)
+function [sumRes, S] = q13ZeppelinStickSSD(x, Avox, bvals, qhat)
 
 % Extract the parameters
 S0 = x(1);
@@ -6,6 +6,8 @@ diff = x(2);
 f = x(3);
 theta = x(4);
 phi = x(5);
+lam1 = x(6);
+lam2 = x(7);
 
 % Synthesize the signals
 fibDir = [cos(phi)*sin(theta) sin(phi)*sin(theta) cos(theta)];

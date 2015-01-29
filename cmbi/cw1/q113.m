@@ -13,6 +13,7 @@ nr_iterations = 100;
 startx = [1.1e+05 2e-03 0.5 0 0];
 [parameter_hat, minSSD] = fitVoxGlob1(Avox, qhat, bvals, nr_iterations, startx)
 
-h = eyeball(Avox, parameter_hat, bvals, qhat);
+predicted = BallStick(parameter_hat, bvals, qhat);
+h = eyeball(Avox, predicted, bvals, qhat);
 
 end

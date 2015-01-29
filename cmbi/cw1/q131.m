@@ -21,14 +21,28 @@ h = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
 % S0 d f theta phi
 
 nr_iterations = 5;
+lb = [0  , 0  , 0, -inf, -inf];
+ub = [inf, inf, 1,  inf,  inf]; 
+fminconOptions = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
+    'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'iter');
+
+sigma = eye(5);
+sigma(1,1) = 0.15;
+sigma(2,2) = 1e-09;
+sigma(3,3) = 0.15;
+sigma(4,4) = pi;
+sigma(5,5) = pi;
+model = 'BallStickSSD';
+
 % Now run the fitting
 % RESNOM is the value of the function at the solution found (parameter_hat)
 tic
-[paramsBallStick, SSDDBallStick] = q3fitVoxGlobCon(signals, qhat, bvals, nr_iterations, parameter_hat1)
+[paramsBallStick, SSDDBallStick] = q3fitVoxGlobCon(signals, qhat, bvals, nr_iterations, parameter_hat1, lb, ub, sigma, fminconOptions, model)
 toc
 % plots the computation time
 
-h = eyeball(signals, paramsBallStick, bvals, qhat);
+predicted = BallStick(paramsBallStick, bvals, qhat);
+h = eyeball(signals, predicted, bvals, qhat);
 
 save('q131BallStick.mat', 'paramsBallStick', 'SSDDBallStick');
 

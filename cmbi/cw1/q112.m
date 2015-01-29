@@ -22,7 +22,8 @@ RESNOM
 toc
 parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi]
 
-h = eyeball(Avox, parameter_hat, bvals, qhat);
+predicted = BallStick(parameter_hat, bvals, qhat);
+h = eyeball(Avox, predicted, bvals, qhat);
 
 
 end
