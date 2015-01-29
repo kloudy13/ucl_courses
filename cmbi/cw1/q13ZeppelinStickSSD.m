@@ -6,7 +6,7 @@ diff = x(2);
 f = x(3);
 theta = x(4);
 phi = x(5);
-lam1 = x(6);
+lam1 = x(6); % lam1 > lam2
 lam2 = x(7);
 
 % Synthesize the signals

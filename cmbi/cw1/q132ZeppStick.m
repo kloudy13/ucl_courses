@@ -12,8 +12,8 @@ h = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
 % S0 d f theta phi
 
 nr_iterations = 5;
-lb = [0  , 0  , 0, -inf, -inf];
-ub = [inf, inf, 1,  inf,  inf]; 
+lb = [0  , 0  , 0, -inf, -inf, 0, 0];
+ub = [inf, inf, 1,  inf,  inf, inf, inf]; 
 fminconOptions = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
     'TolX', 1e-10, 'TolFun', 1e-10, 'Display', 'iter');
 
@@ -23,7 +23,9 @@ sigma(2,2) = 1e-09;
 sigma(3,3) = 0.15;
 sigma(4,4) = pi;
 sigma(5,5) = pi;
-model = 'BallStickSSD';
+sigma(6,6) = 1e-09;
+sigma(7,7) = 1e-09;
+model = 'q13ZeppelinStickSSD';
 
 % Now run the fitting
 % RESNOM is the value of the function at the solution found (parameter_hat)

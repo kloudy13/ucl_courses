@@ -16,13 +16,13 @@ minCounter = 0;
 globTol = 0.1; % 0.1 recommended
 bigSSDCount = 0;
 minParHat = startx;
-sigAngleScale = 2; % 2 recommended
-sigmaScale = 10; % 10 recommended
-
+%sigAngleScale = 2; % 2 recommended
+%sigmaScale = 10; % 10 recommended
+NR_PARAMS = length(startx);
 
 for i=1:nr_iterations
 
-    deltaX = mvnrnd(zeros(1,5),sigma.^2);
+    deltaX = mvnrnd(zeros(1,NR_PARAMS),sigma.^2);
     newStartX = startx + deltaX;
     startingSSD = BallStickSSD(newStartX, Avox, bvals, qhat)
 
