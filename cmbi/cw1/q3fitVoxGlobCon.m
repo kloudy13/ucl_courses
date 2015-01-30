@@ -16,8 +16,6 @@ minCounter = 0;
 globTol = 0.1; % 0.1 recommended
 bigSSDCount = 0;
 minParHat = startx;
-%sigAngleScale = 2; % 2 recommended
-%sigmaScale = 10; % 10 recommended
 NR_PARAMS = length(startx);
 
 for i=1:nr_iterations

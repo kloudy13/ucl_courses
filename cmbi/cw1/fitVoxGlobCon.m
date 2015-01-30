@@ -23,14 +23,19 @@ minParHat = zeros(1,5);
 sigAngleScale = 2; % 2 recommended
 sigmaScale = 10; % 10 recommended
 
+
+sigma = eye(5);
+sigma(1,1) = 1000;
+sigma(2,2) = 0.001;
+sigma(3,3) = 1;
+sigma(4,4) = pi;
+sigma(5,5) = pi;
+
+[minParHat, minSSD, ~, ~, ~, ~, globMinHessian] = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], options, Avox, bvals, qhat);
+
+
 for i=1:nr_iterations
-    
-    sigma = eye(5);
-    sigma(1,1) = 1000;
-    sigma(2,2) = 0.001;
-    sigma(3,3) = 1;
-    sigma(4,4) = pi;
-    sigma(5,5) = pi;
+
 
     deltaX = mvnrnd(zeros(1,5),sigma);
     newStartX = startx + deltaX;

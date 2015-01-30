@@ -1,11 +1,9 @@
-function [h] = eyeball(Avox, parameter_hat, bvals, qhat)
+function [h] = eyeball(Avox, predicted, bvals, qhat)
 
 h = figure;
 % Plot the actual data points
 plot(Avox, ' bs', 'MarkerSize', 16, 'LineWidth', 4);
 hold on;
-% Predict measurements from model
-predicted = BallStick(parameter_hat, bvals, qhat);
 % Add the predictions to the plot
 plot(predicted, ' rx', 'MarkerSize', 16, 'LineWidth', 4)
 % Add labels and legend.

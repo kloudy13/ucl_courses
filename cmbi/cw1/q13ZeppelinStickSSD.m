@@ -15,7 +15,7 @@ fibDir = [cos(phi)*sin(theta) sin(phi)*sin(theta) cos(theta)];
 fibDotGradSquared = (sum(qhat .* repmat(fibDir, [length(qhat) 1])')).^2;
 
 Si = exp(-bvals * diff .* fibDotGradSquared); % intra-cellular diffusion
-Se = exp(-bvals(lam2 + (lam1 - lam2)*fibDotGradSquared)); % extra-cellular diffusion
+Se = exp(-bvals.*(lam2 + (lam1 - lam2)*fibDotGradSquared)); % extra-cellular diffusion
 
 S = S0*(f*Si + (1-f)*Se);
 

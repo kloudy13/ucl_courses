@@ -5,9 +5,10 @@ function q123()
 Avox = dwis(:,52,62,25);
 
 NR_PARAMS = 3;
-startx = [1.1e+05 2e-03 0.5 0 0];
+startx = [1.1e+05 1.5e-03 0.5 0 0];
 nr_iterations = 20;
-%twoSigmaLap = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx)';
+sigmaNoise = 6000;
+twoSigmaLap = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigmaNoise)';
 
 [two_sigmaParBoot, conf95ParBoot] = q121Conf();
 [two_sigmaMCMC, conf95MCMC] = q122Conf();
@@ -37,13 +38,14 @@ end
 
 end
 
-function twoSigma = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx)
+function twoSigma = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigmaNoise)
 
 [parameter_hat, ~, ~, Hessian] = fitVoxGlobCon(Avox, qhat, bvals, nr_iterations, startx);
 
-cov = -inv(Hessian);
+% correct by dividing with -2*sigma^2
+cov = -inv(Hessian/(-2*sigmaNoise^2));
 
-twoSigma = [parameter_hat - diag(cov(1)); parameter_hat + diag(cov(1))];
+twoSigma = [parameter_hat - diag(cov)/2; parameter_hat + diag(cov)/2];
 twoSigma = twoSigma(:,1:3);
 
 end

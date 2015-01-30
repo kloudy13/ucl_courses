@@ -11,9 +11,10 @@ function [parameter_hat2, minSSD2] = q131()
 
 % the following starting point was obtained after doing linear fit followed by 
 % repeated calls to q3fitVoxGlobCon, minSSD is around 4.536
-parameter_hat1 = [0.897793040801267   0.000000001010154   0.460722376201871   4.731145749356769, 0.018281659676733];
+params_orig = [0.897793040801267   0.000000001010154   0.460722376201871   4.731145749356769, 0.018281659676733];
 
-h = eyeball(signals, parameter_hat1, bvals, qhat);
+predicted = BallStick(params_orig, bvals, qhat);
+h = eyeball(signals, predicted, bvals, qhat);
 
 % Define various options for the non-linear fitting algorithm
 h = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
@@ -37,7 +38,7 @@ model = 'BallStickSSD';
 % Now run the fitting
 % RESNOM is the value of the function at the solution found (parameter_hat)
 tic
-[paramsBallStick, SSDDBallStick] = q3fitVoxGlobCon(signals, qhat, bvals, nr_iterations, parameter_hat1, lb, ub, sigma, fminconOptions, model)
+[paramsBallStick, SSDDBallStick] = q3fitVoxGlobCon(signals, qhat, bvals, nr_iterations, params_orig, lb, ub, sigma, fminconOptions, model)
 toc
 % plots the computation time
 
