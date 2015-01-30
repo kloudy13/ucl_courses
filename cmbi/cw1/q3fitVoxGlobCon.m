@@ -10,7 +10,7 @@ function [parameter_hat, minSSD, minCounter, globMinHessian] = q3fitVoxGlobCon(A
 %options = optimset('MaxFunEvals', 20000, 'Algorithm', 'active-set');
 
 
-[~, minSSD] = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], fminconOptions, Avox, bvals, qhat);
+[~, minSSD] = fmincon(model, startx, [],[],[],[],lb, ub, [], fminconOptions, Avox, bvals, qhat);
 
 minCounter = 0;
 globTol = 0.1; % 0.1 recommended

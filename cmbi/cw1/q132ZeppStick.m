@@ -1,10 +1,26 @@
 function [paramsZeppStick, SSDZeppStick] = q132ZeppStick()
 
 [signals, bvals, qhat] = q13preprocessing();
+[logS0, D, SSDDiffTensor] = q1FitVoxLin(signals, qhat, bvals);
+[EigVect,EigVals] = eig(D); 
 
-params_orig = [0.897793040801267, 0.000000001010154, 0.460722376201871, 4.731145749356769, 0.018281659676733, 6.73436e-10, 1.346872e-09];
+EigVals = diag(EigVals);
+sortedEigs = sort(EigVals);
+lam1 = sortedEigs(3);
+lam2 = sortedEigs(2);
+
+S0 = 1;
+d = 1e-09;
+f = 0.46;
+theta = 4;
+phi = 0.02;
+
+params_orig = [S0, d, f, theta, phi, lam1, lam2];
 [ ~, predicted ]= q13ZeppelinStickSSD(params_orig, signals, bvals, qhat);
 %h = eyeball(signals, predicted, bvals, qhat);
+optimal_params = [0.9816, 6.339e-10, 0.3464, 1.5468, -3.1183, 2.8719e-09, 6.868e-10]
+[ ~, predicted_opt ]= q13ZeppelinStickSSD(optimal_params, signals, bvals, qhat);
+h = eyeball(signals, predicted_opt, bvals, qhat);
 
 % Define various options for the non-linear fitting algorithm
 h = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',...
@@ -20,9 +36,9 @@ fminconOptions = optimset('MaxFunEvals', 20000, 'Algorithm', 'interior-point',..
 sigma = eye(5);
 sigma(1,1) = 0.15;
 sigma(2,2) = 1e-09;
-sigma(3,3) = 0.15;
-sigma(4,4) = pi;
-sigma(5,5) = pi;
+sigma(3,3) = 0.1;
+sigma(4,4) = 2*pi;
+sigma(5,5) = 2*pi;
 sigma(6,6) = 1e-09;
 sigma(7,7) = 1e-09;
 model = 'q13ZeppelinStickSSD';
@@ -37,6 +53,7 @@ toc
 [ ~, predicted ]= q13ZeppelinStickSSD(paramsZeppStick, signals, bvals, qhat);
 h = eyeball(signals, predicted, bvals, qhat);
 
-save('q132DiffTensor.mat', 'paramsZeppStick', 'SSDZeppStick');
+save('q132ZeppStick.mat', 'paramsZeppStick', 'SSDZeppStick');
 params_orig - paramsZeppStick
+% ryan got 1.17
 end
