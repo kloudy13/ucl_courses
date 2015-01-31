@@ -1,4 +1,4 @@
-function [sumRes, S] = BallStickSSD(x, Avox, bvals, qhat)
+function [sumRes, S] = BallStickSSDq112(x, Avox, bvals, qhat)
 % same as BallStickSSD but with transformations of input parameters in 
 % order to satisfy boundary constraints 
 
@@ -8,7 +8,8 @@ S0 = x(1)^2;
 diff = x(2)^2;
 
 % f must be between 0,1 .. so apply the inverse tangent function
-f = atan(x(3))/pi+0.5;
+%f = atan(x(3))/pi+0.5;
+f = q1Trans(x(3));
 %f = x(3);
 
 % leave theta and phi unconstrained
