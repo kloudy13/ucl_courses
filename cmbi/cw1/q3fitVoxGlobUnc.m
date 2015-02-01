@@ -1,8 +1,9 @@
-function [parameter_hat, minSSD, minCounter] = q3fitVoxGlobUnc(Avox, qhat, bvals, nr_iterations, startx, sigma, fminuncOptions, globTol, model)
+function [minParHat, minSSD, minCounter] = q3fitVoxGlobUnc(Avox, qhat, bvals, nr_iterations, startx, sigma, fminuncOptions, globTol, model, trans, transInv)
 % for use in q111-q114, uses a predefined starting point
 
 % apply the inverse tranformations: sqrt and sigmoid
-startxTrans = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)), startx(4),startx(5),sqrt(startx(6)),sqrt(startx(7))];
+%startxTrans = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3)), startx(4),startx(5),sqrt(startx(6)),sqrt(startx(7))];
+startxTrans = transInv(startx);
 
 minCounter = 0;
 bigSSDCount = 0;
@@ -28,7 +29,7 @@ for i=1:nr_iterations
         [parameter_hat, RESNOM] = fminunc(model, newXTrans, fminuncOptions, Avox, bvals, qhat);
         succeeded = true;
       catch
-        newXTrans
+        display('Error in fminunc')
       end
     end
     
@@ -57,10 +58,6 @@ for i=1:nr_iterations
 
     
 end
-parameter_hat = minParHat;
 % apply the transformations
-[S0, d, f, theta, phi, lam1, lam2] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5),parameter_hat(6),parameter_hat(7));
-parameter_hat = [ S0^2, d^2, q1Trans(f), theta, phi, lam1^2, lam2^2];
-%minSSD
-%minCounter
+minParHat = trans(minParHat);
 end

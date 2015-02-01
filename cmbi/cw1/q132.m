@@ -12,11 +12,12 @@ load('q131BallStick.mat');
 load('q132DiffTensor.mat');
 
 % Zeppelin-Stick
-[paramsZeppStick, SSDZeppStick] = q132ZeppStick();
+%[paramsZeppStick, SSDZeppStick] = q132ZeppStickUnc();
+load('q132ZeppStickUnc.mat');
 
 % Zeppelin-Stick with tortuosity
 %[paramsZeppStickTort, SSDZeppStickTort] = q132ZeppStickTort();
-
+load('q132ZeppStickTortUnc.mat');
 
 
 
