@@ -19,5 +19,5 @@ S = S0*(f*exp(-bvals * diff .* (fibDotGrad .^2)) + (1-f)*exp(-bvals*diff));
 I0 = log(besseli(0,(Avox' .* S)/sigma^2));
 sumRes = sum(-(Avox'.^2 + S.^2)/(2*sigma^2)) + sum(I0);
 
-sumRes = abs(sumRes);
+%sumRes = abs(sumRes); % convert from complex to real
 end

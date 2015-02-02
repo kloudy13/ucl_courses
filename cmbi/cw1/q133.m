@@ -17,6 +17,7 @@ load('q132ZeppStickTortUnc.mat');
 aicZeppStickTort =calcAIC(6, K, SSDZeppStickTort)
 bicZeppStickTort =calcBIC(6, K, SSDZeppStickTort)
 
+use the updated formula from notes
 
 end
 
