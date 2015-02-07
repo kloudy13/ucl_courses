@@ -8,7 +8,7 @@ NR_PARAMS = 3;
 startx = [1.1e+05 1.5e-03 0.5 0 0];
 nr_iterations = 20;
 sigmaNoise = 6000;
-twoSigmaLap = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigmaNoise)';
+twoSigmaLap = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigmaNoise);
 
 [two_sigmaParBoot, conf95ParBoot] = q121Conf();
 [two_sigmaMCMC, conf95MCMC] = q122Conf();
@@ -45,8 +45,10 @@ function twoSigma = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigm
 % correct by dividing with -2*sigma^2
 cov = -inv(Hessian/(-2*sigmaNoise^2));
 
-twoSigma = [parameter_hat - diag(cov)/2; parameter_hat + diag(cov)/2];
-twoSigma = twoSigma(:,1:3);
+sigma = sqrt(diag(cov));
+
+twoSigma = [(parameter_hat' -sigma), (parameter_hat' + sigma)];
+twoSigma = twoSigma(1:3,:);
 
 end
 

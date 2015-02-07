@@ -17,6 +17,8 @@ h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
 [parameter_hat, RESNOM, EXITFLAG, OUTPUT] = fminunc('BallStickSSD', startx, h, Avox, bvals, qhat)
 
 predicted = BallStick(parameter_hat, bvals, qhat);
-eyeball(Avox, predicted, bvals, qhat);
+h= eyeball(Avox, predicted, bvals, qhat);
+
+hgexport(h, 'report/figures/q1/q111.eps');
 
 end

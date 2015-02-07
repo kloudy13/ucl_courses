@@ -95,18 +95,14 @@ Student Number: 14060166\\
 \maketitle{}
 
 \section*{Q1.1.1}
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{figures/q111.eps}
-\caption{Data points for the voxel at position $(52,62,25)$}
-\end{figure}
+
 
 
 %Think about the quality of the fit you obtain above.  First, eyeball the fit 
 %to the data by comparing the predictions from the model with your fitted 
 %parameters to the actual measurements, as in the lectures. 
 
-From eyeballing the data we notice that the fit is very poor, especially for the 3 entries where the b-value is 0, having a $\Delta S > 7 * 10^5$. The other entries don't fit the data well either.
+From eyeballing the data in fig. \ref{q111} we notice that the fit is very poor, especially for the 3 entries where the b-value is 0, having a $\Delta S > 7 * 10^5$. The other entries don't fit the data well either.
 
 %Then, is the final 
 %value of RESNORM above the kind of value for the sum of square differences we 
@@ -126,24 +122,98 @@ Since sigma is between 5000-6000 this means that $ 8.25*10^8 < RESNORM < 1.188 *
 %Are the parameter values sensible given the 
 %quantities they represent?	
 
-Some of the parameter values we obtain are not sensible. For example, the value of $f$ is negative, meaning that we give too much weight to the $S_E$ component of the model, extrapolating outside the intended $(0,1)$ range. The value of S0 is also really high, when in fact it should be around $1.1 * 10^5$. 
+Some of the parameter values we obtain are not sensible. For example, the value of $f$ is negative, meaning that we have negative intra-axonal diffusion, which is not physically possible. The value of S0 is also really high, when in fact it should be around $1.1 * 10^5$. 
 
 
 \section*{Q1.1.2}
 %% TODO: insert picture (maybe)
 
 
-\hilight{wrong results .. update the change in atan tranformation}
-We did the following transformations to ensure the parameters stayed within the required bounds:
+We did the following transformations:
 \begin{itemize}
  \item $S0 \to S0^2$
  \item $d \to d^2$
- \item $f \to atan(f)$
+ \item $f \to (1+e^{-f})^{-1}$ (sigmoid)
 \end{itemize}
-\hilight{wrong results .. update}
-We apply the inverse transformation at the beginning in order to maintain the starting point. This time the algorithm converges to the following parameters: $S0 = 113204, d=21521 f=-1.51, \theta=-12.89,  \phi=-47.31$ with a RESNORM of 9.48e+10. There is an 11-fold improvement from the unconstrained version and by eyeballing the data we find that the value for $S0$ is what we expected. However, the $d$ parameter is too large while $f$ is really close to zero, suggesting that the whole brain is mostly made of balls, with almost no sticks. The improvement in the SSD value is because of the fact that parameters were constrained to physically realistic bounds. However, the expected RESNORM (around $10^9$) is still much lower that out current value, suggesting that the algorithm again got stuck in a local minima.
+This time the algorithm converges to the following parameters: $S0 = 1.132129e+05, d=1.534e-03 f=0.575, \theta=-1.03,  \phi=-0.11$ with a RESNORM of 1.33e+09. These parameter values are realistic and give us a RESNORM that is around 1000 times smaller. Note that we this time the starting parameters were changed to more realistic values ($S0 = 1.5e+05, d=3e-03 f=0.5, \theta=0,  \phi=0$). The reason we gett better parameters and RESNORM is because we introduced the transformations that keep the parameters within reasonable limits and because we used a better starting position.
 
 \section*{Q1.1.3}
+Running the same procedure for gaussian-distributed starting points and for three different pixels gives us the following parameters:
+\begin{center}
+\begin{tabular}{c | c | c | c | c | c | c}
+Voxel & S0 & d & f & $\theta$ & $\phi$ & GlobalMinCounter(out of 100)\\
+\hline
+(52,62,25) & 1.132e+05 & 1.534e+03 & 0.575 & 2.10 & 6.17 & 89\\
+(63,40,18) & 1.121e+05 & 1.829e+03 & 0.5125 & 1.19 & 5.43 & 83\\
+(50,64,23) & 1.214e-05 & 7.208e-04 & 0.1955 & 5.05 & 5.02 & 87\\
+\end{tabular}
+\end{center}
+
+GlobalMinCounter represents the number of times the global minimum was found was found. We are quite confident that those are the global minimums, since we made sure that the covariance of the gaussian distribution from which we sample the starting position is large enough to cover a wide area of the space. If we consider the probability $p$ of finding the global minimum in one run, then after $k$ runs the probability of \textbf{not} having found the global minimum would be $(1-p)^k$ where $k$ is the number of runs. Then, the minimum number of runs in order to be 95\% confident that we will find the global minimum is $\argmin_{k} 0.05 > (1-p)^k$. Since $p \approx 0.86$ then $k = 2$, meaning that 2 runs are enough to be 95\% confident.
+
+\section*{Q1.1.4}
+
+
+
+\section*{Images}
+
+\section*{Q1}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{figures/q1/q111.eps}
+\caption{Data points for the voxel at position $(52,62,25)$}
+\label{q111}
+\end{figure}
+
+ 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    %trim=l b r t
+      \centering
+    \includegraphics[scale=1]{figures/q1/q114-S0.eps}
+    \caption{$S0$ map}
+    \label{q114-S0}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.5\textwidth}
+    %trim=l b r t
+      \centering
+    \includegraphics[scale=1]{figures/q1/q114-D.eps}
+    \caption{$D$ map}
+    \label{q114-D}
+  \end{subfigure}%
+
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    %trim=l b r t
+      \centering
+    \includegraphics[scale=1]{figures/q1/q114-F.eps}
+    \caption{$F$ map}
+    \label{q114-F}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.5\textwidth}
+    %trim=l b r t
+      \centering
+    \includegraphics[scale=1]{figures/q1/q114-RESNORM.eps}
+    \caption{$RESNORM$ map}
+    \label{q114-RESNORM}
+  \end{subfigure}%
+
+\end{figure}
+
+\begin{figure}[H]
+      \centering
+    \includegraphics[scale=1]{figures/q1/q114-fbDir.eps}
+    \caption{Fibre direction map}
+    \label{q114-fbDir}
+\end{figure}
+
 
 \end{document}
 

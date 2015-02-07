@@ -4,7 +4,7 @@ function q112(dwis, qhat, bvals)
 Avox = dwis(:,52,62,25);
 
 % apply the inverse tranformations: sqrt and tangent
-startx = [sqrt(7.5e+05) sqrt(3e-03) q1TransInv(2.5e-01) 0 0];
+startx = [sqrt(1.5e+05) sqrt(3e-03) q1TransInv(0.5) 0 0];
 
 % Define various options for the non-linear fitting algorithm
 h = optimset('MaxFunEvals', 20000, 'Algorithm', 'levenberg-marquardt',...
@@ -24,6 +24,6 @@ parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi]
 
 predicted = BallStick(parameter_hat, bvals, qhat);
 h = eyeball(Avox, predicted, bvals, qhat);
-
+hgexport(h, 'report/figures/q1/q112.eps');
 
 end

@@ -9,7 +9,7 @@ startxTrans(1:3) = [sqrt(startx(1)) sqrt(startx(2)) q1TransInv(startx(3))];
 minCounter = 0;
 bigSSDCount = 0;
 
-[minParHat, minSSD] = fminunc(model, startxTrans, fminuncOptions, Avox, bvals, qhat);
+[minParHatTrans, minSSD] = fminunc(model, startxTrans, fminuncOptions, Avox, bvals, qhat);
 
 NR_PARAMS = length(startx);
 
@@ -27,19 +27,19 @@ for i=1:nr_iterations
       try
         % Now run the fitting ... if the gradient method fails because of
         % approximation errors on the Hessian, try again. Happends very rarely
-        [parameter_hat, RESNOM] = fminunc(model, newXTrans, fminuncOptions, Avox, bvals, qhat);
+        [parameter_hatTrans, RESNOM] = fminunc(model, newXTrans, fminuncOptions, Avox, bvals, qhat);
         succeeded = true;
       catch
-        newXTrans
+        [newXTrans(1)^2,newXTrans(2)^2, q1Trans(newXTrans(3))] 
       end
     end
     
     
-    parameter_hat(4:5) = mod(parameter_hat(4:5),2*pi);
+    parameter_hatTrans(4:5) = mod(parameter_hatTrans(4:5),2*pi);
     if (abs(minSSD - RESNOM) > globTol)
         %abs(minSSD - RESNOM)
         bigSSDCount = bigSSDCount+1;
-        sum(abs(parameter_hat - minParHat))
+        sum(abs(parameter_hatTrans - minParHatTrans))
     end
     
     if(abs(minSSD - RESNOM) <= globTol)
@@ -53,15 +53,15 @@ for i=1:nr_iterations
        minSSD = RESNOM;
        %minSSD
        minCounter = 0;
-       minParHat = parameter_hat;
+       minParHatTrans = parameter_hatTrans;
     end
     
 
     
 end
-parameter_hat = minParHat;
+parameter_hat = minParHatTrans;
 % apply the transformations
-[S0, d, f, theta, phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
+[S0, d, f, theta, phi] = deal(parameter_hatTrans(1),parameter_hatTrans(2),parameter_hatTrans(3),parameter_hatTrans(4),parameter_hatTrans(5));
 parameter_hat(1:3) = [ S0^2 d^2 q1Trans(f)];
 %minSSD
 %minCounter
