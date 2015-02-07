@@ -1,5 +1,5 @@
 
-function [logS0, D, minSSD] = q1FitVoxLin(voxSig, qhat, bvals)
+function [logS0, D, minSSD, predicted] = q1FitVoxLin(voxSig, qhat, bvals)
 % linear model, but doesn't ensure that D is positive definite. Try cholesky:
 % D=L*L^T
 N = length(voxSig);

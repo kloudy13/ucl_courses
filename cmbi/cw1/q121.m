@@ -10,7 +10,7 @@ Avox = dwis(:,52,62,25); %given voxel
 %Avox = dwis(:,99,63,25);
 %Avox = dwis(:,32,15,25);
 
-%sample_data(dwis, qhat, bvals, Avox);
+sample_data(dwis, qhat, bvals, Avox);
 
 %load('q121.mat');
 load('q121.mat');
@@ -69,7 +69,7 @@ for t=1:T
   parameter_sample(t,:) = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], options, Ahat', bvals, qhat);
 end
 
-save('q121-vox3.mat', 'parameter_sample');
+save('q121.mat', 'parameter_sample');
 
 
 end

@@ -55,5 +55,5 @@ h = eyeball(signals, predicted, bvals, qhat);
 
 save('q132ZeppStick.mat', 'paramsZeppStick', 'SSDZeppStick');
 params_orig - paramsZeppStick
-% ryan got 1.17
+% result should be 1.17
 end

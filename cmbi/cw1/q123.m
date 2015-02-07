@@ -25,7 +25,7 @@ for p=1:NR_PARAMS
     hold on
     plot(conf95MCMC(p,:), [5,5],'k-o');
     ylim ([0 6]);
-    legend('2sigma Laplace','2 sigma Par Bootstrap', '2sigma MCMC', 'conf95ParBoot', 'conf95MCMC', 'location', 'northoutside');
+    legend('2sigma Laplace','2sigma Parametric Bootstrap', '2sigma MCMC', 'conf95 Parametric Bootstrap', 'conf95 MCMC', 'location', 'northoutside');
     %legend('2 sigma Par Bootstrap', '2sigma MCMC', 'conf95ParBoot', 'conf95MCMC', 'location', 'northoutside');
     filename = sprintf('report/figures/q2/q123-p%d.eps', p);
     hgexport(h, filename);

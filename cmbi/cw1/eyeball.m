@@ -1,6 +1,6 @@
 function [h] = eyeball(Avox, predicted, bvals, qhat)
 
-h = figure;
+h = figure('Position', [300, 0, 700, 500]);
 % Plot the actual data points
 plot(Avox, ' bs', 'MarkerSize', 16, 'LineWidth', 4);
 hold on;
