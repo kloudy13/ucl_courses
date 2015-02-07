@@ -26,7 +26,7 @@ if (plotFig == 1)
   %plot([lower_limit, upper_limit], [70,70],'k--o')
   hold on
   plot(twoSigma, 1.1*[maxY(2), maxY(2)], 'r--o');
-  legend('p(x|A)','95% range','2 sigma range');
+  legend('p(x|A)','95% range','2 sigma range','location','northoutside');
 else
   h = 0;
 end

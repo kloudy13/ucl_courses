@@ -15,18 +15,20 @@ twoSigmaLap = LaplaceUncert(Avox, qhat, bvals, nr_iterations, startx, sigmaNoise
 
 for p=1:NR_PARAMS
     h = figure
-    %plot(twoSigmaLap(:,p), [1,1]);
-    %hold on
-    plot(two_sigmaParBoot(p,:), [2,2]);
+    plot(twoSigmaLap(p,:), [1,1],'m-x');
     hold on
-    plot(two_sigmaMCMC(p,:), [3,3]);
+    plot(two_sigmaParBoot(p,:), [2,2],'b-x');
     hold on
-    plot(conf95ParBoot(p,:), [4,4]);
+    plot(two_sigmaMCMC(p,:), [3,3],'g-x');
     hold on
-    plot(conf95MCMC(p,:), [5,5]);
-    ylim ([1 6]);
-    %legend('2sigma Laplace','2 sigma Par Bootstrap', '2sigma MCMC');
-    legend('2 sigma Par Bootstrap', '2sigma MCMC', 'conf95ParBoot', 'conf95MCMC');
+    plot(conf95ParBoot(p,:), [4,4],'r-o');
+    hold on
+    plot(conf95MCMC(p,:), [5,5],'k-o');
+    ylim ([0 6]);
+    legend('2sigma Laplace','2 sigma Par Bootstrap', '2sigma MCMC', 'conf95ParBoot', 'conf95MCMC', 'location', 'northoutside');
+    %legend('2 sigma Par Bootstrap', '2sigma MCMC', 'conf95ParBoot', 'conf95MCMC', 'location', 'northoutside');
+    filename = sprintf('report/figures/q2/q123-p%d.eps', p);
+    hgexport(h, filename);
 end
 
 %  diag cov - 2sigma range

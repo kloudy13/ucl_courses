@@ -12,14 +12,16 @@ Avox = dwis(:,52,62,25); %given voxel
 
 %sample_data(dwis, qhat, bvals, Avox);
 
+%load('q121.mat');
 load('q121.mat');
+
 two_sigma = zeros(NR_PARAMS, 2);
 conf95 = zeros(NR_PARAMS, 2);
 
 for p=1:NR_PARAMS
     [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(parameter_sample(:,p), 1);
     filename = sprintf('report/figures/q2/q121-p%d.eps', p);
-    hgexport(h, filename);
+    %hgexport(h, filename);
 end
 
 end
@@ -67,7 +69,7 @@ for t=1:T
   parameter_sample(t,:) = fmincon('BallStickSSD', startx, [],[],[],[],lb, ub, [], options, Ahat', bvals, qhat);
 end
 
-save('q121.mat', 'parameter_sample');
+save('q121-vox3.mat', 'parameter_sample');
 
 
 end

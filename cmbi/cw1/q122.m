@@ -2,10 +2,12 @@ function [two_sigma, conf95] = q122()
 
 [dwis, qhat, bvals] = q1Preprocessing();
 
-Avox = dwis(:,52,62,25);
+%Avox = dwis(:,52,62,25);
+%Avox = dwis(:,63,40,18);
+Avox = dwis(:,70,64,14);
 
 NR_PARAMS = 3;
-NR_SAMPLES = 1000000;
+NR_SAMPLES = 100000;
 NR_BURN_IN = NR_SAMPLES / 10;
 sigmaQ = [10^4, 0.0001 0.05];
 sigmaNoise = 5000;
@@ -43,14 +45,14 @@ for p=1:NR_PARAMS
 end
 
 samples = samples(:, NR_BURN_IN:end);
-save('q122.mat', 'samples');
+save('q122-vox3.mat', 'samples');
 
 two_sigma = zeros(NR_PARAMS, 2);
 conf95 = zeros(NR_PARAMS, 2);
 for p=1:NR_PARAMS
     [h, two_sigma(p,:), conf95(p, :)] = q12calcUncertainty(samples(p,:), 1);  
     filename = sprintf('report/figures/q2/q122-p%d.eps', p);
-    hgexport(h, filename);
+    %hgexport(h, filename);
 end
 
 end

@@ -1,8 +1,8 @@
 function q113(dwis, qhat, bvals)
 [dwis, qhat, bvals] = q1Preprocessing();
 
-%Avox = dwis(:,52,62,25); %given voxel
-Avox = dwis(:,63,40,18);
+Avox = dwis(:,52,62,25); %given voxel
+%Avox = dwis(:,63,40,18);
 %Avox = dwis(:,50,64,23);
 %Avox = dwis(:,111,111,14);
 %Avox = dwis(:,99,63,25);
@@ -29,7 +29,9 @@ sigma(5,5) = sigAngleScale *pi;
 sigma = sigma .^2;
 model = 'BallStickSSDq112';
 
+tic
 [parameter_hat, minSSD, minCounter] = fitVoxGlobUnc(Avox, qhat, bvals, nr_iterations, startx, sigma, fminuncOptions, globTol, model)
+toc
 
 predicted = BallStick(parameter_hat, bvals, qhat);
 h = eyeball(Avox, predicted, bvals, qhat);

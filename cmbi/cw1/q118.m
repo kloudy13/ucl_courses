@@ -10,7 +10,7 @@ Avox = dwis(:,52,62,25); %given voxel
 
 nr_iterations = 30;
 
-startx = [1.1e+05 2e-03 0.5 0 0];
+startx = [1.1e+05 1.5e-03 0.5 0 0];
 [parameter_hat, minSSD] = fitVoxGlobRician(Avox, qhat, bvals, nr_iterations, startx)
 
 predicted = BallStick(parameter_hat, bvals, qhat);

@@ -19,8 +19,8 @@ RESNOM
 
 % apply the transformations
 [S0 d f theta phi] = deal(parameter_hat(1),parameter_hat(2),parameter_hat(3),parameter_hat(4),parameter_hat(5));
-toc
 parameter_hat = [ S0^2 d^2 q1Trans(f) theta phi]
+toc
 
 predicted = BallStick(parameter_hat, bvals, qhat);
 h = eyeball(Avox, predicted, bvals, qhat);

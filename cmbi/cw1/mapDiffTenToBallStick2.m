@@ -1,6 +1,6 @@
-function [parameter_hat] = mapDiffTenToBallStick(D, logS0)
+function [parameter_hat] = mapDiffTenToBallStick2(D, logS0)
 % D is a 3x3 matrix with diffusivity in X, Y, Z directions
-% d is calculated as the mean of all the elements in the matrix
+% d is calculated as the mean of the diagonal elements of D
 % f is calculated using a linear formula, being 0 if all the eigenvalues are the
 % same and 1 if 2 eigenvalues are zero. In between it interpolates linearly.
 
@@ -18,7 +18,7 @@ principalDir = EigVect(:,maxEigPos);
 [phi, theta]= cart2sph(principalDir(1),principalDir(2),principalDir(3))
 S0 = exp(logS0);
 
-d = mean(D(:));
+d = mean(diag(D));
 
 EigValsScaled = EigVals/ sum(EigVals);
 
