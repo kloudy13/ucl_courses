@@ -1,4 +1,4 @@
-function [S] = BallStickDerivSigTheta(x, bvals, qhat)
+function [dSdPhi] = BallStickDerivSigPhi(x, bvals, qhat)
 
 % Extract the parameters
 S0 = x(1);
@@ -18,6 +18,6 @@ A = S0*f*Si .*(-(2*bvals*diff) .* fibDotGrad);
 
 derivQN = repmat([-sin(phi)*sin(theta) cos(phi)*sin(theta) 0], [length(qhat) 1]);
 
-S = A .* sum(derivQN' .* qhat);
+dSdPhi = A .* sum(derivQN' .* qhat);
 
 end

@@ -18,8 +18,8 @@ K = length(signals);
 % aicZeppStickTort =calcAIC(6, K, SSDZeppStickTort)
 % bicZeppStickTort =calcBIC(6, K, SSDZeppStickTort)
 
-% assuming sigma is known
 
+% assuming sigma is known
 
 % Zeppelin-Stick
 load('q132ZeppStickUnc.mat');
@@ -40,6 +40,17 @@ bicBallStick =calcBICSigma(5, K, SSDDBallStick, sigma)
 load('q132DiffTensor.mat');
 aicDiffTensor =calcAICSigma(7, SSDDiffTensor, sigma)
 bicDiffTensor =calcBICSigma(7, K, SSDDiffTensor, sigma)
+
+% BallTwoStick
+load('BallTwoStick/BallTwoStick.mat');
+aicBallTwoStick =calcAICSigma(8, SSDBallTwoStick, sigma)
+bicBallTwoStick =calcBICSigma(8, K, SSDBallTwoStick, sigma)
+
+% ZeppTwoStick
+load('ZeppelinTwoStick/ZeppTwoStick.mat');
+aicZeppTwoStick =calcAICSigma(8, SSDZeppTwoStick, sigma)
+bicZeppTwoStick =calcBICSigma(8, K, SSDZeppTwoStick, sigma)
+
 
 end
 

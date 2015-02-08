@@ -1,4 +1,4 @@
-function [S] = BallStickDerivSigD(x, bvals, qhat)
+function [dSdD] = BallStickDerivSigD(x, bvals, qhat)
 
 % Extract the parameters
 S0 = x(1);
@@ -15,6 +15,6 @@ fibDotGrad = sum(qhat .* repmat(fibDir, [length(qhat) 1])');
 Si = exp(-bvals * diff .* (fibDotGrad .^2));
 Se = exp(-bvals * diff);
 
-S = S0*(f*Si .* (-bvals .* (fibDotGrad .^2)) + (1-f) * Se .* (-bvals));
+dSdD = S0*(f*Si .* (-bvals .* (fibDotGrad .^2)) + (1-f) * Se .* (-bvals));
 
 end

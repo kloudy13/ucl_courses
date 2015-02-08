@@ -8,8 +8,7 @@ F = Fisher(paramsBallStick, signals, bvals, qhat, sigma);
 
 end
 
-function F = Fishe
-r(paramsBallStick, signals, bvals, qhat, sigma)
+function F = Fisher(paramsBallStick, signals, bvals, qhat, sigma)
 
 dSdS0 = BallStickDerivSigS0(paramsBallStick, bvals, qhat);
 dSdD = BallStickDerivSigD(paramsBallStick, bvals, qhat);
